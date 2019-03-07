@@ -14,6 +14,8 @@
 		11FC4505222E0A9A0048D683 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FC4503222E0A9A0048D683 /* LaunchScreen.storyboard */; };
 		11FC4510222E0A9B0048D683 /* sQReTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC450F222E0A9B0048D683 /* sQReTests.swift */; };
 		11FC451B222E0A9B0048D683 /* sQReUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC451A222E0A9B0048D683 /* sQReUITests.swift */; };
+		11FC4529222E0BA20048D683 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC4528222E0BA20048D683 /* user.swift */; };
+		11FC452B222E1E8D0048D683 /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC452A222E1E8D0048D683 /* QRCodeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		11FC4516222E0A9B0048D683 /* sQReUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sQReUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FC451A222E0A9B0048D683 /* sQReUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sQReUITests.swift; sourceTree = "<group>"; };
 		11FC451C222E0A9B0048D683 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11FC4528222E0BA20048D683 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
+		11FC452A222E1E8D0048D683 /* QRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				11FC4501222E0A9A0048D683 /* Assets.xcassets */,
 				11FC4503222E0A9A0048D683 /* LaunchScreen.storyboard */,
 				11FC4506222E0A9A0048D683 /* Info.plist */,
+				11FC4528222E0BA20048D683 /* user.swift */,
+				11FC452A222E1E8D0048D683 /* QRCodeController.swift */,
 			);
 			path = sQRe;
 			sourceTree = "<group>";
@@ -258,6 +264,8 @@
 			files = (
 				11FC44FD222E0A990048D683 /* ViewController.swift in Sources */,
 				11FC44FB222E0A990048D683 /* AppDelegate.swift in Sources */,
+				11FC4529222E0BA20048D683 /* user.swift in Sources */,
+				11FC452B222E1E8D0048D683 /* QRCodeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,95 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="sQRe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RCm-32-Wnb">
+                                <rect key="frame" x="16" y="121" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g2R-CA-0Hv">
+                                <rect key="frame" x="16" y="159" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V0e-j9-Jrb">
+                                <rect key="frame" x="16" y="197" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezX-HM-hrm">
+                                <rect key="frame" x="123" y="258" width="128" height="30"/>
+                                <state key="normal" title="Generate QR">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="generateQR:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4IZ-hs-4eb"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="g2R-CA-0Hv" firstAttribute="trailing" secondItem="V0e-j9-Jrb" secondAttribute="trailing" id="5e8-xu-gN9"/>
+                            <constraint firstItem="V0e-j9-Jrb" firstAttribute="centerX" secondItem="ezX-HM-hrm" secondAttribute="centerX" id="8O6-Z5-9Ub"/>
+                            <constraint firstItem="g2R-CA-0Hv" firstAttribute="top" secondItem="RCm-32-Wnb" secondAttribute="bottom" constant="8" symbolic="YES" id="GBg-ex-Jc3"/>
+                            <constraint firstItem="RCm-32-Wnb" firstAttribute="trailing" secondItem="g2R-CA-0Hv" secondAttribute="trailing" id="LsF-IK-Nh5"/>
+                            <constraint firstItem="RCm-32-Wnb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="TT9-kD-nU4"/>
+                            <constraint firstItem="ezX-HM-hrm" firstAttribute="top" secondItem="V0e-j9-Jrb" secondAttribute="bottom" constant="31" id="YnA-h4-9YM"/>
+                            <constraint firstItem="RCm-32-Wnb" firstAttribute="leading" secondItem="g2R-CA-0Hv" secondAttribute="leading" id="dn9-sA-ose"/>
+                            <constraint firstItem="RCm-32-Wnb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="dux-A0-Vtx"/>
+                            <constraint firstItem="g2R-CA-0Hv" firstAttribute="leading" secondItem="V0e-j9-Jrb" secondAttribute="leading" id="q2J-qJ-GY6"/>
+                            <constraint firstItem="V0e-j9-Jrb" firstAttribute="top" secondItem="g2R-CA-0Hv" secondAttribute="bottom" constant="8" symbolic="YES" id="t9g-nn-TLM"/>
+                            <constraint firstItem="ezX-HM-hrm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="123" id="uxk-Oq-OPf"/>
+                            <constraint firstItem="RCm-32-Wnb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="101" id="vOU-EZ-3rM"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="g2R-CA-0Hv" id="l1M-7i-Cpz"/>
+                        <outlet property="nameField" destination="RCm-32-Wnb" id="s16-Z6-370"/>
+                        <outlet property="phone_number_field" destination="V0e-j9-Jrb" id="kwy-4i-MQq"/>
+                        <segue destination="u0O-HW-F3F" kind="presentation" identifier="qrSegue" id="U1D-Mu-RJI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
+        </scene>
+        <!--Code Controller-->
+        <scene sceneID="mt6-J0-5ce">
+            <objects>
+                <viewController id="u0O-HW-F3F" customClass="QRCodeController" customModule="sQRe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p2q-hf-HFr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BsK-rU-Q5F">
+                                <rect key="frame" x="104" y="67" width="169" height="165"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BsK-rU-Q5F" firstAttribute="top" secondItem="9ko-Y8-Pfv" secondAttribute="top" constant="47" id="Mrq-mB-NeM"/>
+                            <constraint firstItem="9ko-Y8-Pfv" firstAttribute="bottom" secondItem="BsK-rU-Q5F" secondAttribute="bottom" constant="429" id="Tgh-Xc-8GN"/>
+                            <constraint firstItem="BsK-rU-Q5F" firstAttribute="centerX" secondItem="p2q-hf-HFr" secondAttribute="centerX" constant="1" id="iGW-ic-elf"/>
+                            <constraint firstItem="BsK-rU-Q5F" firstAttribute="leading" secondItem="9ko-Y8-Pfv" secondAttribute="leading" constant="104" id="mQ3-00-ePj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9ko-Y8-Pfv"/>
+                    </view>
+                    <connections>
+                        <outlet property="qrView" destination="BsK-rU-Q5F" id="x7p-jh-htB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GwI-Mw-hTX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1204" y="132.68365817091455"/>
         </scene>
     </scenes>
 </document>
