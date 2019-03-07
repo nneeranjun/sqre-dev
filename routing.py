@@ -24,4 +24,7 @@ def getUser(user_id):
                 for x in mongo.db.users.find({"_id": ObjectId(user_id)}):
                         user = User(x.get("name"), x.get("email"), x.get("phone_number"), user_id)
                         return jsonify(user.serialize())
+        if request.method == 'DELETE':
+                mongo.db.users.delete_one({"_id": ObjectId(user_id)})
+                return "all good"
                         
