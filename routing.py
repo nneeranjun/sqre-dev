@@ -13,7 +13,7 @@ mongo = PyMongo(app)
 def register():
         json_data = request.get_json(force=True) 
         mongo.db.users.insert(json_data)
-        return json_data["_id"]
+        return "Good"
 @app.route('/')
 def index():
         return "index"
@@ -27,4 +27,8 @@ def getUser(user_id):
         if request.method == 'DELETE':
                 mongo.db.users.delete_one({"_id": ObjectId(user_id)})
                 return "all good"
-                        
+        if request.method == 'POST':
+                json_data = request.get_json(force=True)
+                json_data["_id"] = ObjectId(user_id)
+                mongo.db.users.replace_one({"_id": ObjectId(user_id)}, json_data)
+                return "all good"
