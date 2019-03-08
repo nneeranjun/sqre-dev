@@ -31,8 +31,10 @@ class ViewController: UIViewController {
                 case .success:
                     let user_id = response.result.value
                     self.user = User(name: name!, email: email!, phone_number: phone_number!, user_id: user_id!)
-                case .failure(let error):
-                    print(error)
+                case .failure:
+                    let user_id = response.result.value
+                    self.user = User(name: name!, email: email!, phone_number: phone_number!, user_id: user_id!)
+    
             }
         }
         performSegue(withIdentifier: "qrSegue", sender: self)

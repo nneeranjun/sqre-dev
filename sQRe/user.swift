@@ -20,13 +20,13 @@ class User {
         self.phone_number = phone_number
         self.user_id = user_id
     }
-    func generateQr() -> UIImage {
+    func generateQr() -> CIImage {
         let filter = CIFilter(name: "CIQRCodeGenerator")
-        let name = self.name?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
-        let email = self.email?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
-        let phone_number = self.phone_number?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
-        let user_id = self.user_id?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
-        let dict = ["name": name, "email": email, "phone_number": phone_number, "user_id": user_id]
+        let name1 = name?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
+        let email1 = email?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
+        let phone_number1 = phone_number?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
+        let user_id1 = user_id?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
+        let dict = ["name": name1, "email": email1, "phone_number": phone_number1, "user_id": user_id1]
         do {
             let filtered_dict = try NSKeyedArchiver.archivedData(withRootObject: dict, requiringSecureCoding: false)
             filter?.setValue(filtered_dict, forKey: "inputMessage")
@@ -36,7 +36,7 @@ class User {
         filter?.setValue("Q", forKey: "inputCorrectionLevel")
         let transform = CGAffineTransform(scaleX: 3, y: 3)
         let output = filter?.outputImage?.transformed(by: transform)
-        return UIImage(ciImage: output!)
+        return output!
     }
 
     
