@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
     var user: User?
@@ -21,7 +22,19 @@ class ViewController: UIViewController {
     }
     //MARK: Actions
     @IBAction func generateQR(_ sender: UIButton) {
-        user = User(name: nameField.text!, email: emailField.text!, phone_number: phone_number_field.text!)
+        let name = nameField.text
+        let email = emailField.text
+        let phone_number = phone_number_field.text
+        let params: Parameters = ["name": name!, "email": email!, "phone_number": phone_number!]
+        AF.request("http://127.0.0.1:5000/register", method: .post, parameters: params, encoding: JSONEncoding.default).responseString { response in
+                switch response.result {
+                case .success:
+                    let user_id = response.result.value
+                    self.user = User(name: name!, email: email!, phone_number: phone_number!, user_id: user_id!)
+                case .failure(let error):
+                    print(error)
+            }
+        }
         performSegue(withIdentifier: "qrSegue", sender: self)
     }
     
@@ -31,7 +44,7 @@ class ViewController: UIViewController {
         if segue.destination is QRCodeController {
             //Pass user object
             let qr_controller = segue.destination as? QRCodeController
-            qr_controller?.user = user
+            qr_controller?.user = self.user
         }
     }
     

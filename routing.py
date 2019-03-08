@@ -12,8 +12,10 @@ mongo = PyMongo(app)
 @app.route('/register', methods = ['POST'])
 def register():
         json_data = request.get_json(force=True) 
-        mongo.db.users.insert(json_data)
-        return "Good"
+        id = mongo.db.users.insert(json_data)
+        print(str(id))
+        return str(id)
+        
 @app.route('/')
 def index():
         return "index"
