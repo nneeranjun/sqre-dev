@@ -15,23 +15,8 @@ class QRCodeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.user)
-        let filter = CIFilter(name: "CIQRCodeGenerator")
-        let name = user?.name?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
-        let email = user?.email?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
-        let phone_number = user?.phone_number?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
-        let user_id = user?.user_id?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
-        let dict = ["name": name, "email": email, "phone_number": phone_number, "user_id": user_id]
-        do {
-            let filtered_dict = try NSKeyedArchiver.archivedData(withRootObject: dict, requiringSecureCoding: false)
-            filter?.setValue(filtered_dict, forKey: "inputMessage")
-        } catch  {
-            
-        }
-        filter?.setValue("Q", forKey: "inputCorrectionLevel")
-        let transform = CGAffineTransform(scaleX: 3, y: 3)
-        let output = filter?.outputImage?.transformed(by: transform)
-        qrView.image = UIImage(ciImage: output!)
+        
+        qrView.image = UIImage(ciImage: (user?.generateQr())!)
         // Do any additional setup after loading the view.
     }
     

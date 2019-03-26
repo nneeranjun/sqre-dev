@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class ViewController: UIViewController {
-    var user: User?
+    var user: User!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var phone_number_field: UITextField!
@@ -31,13 +31,13 @@ class ViewController: UIViewController {
                 case .success:
                     let user_id = response.result.value
                     self.user = User(name: name!, email: email!, phone_number: phone_number!, user_id: user_id!)
+                    self.performSegue(withIdentifier: "qrSegue", sender: self)
                 case .failure:
-                    let user_id = response.result.value
-                    self.user = User(name: name!, email: email!, phone_number: phone_number!, user_id: user_id!)
-    
+                    print("Error")
             }
         }
-        performSegue(withIdentifier: "qrSegue", sender: self)
+        
+        
     }
     
     //END Actions
