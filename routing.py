@@ -20,6 +20,8 @@ def register():
 def index():
         return "index"
 
+
+
 @app.route('/users/<user_id>', methods = ['POST', 'GET', 'DELETE'])
 def getUser(user_id):
         if request.method == 'GET':

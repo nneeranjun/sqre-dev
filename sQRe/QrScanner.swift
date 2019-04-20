@@ -34,12 +34,19 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         // Do any additional setup after loading the view.
     }
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if metadataObjects != nil && metadataObjects.count != nil {
+        if metadataObjects != nil && metadataObjects.count != 0 {
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
-                
+                if object.type == AVMetadataObject.ObjectType.qr {
+                    let alert = UIAlertController(title: "QrCode", message: object.stringValue, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
+                    present(alert, animated: true, completion: nil)
+                    
+                }
             }
         }
     }
+    
+    
     
 
     /*
