@@ -12,12 +12,13 @@ class QRCodeController: UIViewController {
     var user: User?
     var qrImage: CIImage!
     @IBOutlet weak var qrView: UIImageView!
+    @IBOutlet weak var name: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        qrView.image = UIImage(ciImage: (user?.generateQr())!)
         // Do any additional setup after loading the view.
+        qrView.image = UIImage(ciImage: (user?.generateQr())!)
+        name.text = user?.name
     }
     
 

@@ -33,13 +33,22 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         session.startRunning()
         // Do any additional setup after loading the view.
     }
+    //TODO: Need to figure out how to only allow sQRe qr codes...
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if metadataObjects != nil && metadataObjects.count != 0 {
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
                 if object.type == AVMetadataObject.ObjectType.qr {
-                    let alert = UIAlertController(title: "QrCode", message: object.stringValue, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
-                    present(alert, animated: true, completion: nil)
+                    if let validData = object.stringValue?.data(using: .utf8) {
+                        do {
+                            let dict = try JSONDecoder().decode([String:String].self,from:validData)
+                            let alert = UIAlertController(title: "QrCode", message: dict.description, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
+                            present(alert, animated: true, completion: nil)
+                        } catch {
+                            
+                        }
+                    }
+                    
                     
                 }
             }
