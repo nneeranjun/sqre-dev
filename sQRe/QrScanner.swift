@@ -11,6 +11,7 @@ import AVFoundation
 
 class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var video = AVCaptureVideoPreviewLayer()
+    var scanned_info = Dictionary<String, String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +41,9 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 if object.type == AVMetadataObject.ObjectType.qr {
                     if let validData = object.stringValue?.data(using: .utf8) {
                         do {
-                            let dict = try JSONDecoder().decode([String:String].self,from:validData)
-                            let alert = UIAlertController(title: "QrCode", message: dict.description, preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
-                            present(alert, animated: true, completion: nil)
+                            scanned_info = try JSONDecoder().decode([String:String].self,from:validData)
+                            //prepare for segue
+                            self.performSegue(withIdentifier: "scannedSegue", sender: self)
                         } catch {
                             
                         }
@@ -58,14 +58,19 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.destination is ScannedViewController {
+            //Pass user object
+            let scanned_controller = segue.destination as? ScannedViewController
+            scanned_controller?.scanned_info = scanned_info
+        }
     }
-    */
+    
 
 }
