@@ -12,6 +12,8 @@ import AVFoundation
 class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var video = AVCaptureVideoPreviewLayer()
     var scanned_info = Dictionary<String, String>()
+    var numLoads = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +34,13 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         video.frame = view.layer.bounds
         view.layer.addSublayer(video)
         session.startRunning()
+        numLoads += 1
         // Do any additional setup after loading the view.
     }
     //TODO: Need to figure out how to only allow sQRe qr codes...
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        if ((self.video.connection?.isEnabled)!
+            ) {
         if metadataObjects != nil && metadataObjects.count != 0 {
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
                 if object.type == AVMetadataObject.ObjectType.qr {
@@ -43,7 +48,12 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                         do {
                             scanned_info = try JSONDecoder().decode([String:String].self,from:validData)
                             //prepare for segue
+                            self.video.connection?.isEnabled = false
+                            let haptic = UINotificationFeedbackGenerator()
+                            haptic.notificationOccurred(.success)
                             self.performSegue(withIdentifier: "scannedSegue", sender: self)
+                            
+                            
                         } catch {
                             
                         }
@@ -53,10 +63,18 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 }
             }
         }
+        }
     }
-    
-    
-    
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        numLoads += 1
+        if (numLoads > 0) {
+            self.video.connection?.isEnabled = true
+            
+        }
+    }
+
 
     
     // MARK: - Navigation
