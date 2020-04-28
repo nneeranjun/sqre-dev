@@ -11,22 +11,21 @@ mongo = PyMongo(app)
 
 @app.route('/register', methods = ['POST'])
 def register():
-        json_data = request.get_json(force=True) 
+        json_data = request.get_json(force=True)
         id = mongo.db.users.insert(json_data)
-        print(str(id))
+        #print(str(id))
         return str(id)
-        
+
 @app.route('/')
 def index():
         return "index"
-
 
 
 @app.route('/users/<user_id>', methods = ['POST', 'GET', 'DELETE'])
 def getUser(user_id):
         if request.method == 'GET':
                 for x in mongo.db.users.find({"_id": ObjectId(user_id)}):
-                        user = User(x.get("name"), x.get("email"), x.get("phone_number"), user_id)
+                        user = User(x.get("name"), x.get("email"), x.get("phone_number"), x.get("facebook"), user_id)
                         return jsonify(user.serialize())
         if request.method == 'DELETE':
                 mongo.db.users.delete_one({"_id": ObjectId(user_id)})

@@ -7,15 +7,44 @@
 //
 
 import UIKit
-
+import Firebase
+import FirebaseUI
+import FBSDKCoreKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var handle: AuthStateDidChangeListenerHandle?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
+         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if user != nil {
+                let db = Firestore.firestore()
+                let docRef = db.collection("users").document(user!.uid)
+
+                docRef.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        let controller = storyboard.instantiateViewController(withIdentifier: "NavViewController")
+                        self.window?.rootViewController = controller
+                        self.window?.makeKeyAndVisible()
+                    } else {
+                        print("Couldn't find socials in database")
+                        FBSDKCoreKit.ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+                    }
+                }
+                
+            } else {
+                print("User was nil")
+                let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+                self.window?.rootViewController = controller
+                self.window?.makeKeyAndVisible()
+            }
+         }
+        
         return true
     }
 
@@ -39,7 +68,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        AppEvents.activateApp()
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let handled = FBSDKCoreKit.ApplicationDelegate.shared.application(app, open: url, options: options)
+        return handled
+    }
+    
+    
 
 
 }

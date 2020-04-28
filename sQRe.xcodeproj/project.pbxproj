@@ -3,14 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1120EF90243D294900EB81ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1120EF88243D294900EB81ED /* GoogleService-Info.plist */; };
+		1120EF91243D294900EB81ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1120EF88243D294900EB81ED /* GoogleService-Info.plist */; };
+		1120EF92243D294900EB81ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1120EF88243D294900EB81ED /* GoogleService-Info.plist */; };
+		1120EF96243D5ABA00EB81ED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1120EF95243D5ABA00EB81ED /* LoginViewController.swift */; };
+		1120EFAF244106CA00EB81ED /* EnterSocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1120EFAE244106CA00EB81ED /* EnterSocialMedia.swift */; };
+		1120EFB824416F9B00EB81ED /* SelectSharedMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1120EFB724416F9B00EB81ED /* SelectSharedMediaCell.swift */; };
+		1120EFBA244170E300EB81ED /* SelectSharedMediaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1120EFB9244170E300EB81ED /* SelectSharedMediaTableViewController.swift */; };
 		113E1002226EA51C009AE498 /* ScannedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E1001226EA51C009AE498 /* ScannedViewController.swift */; };
+		114526FE244B77B000CACF0B /* ViewScannedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114526FD244B77B000CACF0B /* ViewScannedCell.swift */; };
+		11452708244C21AA00CACF0B /* LoadScansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11452707244C21AA00CACF0B /* LoadScansViewController.swift */; };
+		11452711244D5F0B00CACF0B /* Scan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11452710244D5F0A00CACF0B /* Scan.swift */; };
+		1145271C24513D3D00CACF0B /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271B24513D3D00CACF0B /* FacebookLogin */; };
+		1145271E24513D3D00CACF0B /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271D24513D3D00CACF0B /* FacebookCore */; };
 		115015042249FC850018646D /* QrScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115015032249FC850018646D /* QrScanner.swift */; };
 		118807D32231DCAD00293143 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 118807C62231DC5700293143 /* Alamofire.framework */; };
 		118807D42231DCAD00293143 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 118807C62231DC5700293143 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11C1493C23D2E1B800A9F154 /* MediaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */; };
+		11C1494623D42D5500A9F154 /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */; };
+		11C1495023DA867800A9F154 /* available_socials.json in Resources */ = {isa = PBXBuildFile; fileRef = 11C1494F23DA867800A9F154 /* available_socials.json */; };
 		11FC44FB222E0A990048D683 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC44FA222E0A990048D683 /* AppDelegate.swift */; };
 		11FC44FD222E0A990048D683 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC44FC222E0A990048D683 /* ViewController.swift */; };
 		11FC4500222E0A990048D683 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FC44FE222E0A990048D683 /* Main.storyboard */; };
@@ -20,6 +35,9 @@
 		11FC451B222E0A9B0048D683 /* sQReUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC451A222E0A9B0048D683 /* sQReUITests.swift */; };
 		11FC4529222E0BA20048D683 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC4528222E0BA20048D683 /* user.swift */; };
 		11FC452B222E1E8D0048D683 /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC452A222E1E8D0048D683 /* QRCodeController.swift */; };
+		294A500B41A27D1B727CB2D9 /* Pods_sQRe_sQReUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8EEF46AFA748FC3BBB1544 /* Pods_sQRe_sQReUITests.framework */; };
+		9444D557F7CC44C8DC132F91 /* Pods_sQReTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD2792433BA199BEA272640E /* Pods_sQReTests.framework */; };
+		AC0BBB7F86080D721E5A3C4B /* Pods_sQRe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBF567AEFEFEE04711DE63EB /* Pods_sQRe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,9 +128,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1120EF88243D294900EB81ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1120EF95243D5ABA00EB81ED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1120EF9E243D5DCF00EB81ED /* sQRe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sQRe.entitlements; sourceTree = "<group>"; };
+		1120EFAE244106CA00EB81ED /* EnterSocialMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterSocialMedia.swift; sourceTree = "<group>"; };
+		1120EFB724416F9B00EB81ED /* SelectSharedMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSharedMediaCell.swift; sourceTree = "<group>"; };
+		1120EFB9244170E300EB81ED /* SelectSharedMediaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSharedMediaTableViewController.swift; sourceTree = "<group>"; };
 		113E1001226EA51C009AE498 /* ScannedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedViewController.swift; sourceTree = "<group>"; };
+		114526FD244B77B000CACF0B /* ViewScannedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewScannedCell.swift; sourceTree = "<group>"; };
+		11452707244C21AA00CACF0B /* LoadScansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScansViewController.swift; sourceTree = "<group>"; };
+		11452710244D5F0A00CACF0B /* Scan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan.swift; sourceTree = "<group>"; };
 		115015032249FC850018646D /* QrScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScanner.swift; sourceTree = "<group>"; };
 		118807BA2231DC5600293143 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
+		11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewController.swift; sourceTree = "<group>"; };
+		11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
+		11C1494F23DA867800A9F154 /* available_socials.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = available_socials.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		11FC44F7222E0A990048D683 /* sQRe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sQRe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FC44FA222E0A990048D683 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FC44FC222E0A990048D683 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +158,15 @@
 		11FC451C222E0A9B0048D683 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11FC4528222E0BA20048D683 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		11FC452A222E1E8D0048D683 /* QRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
+		3F8EEF46AFA748FC3BBB1544 /* Pods_sQRe_sQReUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sQRe_sQReUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EBA8BBA6C2824F94D826D87 /* Pods-sQReTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQReTests.debug.xcconfig"; path = "Target Support Files/Pods-sQReTests/Pods-sQReTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7DEF8BC00FA27871DA8FE3F1 /* Pods-sQRe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQRe.release.xcconfig"; path = "Target Support Files/Pods-sQRe/Pods-sQRe.release.xcconfig"; sourceTree = "<group>"; };
+		A079991FBDD16DECF5BC34DB /* Pods-sQRe-sQReUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQRe-sQReUITests.debug.xcconfig"; path = "Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BBF567AEFEFEE04711DE63EB /* Pods_sQRe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sQRe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD2792433BA199BEA272640E /* Pods_sQReTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sQReTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C81C8F9787815462E84A7C8F /* Pods-sQReTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQReTests.release.xcconfig"; path = "Target Support Files/Pods-sQReTests/Pods-sQReTests.release.xcconfig"; sourceTree = "<group>"; };
+		CD391CA81B90836DBC247460 /* Pods-sQRe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQRe.debug.xcconfig"; path = "Target Support Files/Pods-sQRe/Pods-sQRe.debug.xcconfig"; sourceTree = "<group>"; };
+		F3945B2252D96D0CEF361FA2 /* Pods-sQRe-sQReUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQRe-sQReUITests.release.xcconfig"; path = "Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +175,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				118807D32231DCAD00293143 /* Alamofire.framework in Frameworks */,
+				AC0BBB7F86080D721E5A3C4B /* Pods_sQRe.framework in Frameworks */,
+				1145271C24513D3D00CACF0B /* FacebookLogin in Frameworks */,
+				1145271E24513D3D00CACF0B /* FacebookCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9444D557F7CC44C8DC132F91 /* Pods_sQReTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				294A500B41A27D1B727CB2D9 /* Pods_sQRe_sQReUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +222,8 @@
 				11FC450E222E0A9B0048D683 /* sQReTests */,
 				11FC4519222E0A9B0048D683 /* sQReUITests */,
 				11FC44F8222E0A990048D683 /* Products */,
+				3FBB67BA32BB2160F1EE2C93 /* Pods */,
+				E173CAC36D092F7146877170 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -194,6 +240,8 @@
 		11FC44F9222E0A990048D683 /* sQRe */ = {
 			isa = PBXGroup;
 			children = (
+				1120EF9E243D5DCF00EB81ED /* sQRe.entitlements */,
+				1120EF88243D294900EB81ED /* GoogleService-Info.plist */,
 				11FC44FA222E0A990048D683 /* AppDelegate.swift */,
 				11FC44FC222E0A990048D683 /* ViewController.swift */,
 				11FC44FE222E0A990048D683 /* Main.storyboard */,
@@ -204,6 +252,16 @@
 				11FC452A222E1E8D0048D683 /* QRCodeController.swift */,
 				115015032249FC850018646D /* QrScanner.swift */,
 				113E1001226EA51C009AE498 /* ScannedViewController.swift */,
+				11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */,
+				11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */,
+				11C1494F23DA867800A9F154 /* available_socials.json */,
+				1120EF95243D5ABA00EB81ED /* LoginViewController.swift */,
+				1120EFAE244106CA00EB81ED /* EnterSocialMedia.swift */,
+				1120EFB724416F9B00EB81ED /* SelectSharedMediaCell.swift */,
+				1120EFB9244170E300EB81ED /* SelectSharedMediaTableViewController.swift */,
+				114526FD244B77B000CACF0B /* ViewScannedCell.swift */,
+				11452707244C21AA00CACF0B /* LoadScansViewController.swift */,
+				11452710244D5F0A00CACF0B /* Scan.swift */,
 			);
 			path = sQRe;
 			sourceTree = "<group>";
@@ -226,6 +284,29 @@
 			path = sQReUITests;
 			sourceTree = "<group>";
 		};
+		3FBB67BA32BB2160F1EE2C93 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CD391CA81B90836DBC247460 /* Pods-sQRe.debug.xcconfig */,
+				7DEF8BC00FA27871DA8FE3F1 /* Pods-sQRe.release.xcconfig */,
+				A079991FBDD16DECF5BC34DB /* Pods-sQRe-sQReUITests.debug.xcconfig */,
+				F3945B2252D96D0CEF361FA2 /* Pods-sQRe-sQReUITests.release.xcconfig */,
+				4EBA8BBA6C2824F94D826D87 /* Pods-sQReTests.debug.xcconfig */,
+				C81C8F9787815462E84A7C8F /* Pods-sQReTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E173CAC36D092F7146877170 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BBF567AEFEFEE04711DE63EB /* Pods_sQRe.framework */,
+				3F8EEF46AFA748FC3BBB1544 /* Pods_sQRe_sQReUITests.framework */,
+				BD2792433BA199BEA272640E /* Pods_sQReTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -233,10 +314,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11FC451F222E0A9B0048D683 /* Build configuration list for PBXNativeTarget "sQRe" */;
 			buildPhases = (
+				DBE66414886E622658C4FB00 /* [CP] Check Pods Manifest.lock */,
 				11FC44F3222E0A990048D683 /* Sources */,
 				11FC44F4222E0A990048D683 /* Frameworks */,
 				11FC44F5222E0A990048D683 /* Resources */,
 				118807D72231DCAD00293143 /* Embed Frameworks */,
+				60C0302BA32DA767FEBC9202 /* [CP] Copy Pods Resources */,
+				3261F5B974828592B9EBDCFB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -244,6 +328,10 @@
 				118807D62231DCAD00293143 /* PBXTargetDependency */,
 			);
 			name = sQRe;
+			packageProductDependencies = (
+				1145271B24513D3D00CACF0B /* FacebookLogin */,
+				1145271D24513D3D00CACF0B /* FacebookCore */,
+			);
 			productName = sQRe;
 			productReference = 11FC44F7222E0A990048D683 /* sQRe.app */;
 			productType = "com.apple.product-type.application";
@@ -252,6 +340,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11FC4522222E0A9B0048D683 /* Build configuration list for PBXNativeTarget "sQReTests" */;
 			buildPhases = (
+				B873AEA7DEF2C908872028F3 /* [CP] Check Pods Manifest.lock */,
 				11FC4507222E0A9B0048D683 /* Sources */,
 				11FC4508222E0A9B0048D683 /* Frameworks */,
 				11FC4509222E0A9B0048D683 /* Resources */,
@@ -270,9 +359,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11FC4525222E0A9B0048D683 /* Build configuration list for PBXNativeTarget "sQReUITests" */;
 			buildPhases = (
+				9C18544EFDDF84ED3925E6B1 /* [CP] Check Pods Manifest.lock */,
 				11FC4512222E0A9B0048D683 /* Sources */,
 				11FC4513222E0A9B0048D683 /* Frameworks */,
 				11FC4514222E0A9B0048D683 /* Resources */,
+				8CD3B857676B86BFF89E8089 /* [CP] Copy Pods Resources */,
+				3DEADE2B8466E57D6579AC5C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -316,6 +408,9 @@
 				Base,
 			);
 			mainGroup = 11FC44EE222E0A990048D683;
+			packageReferences = (
+				1145271A24513D3D00CACF0B /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = 11FC44F8222E0A990048D683 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -392,7 +487,9 @@
 			files = (
 				11FC4505222E0A9A0048D683 /* LaunchScreen.storyboard in Resources */,
 				11FC4502222E0A9A0048D683 /* Assets.xcassets in Resources */,
+				1120EF90243D294900EB81ED /* GoogleService-Info.plist in Resources */,
 				11FC4500222E0A990048D683 /* Main.storyboard in Resources */,
+				11C1495023DA867800A9F154 /* available_socials.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +497,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1120EF91243D294900EB81ED /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,22 +505,169 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1120EF92243D294900EB81ED /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3261F5B974828592B9EBDCFB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3DEADE2B8466E57D6579AC5C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		60C0302BA32DA767FEBC9202 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8CD3B857676B86BFF89E8089 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C18544EFDDF84ED3925E6B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sQRe-sQReUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B873AEA7DEF2C908872028F3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sQReTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBE66414886E622658C4FB00 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sQRe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		11FC44F3222E0A990048D683 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1120EF96243D5ABA00EB81ED /* LoginViewController.swift in Sources */,
 				11FC44FD222E0A990048D683 /* ViewController.swift in Sources */,
 				11FC44FB222E0A990048D683 /* AppDelegate.swift in Sources */,
 				11FC4529222E0BA20048D683 /* user.swift in Sources */,
+				1120EFB824416F9B00EB81ED /* SelectSharedMediaCell.swift in Sources */,
+				114526FE244B77B000CACF0B /* ViewScannedCell.swift in Sources */,
+				1120EFAF244106CA00EB81ED /* EnterSocialMedia.swift in Sources */,
 				113E1002226EA51C009AE498 /* ScannedViewController.swift in Sources */,
+				1120EFBA244170E300EB81ED /* SelectSharedMediaTableViewController.swift in Sources */,
+				11452708244C21AA00CACF0B /* LoadScansViewController.swift in Sources */,
 				11FC452B222E1E8D0048D683 /* QRCodeController.swift in Sources */,
+				11452711244D5F0B00CACF0B /* Scan.swift in Sources */,
 				115015042249FC850018646D /* QrScanner.swift in Sources */,
+				11C1493C23D2E1B800A9F154 /* MediaTableViewController.swift in Sources */,
+				11C1494623D42D5500A9F154 /* SocialTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,12 +845,15 @@
 		};
 		11FC4520222E0A9B0048D683 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD391CA81B90836DBC247460 /* Pods-sQRe.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = sQRe/sQRe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PR8DT89255;
 				INFOPLIST_FILE = sQRe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -619,12 +867,15 @@
 		};
 		11FC4521222E0A9B0048D683 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DEF8BC00FA27871DA8FE3F1 /* Pods-sQRe.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = sQRe/sQRe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PR8DT89255;
 				INFOPLIST_FILE = sQRe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -638,6 +889,7 @@
 		};
 		11FC4523222E0A9B0048D683 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EBA8BBA6C2824F94D826D87 /* Pods-sQReTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -658,6 +910,7 @@
 		};
 		11FC4524222E0A9B0048D683 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C81C8F9787815462E84A7C8F /* Pods-sQReTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -678,6 +931,7 @@
 		};
 		11FC4526222E0A9B0048D683 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A079991FBDD16DECF5BC34DB /* Pods-sQRe-sQReUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -697,6 +951,7 @@
 		};
 		11FC4527222E0A9B0048D683 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3945B2252D96D0CEF361FA2 /* Pods-sQRe-sQReUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -754,6 +1009,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1145271A24513D3D00CACF0B /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1145271B24513D3D00CACF0B /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1145271A24513D3D00CACF0B /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+		1145271D24513D3D00CACF0B /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1145271A24513D3D00CACF0B /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 11FC44EF222E0A990048D683 /* Project object */;
 }

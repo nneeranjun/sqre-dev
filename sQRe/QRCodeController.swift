@@ -7,19 +7,64 @@
 //
 
 import UIKit
+import Firebase
 
 class QRCodeController: UIViewController {
-    var user: User?
-    var qrImage: CIImage!
+    var mediaDict: [String: String] = [:]
     @IBOutlet weak var qrView: UIImageView!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var score: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        qrView.image = UIImage(ciImage: (user?.generateQr())!)
-        name.text = user?.name
+        //qrView.image = UIImage(ciImage: generateQr(medias: getMediaInfo(selected: selected))!)
+        //add Score here
+
+        name.text = Auth.auth().currentUser?.displayName
+        qrView.image = UIImage(ciImage: self.generateQr(medias: mediaDict)!)
+        qrView.layer.magnificationFilter = CALayerContentsFilter(rawValue: kCISamplerFilterNearest)
+        let db = Firestore.firestore()
+        let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                self.score.text = String(document.data()!["Score"] as! Int)
+            } else {
+                print("Document does not exist")
+            }
+        }
     }
+    
+    @IBAction func exit(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
+    func generateQr(medias : Dictionary<String, String>) -> CIImage? {
+           let dict = medias
+           
+           do {
+               let data = try JSONEncoder().encode(dict)
+               if let validData = String(data: data,encoding: .utf8){
+                   print(validData)
+               }
+               
+               if let filter = CIFilter(name: "CIQRCodeGenerator"){
+                   filter.setValue(data, forKey: "inputMessage")
+                   filter.setValue("Q", forKey: "inputCorrectionLevel")
+                   let transform = CGAffineTransform(scaleX: 5, y: 5)
+                   if let output = filter.outputImage?.transformed(by: transform){
+                       return output
+                   }
+               }
+           } catch {
+               print(error.localizedDescription)
+           }
+           return nil
+       }
     
 
     /*

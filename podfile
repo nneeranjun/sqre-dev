@@ -1,0 +1,28 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'sQRe' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for sQRe
+
+# Add the Firebase pod for Google Analytics
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseUI/Auth'
+  pod 'FirebaseUI/Google'
+  pod 'FirebaseUI/Facebook'
+  pod 'FirebaseUI/Email'
+  pod 'GoogleDataTransport', '5.0.0'
+
+  target 'sQReTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'sQReUITests' do
+    # Pods for testing
+  end
+
+end

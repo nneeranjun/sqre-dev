@@ -13,13 +13,24 @@ class User {
     var email: String?
     var phone_number: String?
     var user_id: String?
+    var facebook: String?
+    var socials: Dictionary<String, String>?
     //Constructor
-    init(name: String, email: String, phone_number: String, user_id: String) {
+    init(name: String, email: String, phone_number: String, facebook: String, user_id: String) {
         self.name = name
         self.email = email
         self.phone_number = phone_number
         self.user_id = user_id
+        self.facebook = facebook
     }
+    init(name: String, email: String, phone_number: String, socials: Dictionary<String, String>, user_id: String) {
+        self.name = name
+        self.email = email
+        self.phone_number = phone_number
+        self.user_id = user_id
+        self.socials = socials
+    }
+    
     func generateQr() -> CIImage? {
         /*
         let name1 = name?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
@@ -35,7 +46,8 @@ class User {
             
         }
  */
-        let dict = ["name": name, "email": email, "phone_number": phone_number, "user_id": user_id]
+        let dict = ["name": name, "email": email, "phone_number": phone_number, "user_id": user_id, "facebook": facebook]
+        
         do {
             let data = try JSONEncoder().encode(dict)
             if let validData = String(data: data,encoding: .utf8){

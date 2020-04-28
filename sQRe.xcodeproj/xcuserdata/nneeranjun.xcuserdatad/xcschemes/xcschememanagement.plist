@@ -7,7 +7,25 @@
 		<key>sQRe.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>40</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>11FC44F6222E0A990048D683</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>11FC450A222E0A9B0048D683</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>11FC4515222E0A9B0048D683</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
