@@ -15,6 +15,7 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    var noAtSymbol = ["Facebook", "Email", "Linkedin", "Phone Number"]
     var scanned_info: Dictionary<String, String>!
     var mediaInfo: [String: String] = [:]
     var scannedUID: String!
@@ -27,7 +28,7 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view. 
         tableView.allowsSelection = true
         scannedUID = scanned_info["UID"]
         scannedName = scanned_info["Name"]
@@ -42,11 +43,12 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
 
            docRef.getDocument { (document, error) in
                if let document = document, document.exists {
-                   self.score.text = String(document.data()!["Score"] as! Int)
+                   self.score.text = "— " + String(document.data()!["Score"] as! Int) + " —"
                } else {
                    print("Document does not exist")
                }
            }
+        tableView.tableFooterView = UIView()
         
     }
     
@@ -70,7 +72,7 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let allMedias = Array(mediaInfo.keys)
         let cell = tableView.dequeueReusableCell(withIdentifier: "SocialCell", for: indexPath) as! SocialTableViewCell
-        if allMedias[indexPath.row] == "Email" || allMedias[indexPath.row] == "Phone Number" {
+        if noAtSymbol.contains(allMedias[indexPath.row]) {
             cell.mediaTag.text = mediaInfo[allMedias[indexPath.row]]!
         } else {
              cell.mediaTag.text = "@" + mediaInfo[allMedias[indexPath.row]]!
@@ -173,76 +175,6 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
     func contactViewController(_ viewController: CNContactViewController, shouldPerformDefaultActionFor property: CNContactProperty) -> Bool {
         return true
     }
-    
-    
-    @objc func addMedia(sender: UIButton!) {
-        switch sender.tag {
-        case 0:
-            //Name - do nothing
-            return
-        case 1:
-            //email - maybe add google plus
-            return
-        case 2:
-            //phone number - add contact
-            let confirm = UIAlertController(title: "Confirm", message: "Add Contact?", preferredStyle: .alert)
-            let yes = UIAlertAction(title: "Yes", style: .default, handler: {(action) ->  Void in
-                    let contact = CNMutableContact()
-                    contact.givenName = "Nilay"
-                    contact.familyName = "Neeranjun"
-                    contact.phoneNumbers = [CNLabeledValue(label:CNLabelPhoneNumberiPhone, value:CNPhoneNumber(stringValue:"(954) 891-0275"))]
-                    let store = CNContactStore()
-                    let save_req = CNSaveRequest()
-                    save_req.add(contact, toContainerWithIdentifier: nil)
-                    
-                    try! store.execute(save_req)
-                })
-            let no = UIAlertAction(title: "No", style: .default, handler: nil)
-            confirm.addAction(yes)
-            confirm.addAction(no)
-            self.present(confirm, animated: true, completion: nil)
-            return
-        case 3:
-            //Facebook (Snapchat for now)
-            let url: URL = URL(string: "snapchat://add/" + getSocial(index: sender.tag))!
-            let fbIdUrl: URL = URL(string: "https://www.snapchat.com/add/" + getSocial(index: sender.tag))!
-            if (UIApplication.shared.canOpenURL(fbIdUrl)) {
-                UIApplication.shared.open(fbIdUrl, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-            return
-        default:
-            return
-        }
-        /*let url: URL = URL(string: "https://www.facebook.com/nilay.neeranjun")!
-               let fbIdUrl: URL = URL(string: "fb://profile/100000100573857")!
-               if (UIApplication.shared.canOpenURL(fbIdUrl)) {
-                   UIApplication.shared.open(fbIdUrl, options: [:], completionHandler: nil)
-               } else {
-                   UIApplication.shared.open(url, options: [:], completionHandler: nil)
-               }*/
-    }
-    
-    
-    
-    func getSocial(index: Int) -> String {
-        switch index {
-        case 0:
-            return scanned_info["name"]!
-        case 1:
-            return scanned_info["email"]!
-        case 2:
-            return scanned_info["phone_number"]!
-        case 3:
-            return scanned_info["facebook"]!
-        default:
-            return " "
-        }
-    }
-    
-    
-    
     
     
 

@@ -21,6 +21,7 @@
 		1145271C24513D3D00CACF0B /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271B24513D3D00CACF0B /* FacebookLogin */; };
 		1145271E24513D3D00CACF0B /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271D24513D3D00CACF0B /* FacebookCore */; };
 		115015042249FC850018646D /* QrScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115015032249FC850018646D /* QrScanner.swift */; };
+		118630BB245B94C000D98B32 /* EnterInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118630BA245B94C000D98B32 /* EnterInfoCell.swift */; };
 		118807D32231DCAD00293143 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 118807C62231DC5700293143 /* Alamofire.framework */; };
 		118807D42231DCAD00293143 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 118807C62231DC5700293143 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		11C1493C23D2E1B800A9F154 /* MediaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */; };
@@ -139,6 +140,7 @@
 		11452707244C21AA00CACF0B /* LoadScansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScansViewController.swift; sourceTree = "<group>"; };
 		11452710244D5F0A00CACF0B /* Scan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan.swift; sourceTree = "<group>"; };
 		115015032249FC850018646D /* QrScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScanner.swift; sourceTree = "<group>"; };
+		118630BA245B94C000D98B32 /* EnterInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInfoCell.swift; sourceTree = "<group>"; };
 		118807BA2231DC5600293143 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewController.swift; sourceTree = "<group>"; };
 		11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				114526FD244B77B000CACF0B /* ViewScannedCell.swift */,
 				11452707244C21AA00CACF0B /* LoadScansViewController.swift */,
 				11452710244D5F0A00CACF0B /* Scan.swift */,
+				118630BA245B94C000D98B32 /* EnterInfoCell.swift */,
 			);
 			path = sQRe;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				114526FE244B77B000CACF0B /* ViewScannedCell.swift in Sources */,
 				1120EFAF244106CA00EB81ED /* EnterSocialMedia.swift in Sources */,
 				113E1002226EA51C009AE498 /* ScannedViewController.swift in Sources */,
+				118630BB245B94C000D98B32 /* EnterInfoCell.swift in Sources */,
 				1120EFBA244170E300EB81ED /* SelectSharedMediaTableViewController.swift in Sources */,
 				11452708244C21AA00CACF0B /* LoadScansViewController.swift in Sources */,
 				11FC452B222E1E8D0048D683 /* QRCodeController.swift in Sources */,

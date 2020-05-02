@@ -97,6 +97,9 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.name.text = (data_scanned[indexPath.row]["scanner_name"] as! String)
             cell.date.text = convertTime(timeStamp: data_scanned[indexPath.row]["time_stamp"] as! Timestamp)
         }
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
         return cell
         
     }
@@ -108,6 +111,9 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         tableView.deselectRow(at: indexPath, animated: true)
         selectedScanForShow = -1
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(70)
     }
     
     

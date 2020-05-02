@@ -11,6 +11,7 @@ import Firebase
 
 class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let allMedias = ["Snapchat", "Instagram", "Phone Number", "Twitter", "Linkedin", "Email", "Facebook", "Venmo"]
+    var availableMedias : [String] = []
     var selected : [String] = []
     var mediaDict : [String: String] = [:]
     
@@ -24,6 +25,7 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
             alert.addAction(ok)
             self.present(alert, animated: true, completion: nil)
         } else {
+           
             for index in tableView.indexPathsForSelectedRows! {
                 selected.append(allMedias[index.row])
             }
@@ -31,6 +33,15 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
                    let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
                    docRef.getDocument { (document, error) in
                        if let document = document, document.exists {
+                        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+
+                                   let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                                   loadingIndicator.hidesWhenStopped = true
+                                   loadingIndicator.style = UIActivityIndicatorView.Style.gray
+                                   loadingIndicator.startAnimating();
+
+                                   alert.view.addSubview(loadingIndicator)
+                        self.present(alert, animated: true, completion: nil)
                            var mediaDict : [String: String] = [:]
                            mediaDict["UID"] = Auth.auth().currentUser?.uid
                            let dataDescription = document.data()
@@ -43,11 +54,15 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
                                    mediaDict[media] = (dataDescription![media]! as! String)
                                 }
                            }
+                        
                         self.mediaDict = mediaDict
-                        self.performSegue(withIdentifier: "qrSegue", sender: self)
+                        alert.dismiss(animated: true) {
+                            self.performSegue(withIdentifier: "qrSegue", sender: self)
+                        }
                        } else {
                            print("Document does not exist")
                            self.dismiss(animated: true, completion: nil)
+                        
                        }
         }
     }
@@ -71,11 +86,25 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
+        cell.isUserInteractionEnabled = false
+        cell.mediaName.font = UIFont.boldSystemFont(ofSize: 15)
+        
+        if availableMedias.contains(allMedias[indexPath.row]) || allMedias[indexPath.row] == "Email" {
+            cell.isUserInteractionEnabled = true
+        } else {
+            cell.mediaName.text = "(Missing Info)"
+        }
+        
+        
+        
         
 
         // Configure the cell...
 
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(70)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -88,24 +117,35 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
+        let db = Firestore.firestore()
+               let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+               docRef.getDocument { (document, error) in
+                   if let document = document, document.exists {
+                       for media in self.allMedias {
+                        let data = document.data()
+                        let val = data![media]
+                        if val != nil && val as! String != "" {
+                            self.availableMedias.append(media)
+                        }
+                       }
+                    print(self.availableMedias)
+                       self.tableView.reloadData()
+                   }
+               }
         
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-       /* var height = self.tableView.rowHeight
-        height *= CGFloat(allMedias.count)
-
-        var tableFrame = self.tableView.frame
-        tableFrame.size.height = height
-        self.tableView.frame = tableFrame
-        self.tableView.reloadData()
- */
+       
+       
     }
     
 
