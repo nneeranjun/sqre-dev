@@ -66,6 +66,8 @@
 	<string>Allow sQRe to access your camera?</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Allow sQRe to add contacts automatically?</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Allow sQRe to access your photos?</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

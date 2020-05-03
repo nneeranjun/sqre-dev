@@ -11,24 +11,36 @@ import Firebase
 
 class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImage: UIImageView!
     
    
     let allMedias = ["Snapchat", "Instagram", "Phone Number", "Twitter", "Linkedin", "Facebook", "Venmo"]
     /*let allColors = [UIColor.init(hexaString: "#FFFC00"), UIColor.init(hexaString: "#DD2A7B"), UIColor.init(hexaString: "#F07249"), UIColor.init(hexaString: "#55ACEE"), UIColor.init(hexaString: "#006192"), UIColor.init(hexaString: "#1778F2"), UIColor.init(hexaString: "#3D95CE")]*/
-    
     //@IBOutlet weak var fbButton: UIButton!
     var mediaData : Dictionary<String, String> = [:]
+    var imagePicker : ImagePicker! = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         for media in allMedias {
             mediaData[media] = ""
         }
+        profileImage.isUserInteractionEnabled = true
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changeImage(tapGestureRecognizer:)))
+        profileImage.addGestureRecognizer(tapGestureRecognizer)
     }
+    
+    @objc func changeImage(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        self.imagePicker.present(from: profileImage)
+        // Your action
+    }
+    
+    
+    
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -104,14 +116,18 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.present(alert, animated: true, completion: nil)
     }
     
+
     @IBAction func save(_ sender: Any) {
-        var isEmpty = true
+        var hasEmpty = false
         for val in mediaData.values {
-            if val != "" {
-                isEmpty = false
+            if val == "" {
+                hasEmpty = true
+                break
             }
         }
-        if isEmpty {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        if hasEmpty {
             let alert = UIAlertController(title: "Are You Sure You Want to Continue?", message: "Leaving a media blank means you will not be able to share it", preferredStyle: .alert)
             let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
                 let loading = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
@@ -136,13 +152,42 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
                     if let err = err {
                         print("Error writing document: \(err)")
                         loading.dismiss(animated: false, completion: nil)
+                        return
                     } else {
-                        loading.dismiss(animated: true) {
-                            self.performSegue(withIdentifier: "AfterEnteringSocialSegue", sender: nil)
-                        }
+                        let profileRef = storageRef.child("profile_pictures/" + Auth.auth().currentUser!.uid)
                         
+                        if let data = self.profileImage.image?.jpegData(compressionQuality: 1) {
+                            let uploadTask = profileRef.putData(data, metadata: nil) { (metadata, error) in
+                              guard let metadata = metadata else {
+                                // Uh-oh, an error occurred!
+                                loading.dismiss(animated: true, completion: nil)
+                                return
+                              }
+                              // Metadata contains file metadata such as size, content-type.
+                              // You can also access to download URL after upload.
+                                
+                            }
+                            uploadTask.observe(.success) {snapshot in
+                                print("Successfully upload image")
+                                loading.dismiss(animated: true) {
+                                    self.performSegue(withIdentifier: "AfterEnteringSocialSegue", sender: nil)
+                                }
+                            }
+                            uploadTask.observe(.failure) {snapshot in
+                                print("Could not upload image")
+                                loading.dismiss(animated: true, completion: nil)
+                                return
+                            }
+                        } else {
+                            //Error checking
+                            return
+                        }
                     }
                 }
+                
+
+                // Upload the file to the path "images/rivers.jpg"
+                
             })
             let cancel = UIAlertAction(title: "Go Back", style: .cancel, handler: { (action) -> Void in
                 alert.dismiss(animated: true, completion: nil)
@@ -173,18 +218,43 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
                 if let err = err {
                     print("Error writing document: \(err)")
                     loading.dismiss(animated: false, completion: nil)
+                    return
                 } else {
-                    loading.dismiss(animated: true) {
-                        self.performSegue(withIdentifier: "AfterEnteringSocialSegue", sender: nil)
-                    }
+                    let profileRef = storageRef.child("profile_pictures/" + Auth.auth().currentUser!.uid)
                     
+                    if let data = self.profileImage.image?.jpegData(compressionQuality: 1) {
+                        let uploadTask = profileRef.putData(data, metadata: nil) { (metadata, error) in
+                          guard let metadata = metadata else {
+                            // Uh-oh, an error occurred!
+                            loading.dismiss(animated: true, completion: nil)
+                            return
+                          }
+                          // Metadata contains file metadata such as size, content-type.
+                          // You can also access to download URL after upload.
+                            
+                        }
+                        uploadTask.observe(.success) {snapshot in
+                            print("Successfully upload image")
+                            loading.dismiss(animated: true) {
+                                self.performSegue(withIdentifier: "AfterEnteringSocialSegue", sender: nil)
+                            }
+                        }
+                        uploadTask.observe(.failure) {snapshot in
+                            print("Could not upload image")
+                            loading.dismiss(animated: true, completion: nil)
+                            return
+                        }
+                    } else {
+                        //Error checking
+                        return
+                    }
                 }
-            }
         }
         
     }
+    }
     
-    
+
     /*
     // MARK: - Navigation
 
@@ -238,6 +308,100 @@ extension UIColor {
                   blue:  .init(strtoul(String(chars[4...5]),nil,16))/255,
                   alpha: alpha)}
 }
+
+public protocol ImagePickerDelegate: class {
+    func didSelect(image: UIImage?)
+}
+
+public class ImagePicker: NSObject {
+
+    private let pickerController: UIImagePickerController
+    private weak var presentationController: UIViewController?
+    private weak var delegate: ImagePickerDelegate?
+
+    public init(presentationController: UIViewController, delegate: ImagePickerDelegate) {
+        self.pickerController = UIImagePickerController()
+
+        super.init()
+
+        self.presentationController = presentationController
+        self.delegate = delegate
+
+        self.pickerController.delegate = self
+        self.pickerController.allowsEditing = true
+        self.pickerController.mediaTypes = ["public.image"]
+    }
+
+    private func action(for type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
+        guard UIImagePickerController.isSourceTypeAvailable(type) else {
+            return nil
+        }
+
+        return UIAlertAction(title: title, style: .default) { [unowned self] _ in
+            self.pickerController.sourceType = type
+            self.presentationController?.present(self.pickerController, animated: true)
+        }
+    }
+
+    public func present(from sourceView: UIView) {
+
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        if let action = self.action(for: .camera, title: "Take photo") {
+            alertController.addAction(action)
+        }
+        if let action = self.action(for: .savedPhotosAlbum, title: "Camera roll") {
+            alertController.addAction(action)
+        }
+        if let action = self.action(for: .photoLibrary, title: "Photo library") {
+            alertController.addAction(action)
+        }
+
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            alertController.popoverPresentationController?.sourceView = sourceView
+            alertController.popoverPresentationController?.sourceRect = sourceView.bounds
+            alertController.popoverPresentationController?.permittedArrowDirections = [.down, .up]
+        }
+
+        self.presentationController?.present(alertController, animated: true)
+    }
+
+    private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
+        controller.dismiss(animated: true, completion: nil)
+
+        self.delegate?.didSelect(image: image)
+    }
+}
+
+extension ImagePicker: UIImagePickerControllerDelegate {
+
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.pickerController(picker, didSelect: nil)
+    }
+
+    public func imagePickerController(_ picker: UIImagePickerController,
+                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let image = info[.editedImage] as? UIImage else {
+            return self.pickerController(picker, didSelect: nil)
+        }
+        self.pickerController(picker, didSelect: image)
+    }
+}
+
+extension ImagePicker: UINavigationControllerDelegate {
+
+}
+
+extension EnterSocialMedia: ImagePickerDelegate {
+
+    func didSelect(image: UIImage?) {
+        self.profileImage.image = image
+    }
+}
+
+
 
 
 
