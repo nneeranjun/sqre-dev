@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseUI
 
 class LoadScansViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var data_scanner: [Dictionary<String, Any>] = []
@@ -71,6 +72,7 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.tableView.reloadData()
                 
             }
+        
             
         
     }
@@ -93,10 +95,21 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
         if segControl.selectedSegmentIndex == 0 {
             cell.name.text = (data_scanner[indexPath.row]["scanned_info"] as! Dictionary<String, String>)["Name"]
             cell.date.text = convertTime(timeStamp: data_scanner[indexPath.row]["time_stamp"] as! Timestamp)
+            let storage = Storage.storage()
+            let scanned_uid = data_scanner[indexPath.row]["scanned_id"] as! String
+            let pathReference = storage.reference(withPath: "profile_pictures/" + scanned_uid)
+            let placeHolder = UIImage(named: "profile-placeholder")
+            cell.profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
         } else {
             cell.name.text = (data_scanned[indexPath.row]["scanner_name"] as! String)
             cell.date.text = convertTime(timeStamp: data_scanned[indexPath.row]["time_stamp"] as! Timestamp)
+            let storage = Storage.storage()
+            let scanned_uid = data_scanned[indexPath.row]["scanner_id"] as! String
+            let pathReference = storage.reference(withPath: "profile_pictures/" + scanned_uid)
+            let placeHolder = UIImage(named: "profile-placeholder")
+            cell.profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
         }
+       
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
@@ -183,7 +196,7 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
         let minSinceNow = (time / 60) % 60
         let secSinceNow = time % 60
         print(daysSinceNow)
-        if daysSinceNow >= 1 && daysSinceNow <= 10 {
+        if daysSinceNow >= 1 && daysSinceNow <= 500 {
             return daysSinceNow.description + "d"
         } else if hrsSinceNow >= 1 && hrsSinceNow <= 23 {
             return hrsSinceNow.description + "h"
@@ -211,6 +224,7 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
         if segue.destination is ScannedViewController {
             //Pass user object
             let scanned_controller = segue.destination as? ScannedViewController
+            print(selectedScanForShow, " This is selected scan index")
             scanned_controller?.scanned_info = (data_scanner[selectedScanForShow]["scanned_info"] as! Dictionary<String, String>)
         }
     }

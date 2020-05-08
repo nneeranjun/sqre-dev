@@ -9,6 +9,7 @@
 import UIKit
 import Contacts
 import ContactsUI
+import FirebaseUI
 import Firebase
 
 class ScannedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CNContactViewControllerDelegate {
@@ -21,7 +22,7 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
     var scannedUID: String!
     var scannedName: String!
     @IBOutlet weak var score: UILabel!
-    
+
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -48,6 +49,14 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
                    print("Document does not exist")
                }
            }
+        let storage = Storage.storage()
+        if let profile_uid = scanned_info["UID"] {
+            let pathReference = storage.reference(withPath: "profile_pictures/" + profile_uid)
+            let placeHolder = UIImage(named: "profile-placeholder")
+            profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
+        } else {
+            //Error check
+        }
         tableView.tableFooterView = UIView()
         
     }

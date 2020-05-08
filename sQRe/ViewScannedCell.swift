@@ -11,7 +11,7 @@ import UIKit
 class ViewScannedCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var date: UILabel!
-    
+    @IBOutlet weak var profileImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
