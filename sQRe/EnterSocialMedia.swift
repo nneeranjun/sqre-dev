@@ -23,9 +23,35 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        for media in allMedias {
-            mediaData[media] = ""
+        let db = Firestore.firestore()
+        let docRef = db.collection("users").document(Auth.auth().currentUser?.uid ?? "")
+
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                for val in self.allMedias {
+                    self.mediaData[val] = (document.data()![val] as! String)
+                    print(document.data()![val] as! String)
+                }
+                let storage = Storage.storage()
+                if let profile_uid = Auth.auth().currentUser?.uid {
+                    let pathReference = storage.reference(withPath: "profile_pictures/" + profile_uid)
+                    let placeHolder = UIImage(named: "profile-placeholder")
+                    self.profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
+                } else {
+                    //Error check
+                }
+                
+                
+                
+            } else {
+                for media in self.allMedias {
+                    self.mediaData[media] = ""
+                }
+            }
+            self.tableView.reloadData()
+            self.tableView.tableFooterView = UIView()
         }
+        
         profileImage.isUserInteractionEnabled = true
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changeImage(tapGestureRecognizer:)))
@@ -63,9 +89,12 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
             } else {
                 cell.mediaTag.text = "Enter Your " + allMedias[indexPath.row]
             }
+            cell.accessoryType = .none
         } else {
             cell.mediaTag.text = mediaData[allMedias[indexPath.row]]
+            cell.accessoryType = .checkmark
         }
+    
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
@@ -169,9 +198,7 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
                             }
                             uploadTask.observe(.success) {snapshot in
                                 print("Successfully upload image")
-                                loading.dismiss(animated: true) {
-                                    self.performSegue(withIdentifier: "AfterEnteringSocialSegue", sender: nil)
-                                }
+                                loading.dismiss(animated: true, completion: nil)
                             }
                             uploadTask.observe(.failure) {snapshot in
                                 print("Could not upload image")

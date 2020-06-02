@@ -57,7 +57,11 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
         } else {
             //Error check
         }
+        profileImage.layer.masksToBounds = true
+        profileImage.layer.cornerRadius = profileImage.bounds.width / 2
         tableView.tableFooterView = UIView()
+        
+        
         
     }
     
@@ -87,10 +91,11 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
              cell.mediaTag.text = "@" + mediaInfo[allMedias[indexPath.row]]!
         }
         cell.mediaLogo.image = UIImage(named: allMedias[indexPath.row])
-        let imageView: UIImageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 25, height: 25))
+        /*let imageView: UIImageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 25, height: 25))
         imageView.image = UIImage(named:"Add")
         imageView.contentMode = .scaleAspectFit
         cell.accessoryView = imageView
+ */
         cell.selectionStyle = .none
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero

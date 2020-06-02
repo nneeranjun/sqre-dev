@@ -26,6 +26,9 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
            super.viewDidLoad()
            // Do any additional setup after loading the view.
+        tableView.tableFooterView = UIView()
+
+        
         let db = Firestore.firestore()
         let first =  db.collection("scans").whereField("scanner_id", isEqualTo: Auth.auth().currentUser?.uid).order(by: "time_stamp", descending: true).limit(to: 25)
         
@@ -70,7 +73,6 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
                 self.last_viewed_scanned = lastSnapshot
                 self.tableView.reloadData()
-                
             }
         
             
@@ -113,6 +115,8 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
+        cell.profileImage.layer.cornerRadius = cell.profileImage.frame.width / 2
+        cell.profileImage.clipsToBounds = true
         return cell
         
     }
@@ -125,10 +129,6 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
         selectedScanForShow = -1
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(70)
-    }
-    
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let db = Firestore.firestore()

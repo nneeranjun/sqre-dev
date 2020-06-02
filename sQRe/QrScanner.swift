@@ -16,20 +16,20 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var times_scanned = 0
     var isHolding = false
     @IBAction func goToSettings(_ sender: Any) {
+        performSegue(withIdentifier: "GoToScans", sender: self)
         
-        do {
-        try Auth.auth().signOut()
-        print("User signed out")
-        } catch let signOutError as NSError {
-          print ("Error signing out: %@", signOutError)
-        }
     }
     
     
     
     
     @IBAction func viewProfile(_ sender: Any) {
-        performSegue(withIdentifier: "GoToScans", sender: self)
+        //performSegue(withIdentifier: "GoProfile", sender: self)
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +40,8 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
+        
+        //self.navigationController?.navigationBar.backIndicatorImage = UIImage(
         //creating session
         let session = AVCaptureSession()
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
