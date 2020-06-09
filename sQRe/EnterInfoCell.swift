@@ -9,9 +9,8 @@
 import UIKit
 
 class EnterInfoCell: UITableViewCell {
-    @IBOutlet weak var mediaLogo: UIImageView!
     @IBOutlet weak var mediaTag: UILabel!
-    
+    @IBOutlet weak var mediaLogo: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

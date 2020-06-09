@@ -23,28 +23,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if user != nil {
+                
                 let db = Firestore.firestore()
-                let docRef = db.collection("users").document(user!.uid)
-
-                docRef.getDocument { (document, error) in
-                    if let document = document, document.exists {
+                let uid = Auth.auth().currentUser?.uid
+                db.collection("users").document(uid!).getDocument {(document, err) in
+                    if !document!.exists {
+                        db.collection("users").document(uid!).setData([
+                            "Facebook": "",
+                            "Instagram": "",
+                            "Linkedin": "",
+                            "Phone Number": "",
+                            "Snapchat": "",
+                            "Twitter": "",
+                            "Venmo": ""
+                        ]) {err in
+                            if let err = err {
+                                //error checking
+                                print("ERROR: ", err.localizedDescription)
+                            }
+                            
+                        }
+                    }
+                    if self.window?.rootViewController is LoginViewController {
                         let controller = storyboard.instantiateViewController(withIdentifier: "NavViewController")
                         self.window?.rootViewController = controller
                         self.window?.makeKeyAndVisible()
-                    } else {
-                        print("Couldn't find socials in database")
-                        FBSDKCoreKit.ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
                     }
+                    
                 }
-                
+                        
             } else {
-                print("User was nil")
-                let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-                self.window?.rootViewController = controller
-                self.window?.makeKeyAndVisible()
-            }
-         }
-        
+                    let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+                    self.window?.rootViewController = controller
+                    self.window?.makeKeyAndVisible()
+                }
+        }
         return true
     }
 

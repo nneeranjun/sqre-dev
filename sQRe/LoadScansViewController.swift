@@ -22,13 +22,14 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func segControlChanged(_ sender: Any) {
         self.tableView.reloadData()
     }
+    @IBAction func back(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
            super.viewDidLoad()
            // Do any additional setup after loading the view.
         tableView.tableFooterView = UIView()
-
-        
         let db = Firestore.firestore()
         let first =  db.collection("scans").whereField("scanner_id", isEqualTo: Auth.auth().currentUser?.uid).order(by: "time_stamp", descending: true).limit(to: 25)
         
@@ -92,6 +93,13 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
         return 1
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if segControl.selectedSegmentIndex == 0 {
+            return "I've Scanned"
+        } else {
+            return "Scanned Me"
+        }
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LoadScannedCell", for: indexPath) as! ViewScannedCell
         if segControl.selectedSegmentIndex == 0 {
@@ -102,6 +110,7 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
             let pathReference = storage.reference(withPath: "profile_pictures/" + scanned_uid)
             let placeHolder = UIImage(named: "profile-placeholder")
             cell.profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
+            cell.accessoryType = .disclosureIndicator
         } else {
             cell.name.text = (data_scanned[indexPath.row]["scanner_name"] as! String)
             cell.date.text = convertTime(timeStamp: data_scanned[indexPath.row]["time_stamp"] as! Timestamp)
@@ -110,6 +119,7 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
             let pathReference = storage.reference(withPath: "profile_pictures/" + scanned_uid)
             let placeHolder = UIImage(named: "profile-placeholder")
             cell.profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
+            cell.accessoryType = .none
         }
        
         cell.preservesSuperviewLayoutMargins = false
@@ -117,6 +127,8 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.layoutMargins = UIEdgeInsets.zero
         cell.profileImage.layer.cornerRadius = cell.profileImage.frame.width / 2
         cell.profileImage.clipsToBounds = true
+        cell.profileImage.layer.borderWidth = 2
+        cell.profileImage.layer.borderColor = UIColor.init(hexaString: "#25ED9F").cgColor
         return cell
         
     }

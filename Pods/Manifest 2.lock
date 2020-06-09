@@ -256,6 +256,9 @@ PODS:
   - FirebaseUI/Google (8.4.2):
     - FirebaseUI/Auth
     - GoogleSignIn (~> 5.0)
+  - FirebaseUI/Storage (8.4.2):
+    - Firebase/Storage (~> 6.0)
+    - SDWebImage (~> 5.0)
   - GoogleAppMeasurement (6.4.2):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -320,6 +323,10 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.8)
+  - SDWebImage (5.7.3):
+    - SDWebImage/Core (= 5.7.3)
+  - SDWebImage/Core (5.7.3)
+  - TweeTextField (1.6.3)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -329,7 +336,9 @@ DEPENDENCIES:
   - FirebaseUI/Email
   - FirebaseUI/Facebook
   - FirebaseUI/Google
+  - FirebaseUI/Storage
   - GoogleDataTransport (= 5.0.0)
+  - TweeTextField
 
 SPEC REPOS:
   trunk:
@@ -361,6 +370,8 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - SDWebImage
+    - TweeTextField
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -391,7 +402,9 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
+  TweeTextField: 47bf8e7f0433364a7f7e119c45e7f278ea50eb62
 
-PODFILE CHECKSUM: b3f2696159d2fa6c26976744a63650e485873531
+PODFILE CHECKSUM: 23108bef4bb438e08f4bd1f07acc224819562963
 
 COCOAPODS: 1.9.1

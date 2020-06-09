@@ -12,9 +12,11 @@ import Firebase
 class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var profileImage: UIImageView!
     
-   
+    var selectedMedia: String!
+    
     let allMedias = ["Snapchat", "Instagram", "Phone Number", "Twitter", "Linkedin", "Facebook", "Venmo"]
     /*let allColors = [UIColor.init(hexaString: "#FFFC00"), UIColor.init(hexaString: "#DD2A7B"), UIColor.init(hexaString: "#F07249"), UIColor.init(hexaString: "#55ACEE"), UIColor.init(hexaString: "#006192"), UIColor.init(hexaString: "#1778F2"), UIColor.init(hexaString: "#3D95CE")]*/
     //@IBOutlet weak var fbButton: UIButton!
@@ -23,33 +25,35 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.tableView.tableFooterView = UIView()
+        profileImage.layer.masksToBounds = true
+        profileImage.layer.cornerRadius = profileImage.bounds.width / 2
+        profileImage.layer.borderWidth = 5
+        profileImage.layer.borderColor = UIColor.systemFill.cgColor
         let db = Firestore.firestore()
-        let docRef = db.collection("users").document(Auth.auth().currentUser?.uid ?? "")
-
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                for val in self.allMedias {
-                    self.mediaData[val] = (document.data()![val] as! String)
-                    print(document.data()![val] as! String)
-                }
-                let storage = Storage.storage()
-                if let profile_uid = Auth.auth().currentUser?.uid {
-                    let pathReference = storage.reference(withPath: "profile_pictures/" + profile_uid)
-                    let placeHolder = UIImage(named: "profile-placeholder")
-                    self.profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
-                } else {
-                    //Error check
-                }
-                
-                
-                
+        
+        db.collection("users").document(Auth.auth().currentUser?.uid ?? "")
+        .addSnapshotListener { documentSnapshot, error in
+          guard let document = documentSnapshot else {
+            print("Error fetching document: \(error!)")
+            return
+          }
+          guard let data = document.data() else {
+            print("Document data was empty.")
+            return
+          }
+            for val in self.allMedias {
+                self.mediaData[val] = data[val] as? String
+            }
+            let storage = Storage.storage()
+            if let profile_uid = Auth.auth().currentUser?.uid {
+                let pathReference = storage.reference(withPath: "profile_pictures/" + profile_uid)
+                let placeHolder = UIImage(named: "profile-placeholder")
+                self.profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
             } else {
-                for media in self.allMedias {
-                    self.mediaData[media] = ""
-                }
+                //Error check
             }
             self.tableView.reloadData()
-            self.tableView.tableFooterView = UIView()
         }
         
         profileImage.isUserInteractionEnabled = true
@@ -64,6 +68,13 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
         // Your action
     }
     
+    @IBAction func goToSettings(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
+    }
     
     
     
@@ -89,239 +100,44 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
             } else {
                 cell.mediaTag.text = "Enter Your " + allMedias[indexPath.row]
             }
-            cell.accessoryType = .none
         } else {
             cell.mediaTag.text = mediaData[allMedias[indexPath.row]]
-            cell.accessoryType = .checkmark
         }
     
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
-        cell.selectionStyle = .blue
+        cell.accessoryType = .disclosureIndicator
+        cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var userIdTextField: UITextField?
-        tableView.deselectRow(at: indexPath, animated: true)
-        let cell = tableView.cellForRow(at: indexPath) as! EnterInfoCell
-        let alert = UIAlertController(title: allMedias[indexPath.row], message: "Type Below", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-            print("Ok button tapped")
-            if let userInput = userIdTextField!.text {
-                //Do checking here
-                if userInput != "" {
-                    if self.verifyInput(input: userInput, media: self.allMedias[indexPath.row]) {
-                        cell.mediaTag.text = userInput
-                        self.mediaData[self.allMedias[indexPath.row]] = userInput
-                        cell.accessoryType = .checkmark
-                    } else {
-                        let invalidation = "Invalid " + self.allMedias[indexPath.row] + ". Please try again."
-                        /*let attributedString = NSAttributedString(string: invalidation, attributes: [
-                            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12),
-                            NSAttributedString.Key.foregroundColor : UIColor.red
-                        ])
-                        alert.setValue(attributedString, forKey: "attributedMessage")*/
-                        alert.message = invalidation
-                        userIdTextField?.text = ""
-                        cell.accessoryType = .none
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                }
-                
-            }
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            alert.dismiss(animated: true, completion: nil)
-        }
-        alert.addAction(ok)
-        alert.addAction(cancel)
-        alert.addTextField { (textField) -> Void in
-            userIdTextField = textField
-            userIdTextField?.placeholder = self.allMedias[indexPath.row]
-        }
-        
-        self.present(alert, animated: true, completion: nil)
+        performSegue(withIdentifier: "EditProfile", sender: self)
+        self.tableView.deselectRow(at: indexPath, animated: false)
     }
     
 
-    @IBAction func save(_ sender: Any) {
-        var hasEmpty = false
-        for val in mediaData.values {
-            if val == "" {
-                hasEmpty = true
-                break
-            }
-        }
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        if hasEmpty {
-            let alert = UIAlertController(title: "Are You Sure You Want to Continue?", message: "Leaving a media blank means you will not be able to share it", preferredStyle: .alert)
-            let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
-                let loading = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-                let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-                loadingIndicator.hidesWhenStopped = true
-                loadingIndicator.style = .medium
-                loadingIndicator.startAnimating();
-                loading.view.addSubview(loadingIndicator)
-                self.present(loading, animated: true, completion: nil)
-                
-                let db = Firestore.firestore()
-                db.collection("users").document((Auth.auth().currentUser?.uid)!).setData([
-                    "Snapchat": self.mediaData["Snapchat"] ?? "",
-                    "Instagram": self.mediaData["Instagram"] ?? "",
-                    "Twitter": self.mediaData["Twitter"] ?? "",
-                    "Linkedin": self.mediaData["Linkedin"] ?? "",
-                    "Venmo": self.mediaData["Venmo"] ?? "",
-                    "Facebook": self.mediaData["Facebook"] ?? "",
-                    "Phone Number": self.mediaData["Phone Number"] ?? "",
-                    "Score": 0
-                ]) { err in
-                    if let err = err {
-                        print("Error writing document: \(err)")
-                        loading.dismiss(animated: false, completion: nil)
-                        return
-                    } else {
-                        let profileRef = storageRef.child("profile_pictures/" + Auth.auth().currentUser!.uid)
-                        
-                        if let data = self.profileImage.image?.jpegData(compressionQuality: 1) {
-                            let uploadTask = profileRef.putData(data, metadata: nil) { (metadata, error) in
-                              guard let metadata = metadata else {
-                                // Uh-oh, an error occurred!
-                                loading.dismiss(animated: true, completion: nil)
-                                return
-                              }
-                              // Metadata contains file metadata such as size, content-type.
-                              // You can also access to download URL after upload.
-                                
-                            }
-                            uploadTask.observe(.success) {snapshot in
-                                print("Successfully upload image")
-                                loading.dismiss(animated: true, completion: nil)
-                            }
-                            uploadTask.observe(.failure) {snapshot in
-                                print("Could not upload image")
-                                loading.dismiss(animated: true, completion: nil)
-                                return
-                            }
-                        } else {
-                            //Error checking
-                            return
-                        }
-                    }
-                }
-                
-
-                // Upload the file to the path "images/rivers.jpg"
-                
-            })
-            let cancel = UIAlertAction(title: "Go Back", style: .cancel, handler: { (action) -> Void in
-                alert.dismiss(animated: true, completion: nil)
-            })
-            alert.addAction(yes)
-            alert.addAction(cancel)
-            self.present(alert, animated: true, completion: nil)
-        } else {
-            let loading = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-            loadingIndicator.hidesWhenStopped = true
-            loadingIndicator.style = .medium
-            loadingIndicator.startAnimating();
-            loading.view.addSubview(loadingIndicator)
-            self.present(loading, animated: true, completion: nil)
-            
-            let db = Firestore.firestore()
-            db.collection("users").document((Auth.auth().currentUser?.uid)!).setData([
-                "Snapchat": self.mediaData["Snapchat"] ?? "",
-                "Instagram": self.mediaData["Instagram"] ?? "",
-                "Twitter": self.mediaData["Twitter"] ?? "",
-                "Linkedin": self.mediaData["Linkedin"] ?? "",
-                "Venmo": self.mediaData["Venmo"] ?? "",
-                "Facebook": self.mediaData["Facebook"] ?? "",
-                "Phone Number": self.mediaData["Phone Number"] ?? "",
-                "Score": 0
-            ]) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                    loading.dismiss(animated: false, completion: nil)
-                    return
-                } else {
-                    let profileRef = storageRef.child("profile_pictures/" + Auth.auth().currentUser!.uid)
-                    
-                    if let data = self.profileImage.image?.jpegData(compressionQuality: 1) {
-                        let uploadTask = profileRef.putData(data, metadata: nil) { (metadata, error) in
-                          guard let metadata = metadata else {
-                            // Uh-oh, an error occurred!
-                            loading.dismiss(animated: true, completion: nil)
-                            return
-                          }
-                          // Metadata contains file metadata such as size, content-type.
-                          // You can also access to download URL after upload.
-                            
-                        }
-                        uploadTask.observe(.success) {snapshot in
-                            print("Successfully upload image")
-                            loading.dismiss(animated: true) {
-                                self.performSegue(withIdentifier: "AfterEnteringSocialSegue", sender: nil)
-                            }
-                        }
-                        uploadTask.observe(.failure) {snapshot in
-                            print("Could not upload image")
-                            loading.dismiss(animated: true, completion: nil)
-                            return
-                        }
-                    } else {
-                        //Error checking
-                        return
-                    }
-                }
-        }
-        
-    }
-    }
+    
+    
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-    }
-    */
-    func verifyUrl (urlString: String?) -> Bool {
-        if let urlString = urlString {
-            if let url = NSURL(string: urlString) {
-                return UIApplication.shared.canOpenURL(url as URL)
-            }
-        }
-        return false
-    }
-    func isPhoneNumber(phoneNumber: String) -> Bool {
-        do {
-            let detector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.phoneNumber.rawValue)
-            let matches = detector.matches(in: phoneNumber, options: [], range: NSRange(location: 0, length: phoneNumber.count))
-            if let res = matches.first {
-                return res.resultType == .phoneNumber && res.range.location == 0 && res.range.length == phoneNumber.count
-            } else {
-                return false
-            }
-        } catch {
-            return false
+        
+        if segue.destination is EditProfile {
+            let dest = segue.destination as? EditProfile
+            let selectedMedia = allMedias[self.tableView.indexPathForSelectedRow?.row ?? 0]
+            dest?.media = selectedMedia
+            dest?.value = mediaData[selectedMedia]
         }
     }
     
-    func verifyInput(input: String, media: String) -> Bool {
-        if media == "Linkedin" || media == "Facebook" {
-            return verifyUrl(urlString: input)
-        } else if media == "Phone Number" {
-            return isPhoneNumber(phoneNumber: input)
-        } else {
-            return !input.contains(" ")
-        }
-    }
     
     
     

@@ -11,22 +11,7 @@ import FirebaseUI
 import Firebase
 class LoginViewController: UIViewController, FUIAuthDelegate {
     
-    @IBAction func logOut(_ sender: Any) {
-       do {
-        try Auth.auth().signOut()
-        print("User signed out")
-        } catch let signOutError as NSError {
-          print ("Error signing out: %@", signOutError)
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        
-    }
-    override func viewDidAppear(_ animated: Bool) {
+    @IBAction func loginButton(_ sender: Any) {
         let authUI = FUIAuth.defaultAuthUI()
         authUI?.authViewController().modalPresentationStyle = .fullScreen
         authUI?.delegate = self
@@ -40,6 +25,14 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
         self.present(authViewController!, animated: true, completion: nil)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
+        
+    }
+
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
       if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
@@ -50,14 +43,16 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
     }
     
     
+    
+    
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, url: URL?, error: Error?) {
         if error != nil {
             print("Could not log in user:")
         } else {
            print("Login successful for:")
-           //self.performSegue(withIdentifier: "scannerSegue", sender: nil)
-           self.performSegue(withIdentifier: "addSocialMediaSegue", sender: nil)
-                   }
+           //Check if user has just registered
+            //self.performSegue(withIdentifier: "scannerSegue", sender: nil)
+            }
     }
            
     

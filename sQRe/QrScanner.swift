@@ -20,26 +20,43 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
     }
     
+
+    
+    @IBOutlet weak var swipeIndicator: UIButton!
+    
+    @IBAction func swipeIndicator(_ sender: Any) {
+        self.performSegue(withIdentifier: "generateQR", sender: self)
+    }
     
     
     
     @IBAction func viewProfile(_ sender: Any) {
-        //performSegue(withIdentifier: "GoProfile", sender: self)
-        do {
-            try Auth.auth().signOut()
-        } catch let signOutError as NSError {
-          print ("Error signing out: %@", signOutError)
-        }
+        performSegue(withIdentifier: "GoProfile", sender: self)
     }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
         }
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
+         
+        
+        
+        let logo = UIImage(named: "logo")
+        let imageView = UIImageView()
+        //let bannerWidth = navigationController?.navigationBar.frame.size.width ?? 0
+        let bannerHeight = navigationController?.navigationBar.frame.size.height ?? 0
+        imageView.image = logo
+        imageView.contentMode = .scaleAspectFit
+        //imageView.widthAnchor.constraint(equalToConstant: ).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: bannerHeight * 0.62).isActive = true
+        
+        self.navigationItem.titleView = imageView
+        imageView.centerXAnchor.constraint(equalTo: (navigationController?.navigationBar.centerXAnchor)!).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: (navigationController?.navigationBar.centerYAnchor)!).isActive = true
         
         //self.navigationController?.navigationBar.backIndicatorImage = UIImage(
         //creating session
@@ -59,16 +76,43 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         video.frame = UIScreen.main.bounds
         video.videoGravity = .resizeAspectFill
         view.layer.addSublayer(video)
+        self.view.bringSubviewToFront(swipeIndicator)
+
+    
+        
         session.startRunning()
+        /*
+        let swipeUp = UIImage.init(systemName: "arrow.up")
+        let view = UIImageView(image: swipeUp)
+        
+        self.view.addSubview(view)
+ */
         
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.systemBackground)
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.systemBackground)
+        self.navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default) //UIImage.init(named: "transparent.png")
+        self.navigationController?.navigationBar.shadowImage = nil
+    }
+    
+    
     //TODO: Need to figure out how to only allow sQRe qr codes...
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if isHolding {
             print("holding")
             if metadataObjects != nil && metadataObjects.count != 0 {
-                print("Scanned")
+                print(scanned_info)
                 let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .heavy)
                 impactFeedbackgenerator.prepare()
                 impactFeedbackgenerator.impactOccurred()
@@ -95,40 +139,6 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                                         
                                     }
                                 }
-                                
-                                //incrementing user1's score
-                                let user1 = db.collection("users").document(Auth.auth().currentUser!.uid)
-                                // Set the "capital" field of the city 'DC'
-                        
-                                print("Returned correctly as Integer")
-                                // do what you need to do with myInt
-                                user1.updateData([
-                                    "Score": FirebaseFirestore.FieldValue.increment(Int64(1))
-                                ]) { err in
-                                    if let err = err {
-                                        print("Error updating document: \(err)")
-                                    } else {
-                                        print("Document successfully updated")
-                                        print("Update score for: ", Auth.auth().currentUser?.uid as Any)
-                                    }
-                                }
-                               //incrementing user2's score
-                                let user2 = db.collection("users").document(scanned_info["UID"]!)
-                                        // Set the "capital" field of the city 'DC'
-                                
-                                        print("Returned correctly as Integer")
-                                        // do what you need to do with myInt
-                                        user2.updateData([
-                                            "Score": FirebaseFirestore.FieldValue.increment(Int64(1))
-                                        ]) { err in
-                                            if let err = err {
-                                                print("Error updating document: \(err)")
-                                            } else {
-                                                print("Document successfully updated")
-                                                print("Update score for: ", Auth.auth().currentUser?.uid as Any)
-                                            }
-                                        }
-     
                                 
                                 self.performSegue(withIdentifier: "scannedSegue", sender: self)
                                 self.isHolding = false

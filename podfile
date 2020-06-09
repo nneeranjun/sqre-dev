@@ -17,6 +17,7 @@ target 'sQRe' do
   pod 'GoogleDataTransport', '5.0.0'
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage'
+  pod 'TweeTextField'
 
   target 'sQReTests' do
     inherit! :search_paths

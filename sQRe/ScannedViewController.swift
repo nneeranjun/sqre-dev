@@ -14,41 +14,28 @@ import Firebase
 
 class ScannedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CNContactViewControllerDelegate {
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var noAtSymbol = ["Facebook", "Email", "Linkedin", "Phone Number"]
     var scanned_info: Dictionary<String, String>!
     var mediaInfo: [String: String] = [:]
     var scannedUID: String!
     var scannedName: String!
-    @IBOutlet weak var score: UILabel!
 
-    @IBAction func close(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view. 
         tableView.allowsSelection = true
+        
         scannedUID = scanned_info["UID"]
         scannedName = scanned_info["Name"]
-        name.text = scannedName
+        self.title = scannedName
         for (key, val) in scanned_info {
             if key != "UID" && key != "Name" && key != "Score" {
                 mediaInfo[key] = val
             }
         }
-        let db = Firestore.firestore()
-        let docRef = db.collection("users").document(scanned_info["UID"]!)
-
-           docRef.getDocument { (document, error) in
-               if let document = document, document.exists {
-                   self.score.text = "— " + String(document.data()!["Score"] as! Int) + " —"
-               } else {
-                   print("Document does not exist")
-               }
-           }
+        
         let storage = Storage.storage()
         if let profile_uid = scanned_info["UID"] {
             let pathReference = storage.reference(withPath: "profile_pictures/" + profile_uid)
@@ -59,6 +46,8 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.bounds.width / 2
+        profileImage.layer.borderWidth = 5
+        profileImage.layer.borderColor = UIColor.systemFill.cgColor
         tableView.tableFooterView = UIView()
         
         
@@ -91,11 +80,6 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
              cell.mediaTag.text = "@" + mediaInfo[allMedias[indexPath.row]]!
         }
         cell.mediaLogo.image = UIImage(named: allMedias[indexPath.row])
-        /*let imageView: UIImageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 25, height: 25))
-        imageView.image = UIImage(named:"Add")
-        imageView.contentMode = .scaleAspectFit
-        cell.accessoryView = imageView
- */
         cell.selectionStyle = .none
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
@@ -112,10 +96,10 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
             case "Snapchat":
                 let url: URL = URL(string: "snapchat://add/" + mediaTag!.subString(from: 1, to: mediaTag!.count))!
                 let fbIdUrl: URL = URL(string: "https://www.snapchat.com/add/" + mediaTag!)!
-                if (UIApplication.shared.canOpenURL(fbIdUrl)) {
-                    UIApplication.shared.open(fbIdUrl, options: [:], completionHandler: nil)
-                } else {
+                if (UIApplication.shared.canOpenURL(url)) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.open(fbIdUrl, options: [:], completionHandler: nil)
                 }
                 tableView.deselectRow(at: indexPath, animated: true)
                 return
@@ -143,26 +127,29 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
                   tableView.deselectRow(at: indexPath, animated: true)
             return
             case "Facebook":
-                let url: URL = URL(string: mediaTag!.subString(from: 1, to: mediaTag!.count))!
+                print("Pressed facebook")
+                let url: URL = URL(string: mediaTag ?? "")!
                 if (UIApplication.shared.canOpenURL(url)) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
+                
                 tableView.deselectRow(at: indexPath, animated: true)
                 return
             case "Linkedin":
-               let url: URL = URL(string: mediaTag!.subString(from: 1, to: mediaTag!.count))!
+                let url: URL = URL(string: mediaTag ?? "")!
                 if (UIApplication.shared.canOpenURL(url)) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
+               
                 tableView.deselectRow(at: indexPath, animated: true)
                 return
             case "Twitter":
                 let url: URL = URL(string: "twitter://user?screen_name=" + mediaTag!.subString(from: 1, to: mediaTag!.count))!
                 let fbIdUrl: URL = URL(string: "https://twitter.com/" + mediaTag!.subString(from: 1, to: mediaTag!.count))!
-                if (UIApplication.shared.canOpenURL(fbIdUrl)) {
-                    UIApplication.shared.open(fbIdUrl, options: [:], completionHandler: nil)
-                } else {
+                if (UIApplication.shared.canOpenURL(url)) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.open(fbIdUrl, options: [:], completionHandler: nil)
                 }
                 tableView.deselectRow(at: indexPath, animated: true)
                 return

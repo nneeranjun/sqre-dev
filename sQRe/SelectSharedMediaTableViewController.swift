@@ -11,7 +11,7 @@ import Firebase
 
 class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let allMedias = ["Snapchat", "Instagram", "Phone Number", "Twitter", "Linkedin", "Email", "Facebook", "Venmo"]
-    var availableMedias : [String] = []
+    var availableMedias : [String] = ["Email"]
     var selected : [String] = []
     var mediaDict : [String: String] = [:]
     
@@ -37,7 +37,6 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
 
                                    let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
                                    loadingIndicator.hidesWhenStopped = true
-                                   loadingIndicator.style = UIActivityIndicatorView.Style.gray
                                    loadingIndicator.startAnimating();
 
                                    alert.view.addSubview(loadingIndicator)
@@ -56,6 +55,7 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
                            }
                         
                         self.mediaDict = mediaDict
+                        print(mediaDict)
                         alert.dismiss(animated: true) {
                             self.performSegue(withIdentifier: "qrSegue", sender: self)
                         }
@@ -71,7 +71,7 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allMedias.count
+        return availableMedias.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -80,29 +80,18 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectMediaCell", for: indexPath) as! SelectSharedMediaCell
-        cell.mediaName.text = allMedias[indexPath.row]
-        cell.socialLogo.image = UIImage(named: allMedias[indexPath.row])
+        cell.mediaName.text = availableMedias[indexPath.row]
+        cell.socialLogo.image = UIImage(named: availableMedias[indexPath.row])
         cell.selectionStyle = .none
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
-        cell.isUserInteractionEnabled = false
         cell.mediaName.font = UIFont.boldSystemFont(ofSize: 15)
-        
-        if availableMedias.contains(allMedias[indexPath.row]) || allMedias[indexPath.row] == "Email" {
-            cell.isUserInteractionEnabled = true
-        } else {
-            cell.mediaName.text = "(Missing Info)"
-        }
-        
-        
-        
-        
-
-        // Configure the cell...
-
+        cell.isUserInteractionEnabled = true
         return cell
     }
+
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(70)
     }
@@ -196,13 +185,11 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if segue.destination is QRCodeController {
+        
+        let qr_controller = segue.destination as! UINavigationController
+        let secondC = qr_controller.viewControllers.first as! QRCodeController
+        secondC.mediaDict = self.mediaDict
             
-                   //Pass user object
-            let qr_controller = segue.destination as? QRCodeController
-            qr_controller?.mediaDict = self.mediaDict
-            
-            }
     }
     
 
