@@ -28,7 +28,6 @@
 		11C1494623D42D5500A9F154 /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */; };
 		11C1495023DA867800A9F154 /* available_socials.json in Resources */ = {isa = PBXBuildFile; fileRef = 11C1494F23DA867800A9F154 /* available_socials.json */; };
 		11FC44FB222E0A990048D683 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC44FA222E0A990048D683 /* AppDelegate.swift */; };
-		11FC44FD222E0A990048D683 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC44FC222E0A990048D683 /* ViewController.swift */; };
 		11FC4500222E0A990048D683 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FC44FE222E0A990048D683 /* Main.storyboard */; };
 		11FC4502222E0A9A0048D683 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11FC4501222E0A9A0048D683 /* Assets.xcassets */; };
 		11FC4505222E0A9A0048D683 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FC4503222E0A9A0048D683 /* LaunchScreen.storyboard */; };
@@ -91,7 +90,6 @@
 		11C1494F23DA867800A9F154 /* available_socials.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = available_socials.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		11FC44F7222E0A990048D683 /* sQRe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sQRe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FC44FA222E0A990048D683 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		11FC44FC222E0A990048D683 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		11FC44FF222E0A990048D683 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		11FC4501222E0A9A0048D683 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11FC4504222E0A9A0048D683 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 				1120EF9E243D5DCF00EB81ED /* sQRe.entitlements */,
 				1120EF88243D294900EB81ED /* GoogleService-Info.plist */,
 				11FC44FA222E0A990048D683 /* AppDelegate.swift */,
-				11FC44FC222E0A990048D683 /* ViewController.swift */,
 				11FC44FE222E0A990048D683 /* Main.storyboard */,
 				11FC4501222E0A9A0048D683 /* Assets.xcassets */,
 				11FC4503222E0A9A0048D683 /* LaunchScreen.storyboard */,
@@ -528,7 +525,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1120EF96243D5ABA00EB81ED /* LoginViewController.swift in Sources */,
-				11FC44FD222E0A990048D683 /* ViewController.swift in Sources */,
 				1180DB0A248F608B00E2D463 /* RootViewController.swift in Sources */,
 				11FC44FB222E0A990048D683 /* AppDelegate.swift in Sources */,
 				1120EDEB248C2B54005E6A57 /* EditProfile.swift in Sources */,
