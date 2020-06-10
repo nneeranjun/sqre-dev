@@ -22,7 +22,7 @@
 		1145271C24513D3D00CACF0B /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271B24513D3D00CACF0B /* FacebookLogin */; };
 		1145271E24513D3D00CACF0B /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271D24513D3D00CACF0B /* FacebookCore */; };
 		115015042249FC850018646D /* QrScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115015032249FC850018646D /* QrScanner.swift */; };
-		1180DB0A248F608B00E2D463 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180DB09248F608B00E2D463 /* RootViewController.swift */; };
+		1180DB0C2490A78300E2D463 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180DB0B2490A78300E2D463 /* Settings.swift */; };
 		118630BB245B94C000D98B32 /* EnterInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118630BA245B94C000D98B32 /* EnterInfoCell.swift */; };
 		11C1493C23D2E1B800A9F154 /* MediaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */; };
 		11C1494623D42D5500A9F154 /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */; };
@@ -83,7 +83,7 @@
 		11452707244C21AA00CACF0B /* LoadScansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScansViewController.swift; sourceTree = "<group>"; };
 		11452710244D5F0A00CACF0B /* Scan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan.swift; sourceTree = "<group>"; };
 		115015032249FC850018646D /* QrScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScanner.swift; sourceTree = "<group>"; };
-		1180DB09248F608B00E2D463 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		1180DB0B2490A78300E2D463 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		118630BA245B94C000D98B32 /* EnterInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInfoCell.swift; sourceTree = "<group>"; };
 		11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewController.swift; sourceTree = "<group>"; };
 		11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 				11452710244D5F0A00CACF0B /* Scan.swift */,
 				118630BA245B94C000D98B32 /* EnterInfoCell.swift */,
 				1120EDEA248C2B54005E6A57 /* EditProfile.swift */,
-				1180DB09248F608B00E2D463 /* RootViewController.swift */,
+				1180DB0B2490A78300E2D463 /* Settings.swift */,
 			);
 			path = sQRe;
 			sourceTree = "<group>";
@@ -525,9 +525,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1120EF96243D5ABA00EB81ED /* LoginViewController.swift in Sources */,
-				1180DB0A248F608B00E2D463 /* RootViewController.swift in Sources */,
 				11FC44FB222E0A990048D683 /* AppDelegate.swift in Sources */,
 				1120EDEB248C2B54005E6A57 /* EditProfile.swift in Sources */,
+				1180DB0C2490A78300E2D463 /* Settings.swift in Sources */,
 				11FC4529222E0BA20048D683 /* user.swift in Sources */,
 				1120EFB824416F9B00EB81ED /* SelectSharedMediaCell.swift in Sources */,
 				114526FE244B77B000CACF0B /* ViewScannedCell.swift in Sources */,

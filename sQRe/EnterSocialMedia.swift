@@ -17,7 +17,7 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var selectedMedia: String!
     
-    let allMedias = ["Snapchat", "Instagram", "Phone Number", "Twitter", "Linkedin", "Facebook", "Venmo"]
+    let allMedias = ["Name", "Snapchat", "Instagram", "Phone Number", "Twitter", "Linkedin", "Facebook", "Venmo"]
     /*let allColors = [UIColor.init(hexaString: "#FFFC00"), UIColor.init(hexaString: "#DD2A7B"), UIColor.init(hexaString: "#F07249"), UIColor.init(hexaString: "#55ACEE"), UIColor.init(hexaString: "#006192"), UIColor.init(hexaString: "#1778F2"), UIColor.init(hexaString: "#3D95CE")]*/
     //@IBOutlet weak var fbButton: UIButton!
     var mediaData : Dictionary<String, String> = [:]
@@ -30,6 +30,9 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
         profileImage.layer.cornerRadius = profileImage.bounds.width / 2
         profileImage.layer.borderWidth = 5
         profileImage.layer.borderColor = UIColor.systemFill.cgColor
+        
+        print(Auth.auth().currentUser?.displayName)
+        
         let db = Firestore.firestore()
         
         db.collection("users").document(Auth.auth().currentUser?.uid ?? "")
@@ -43,7 +46,9 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
             return
           }
             for val in self.allMedias {
-                self.mediaData[val] = data[val] as? String
+                if val != "Name" {
+                    self.mediaData[val] = data[val] as? String
+                }
             }
             let storage = Storage.storage()
             if let profile_uid = Auth.auth().currentUser?.uid {
@@ -62,6 +67,12 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
         profileImage.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.mediaData["Name"] = Auth.auth().currentUser?.displayName
+        self.tableView.reloadData()
+    }
+    
+    
     @objc func changeImage(tapGestureRecognizer: UITapGestureRecognizer)
     {
         self.imagePicker.present(from: profileImage)
@@ -69,11 +80,7 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @IBAction func goToSettings(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        } catch let signOutError as NSError {
-          print ("Error signing out: %@", signOutError)
-        }
+        performSegue(withIdentifier: "settingsSegue", sender: self)
     }
     
     

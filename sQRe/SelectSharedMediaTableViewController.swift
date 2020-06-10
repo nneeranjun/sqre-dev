@@ -44,7 +44,6 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
                            var mediaDict : [String: String] = [:]
                            mediaDict["UID"] = Auth.auth().currentUser?.uid
                            let dataDescription = document.data()
-                        mediaDict["Score"] = String(dataDescription!["Score"] as! IntegerLiteralType)
                         mediaDict["Name"] = Auth.auth().currentUser?.displayName
                            for media in self.selected {
                                 if media == "Email" {

@@ -193,9 +193,7 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             //Pass user object
             let scanned_controller = segue.destination as? ScannedViewController
             scanned_controller?.scanned_info = scanned_info
-        } else {
-            let scanned_controller = segue.destination as? ViewController
-        }
+        } 
         
     }
     
