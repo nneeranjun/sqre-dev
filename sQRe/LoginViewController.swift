@@ -10,8 +10,10 @@ import UIKit
 import FirebaseUI
 import Firebase
 class LoginViewController: UIViewController, FUIAuthDelegate {
+    var alert: UIAlertController!
     
     @IBAction func loginButton(_ sender: Any) {
+        
         let authUI = FUIAuth.defaultAuthUI()
         authUI?.authViewController().modalPresentationStyle = .fullScreen
         authUI?.delegate = self
@@ -48,11 +50,13 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, url: URL?, error: Error?) {
         if error != nil {
             print("Could not log in user:")
+            self.alert.dismiss(animated: true, completion: nil)
         } else {
            print("Login successful for:")
            //Check if user has just registered
             //self.performSegue(withIdentifier: "scannerSegue", sender: nil)
-            }
+            self.alert.dismiss(animated: true, completion: nil)
+        }
     }
            
     

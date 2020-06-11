@@ -97,7 +97,7 @@ class EditProfile: UIViewController {
                 }
             }
         } else {
-            if verifyInput(input: value, media: media) {
+            if verifyInput(input: val, media: media) {
                 //Loading indicator
                 
                 
@@ -125,9 +125,11 @@ class EditProfile: UIViewController {
                     }
                 }
             } else {
-                let alert = UIAlertController(title: "Invalid " + media, message: "Enter a valid " + media, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
+                alert.dismiss(animated: true) {
+                    let alert = UIAlertController(title: "Invalid " + self.media, message: "Enter a valid " + self.media, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
         

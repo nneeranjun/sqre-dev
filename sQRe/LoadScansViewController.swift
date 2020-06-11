@@ -22,9 +22,7 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func segControlChanged(_ sender: Any) {
         self.tableView.reloadData()
     }
-    @IBAction func back(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+
     
     override func viewDidLoad() {
            super.viewDidLoad()

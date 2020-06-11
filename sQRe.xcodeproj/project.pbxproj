@@ -18,7 +18,6 @@
 		113E1002226EA51C009AE498 /* ScannedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E1001226EA51C009AE498 /* ScannedViewController.swift */; };
 		114526FE244B77B000CACF0B /* ViewScannedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114526FD244B77B000CACF0B /* ViewScannedCell.swift */; };
 		11452708244C21AA00CACF0B /* LoadScansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11452707244C21AA00CACF0B /* LoadScansViewController.swift */; };
-		11452711244D5F0B00CACF0B /* Scan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11452710244D5F0A00CACF0B /* Scan.swift */; };
 		1145271C24513D3D00CACF0B /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271B24513D3D00CACF0B /* FacebookLogin */; };
 		1145271E24513D3D00CACF0B /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271D24513D3D00CACF0B /* FacebookCore */; };
 		115015042249FC850018646D /* QrScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115015032249FC850018646D /* QrScanner.swift */; };
@@ -26,7 +25,6 @@
 		118630BB245B94C000D98B32 /* EnterInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118630BA245B94C000D98B32 /* EnterInfoCell.swift */; };
 		11C1493C23D2E1B800A9F154 /* MediaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */; };
 		11C1494623D42D5500A9F154 /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */; };
-		11C1495023DA867800A9F154 /* available_socials.json in Resources */ = {isa = PBXBuildFile; fileRef = 11C1494F23DA867800A9F154 /* available_socials.json */; };
 		11FC44FB222E0A990048D683 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC44FA222E0A990048D683 /* AppDelegate.swift */; };
 		11FC4500222E0A990048D683 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FC44FE222E0A990048D683 /* Main.storyboard */; };
 		11FC4502222E0A9A0048D683 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11FC4501222E0A9A0048D683 /* Assets.xcassets */; };
@@ -81,13 +79,11 @@
 		113E1001226EA51C009AE498 /* ScannedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedViewController.swift; sourceTree = "<group>"; };
 		114526FD244B77B000CACF0B /* ViewScannedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewScannedCell.swift; sourceTree = "<group>"; };
 		11452707244C21AA00CACF0B /* LoadScansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScansViewController.swift; sourceTree = "<group>"; };
-		11452710244D5F0A00CACF0B /* Scan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan.swift; sourceTree = "<group>"; };
 		115015032249FC850018646D /* QrScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScanner.swift; sourceTree = "<group>"; };
 		1180DB0B2490A78300E2D463 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		118630BA245B94C000D98B32 /* EnterInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInfoCell.swift; sourceTree = "<group>"; };
 		11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewController.swift; sourceTree = "<group>"; };
 		11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
-		11C1494F23DA867800A9F154 /* available_socials.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = available_socials.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		11FC44F7222E0A990048D683 /* sQRe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sQRe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FC44FA222E0A990048D683 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FC44FF222E0A990048D683 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -181,14 +177,12 @@
 				113E1001226EA51C009AE498 /* ScannedViewController.swift */,
 				11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */,
 				11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */,
-				11C1494F23DA867800A9F154 /* available_socials.json */,
 				1120EF95243D5ABA00EB81ED /* LoginViewController.swift */,
 				1120EFAE244106CA00EB81ED /* EnterSocialMedia.swift */,
 				1120EFB724416F9B00EB81ED /* SelectSharedMediaCell.swift */,
 				1120EFB9244170E300EB81ED /* SelectSharedMediaTableViewController.swift */,
 				114526FD244B77B000CACF0B /* ViewScannedCell.swift */,
 				11452707244C21AA00CACF0B /* LoadScansViewController.swift */,
-				11452710244D5F0A00CACF0B /* Scan.swift */,
 				118630BA245B94C000D98B32 /* EnterInfoCell.swift */,
 				1120EDEA248C2B54005E6A57 /* EditProfile.swift */,
 				1180DB0B2490A78300E2D463 /* Settings.swift */,
@@ -360,7 +354,6 @@
 				11FC4502222E0A9A0048D683 /* Assets.xcassets in Resources */,
 				1120EF90243D294900EB81ED /* GoogleService-Info.plist in Resources */,
 				11FC4500222E0A990048D683 /* Main.storyboard in Resources */,
-				11C1495023DA867800A9F154 /* available_socials.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,7 +530,6 @@
 				1120EFBA244170E300EB81ED /* SelectSharedMediaTableViewController.swift in Sources */,
 				11452708244C21AA00CACF0B /* LoadScansViewController.swift in Sources */,
 				11FC452B222E1E8D0048D683 /* QRCodeController.swift in Sources */,
-				11452711244D5F0B00CACF0B /* Scan.swift in Sources */,
 				115015042249FC850018646D /* QrScanner.swift in Sources */,
 				11C1493C23D2E1B800A9F154 /* MediaTableViewController.swift in Sources */,
 				11C1494623D42D5500A9F154 /* SocialTableViewCell.swift in Sources */,
