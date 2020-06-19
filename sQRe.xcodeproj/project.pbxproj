@@ -22,7 +22,9 @@
 		1145271E24513D3D00CACF0B /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271D24513D3D00CACF0B /* FacebookCore */; };
 		115015042249FC850018646D /* QrScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115015032249FC850018646D /* QrScanner.swift */; };
 		1180DB0C2490A78300E2D463 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180DB0B2490A78300E2D463 /* Settings.swift */; };
+		1180DB102495484200E2D463 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180DB0F2495484200E2D463 /* ForgotPassword.swift */; };
 		118630BB245B94C000D98B32 /* EnterInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118630BA245B94C000D98B32 /* EnterInfoCell.swift */; };
+		11B17AA32498629B003BAEAF /* EditProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B17AA22498629B003BAEAF /* EditProfilePicture.swift */; };
 		11C1493C23D2E1B800A9F154 /* MediaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */; };
 		11C1494623D42D5500A9F154 /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */; };
 		11FC44FB222E0A990048D683 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC44FA222E0A990048D683 /* AppDelegate.swift */; };
@@ -81,7 +83,9 @@
 		11452707244C21AA00CACF0B /* LoadScansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScansViewController.swift; sourceTree = "<group>"; };
 		115015032249FC850018646D /* QrScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScanner.swift; sourceTree = "<group>"; };
 		1180DB0B2490A78300E2D463 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		1180DB0F2495484200E2D463 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		118630BA245B94C000D98B32 /* EnterInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInfoCell.swift; sourceTree = "<group>"; };
+		11B17AA22498629B003BAEAF /* EditProfilePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePicture.swift; sourceTree = "<group>"; };
 		11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewController.swift; sourceTree = "<group>"; };
 		11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
 		11FC44F7222E0A990048D683 /* sQRe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sQRe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +190,8 @@
 				118630BA245B94C000D98B32 /* EnterInfoCell.swift */,
 				1120EDEA248C2B54005E6A57 /* EditProfile.swift */,
 				1180DB0B2490A78300E2D463 /* Settings.swift */,
+				1180DB0F2495484200E2D463 /* ForgotPassword.swift */,
+				11B17AA22498629B003BAEAF /* EditProfilePicture.swift */,
 			);
 			path = sQRe;
 			sourceTree = "<group>";
@@ -531,7 +537,9 @@
 				11452708244C21AA00CACF0B /* LoadScansViewController.swift in Sources */,
 				11FC452B222E1E8D0048D683 /* QRCodeController.swift in Sources */,
 				115015042249FC850018646D /* QrScanner.swift in Sources */,
+				11B17AA32498629B003BAEAF /* EditProfilePicture.swift in Sources */,
 				11C1493C23D2E1B800A9F154 /* MediaTableViewController.swift in Sources */,
+				1180DB102495484200E2D463 /* ForgotPassword.swift in Sources */,
 				11C1494623D42D5500A9F154 /* SocialTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

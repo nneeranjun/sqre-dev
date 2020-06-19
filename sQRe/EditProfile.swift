@@ -54,9 +54,23 @@ class EditProfile: UIViewController {
             input.text = value
             self.input.becomeFirstResponder()
         }
+        
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        input.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
     }
     
-
+    @objc func editingChanged(_ textField: UITextField) {
+        if verifyInput(input: textField.text ?? "", media: self.media) && textField.text != self.value {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+            print("valid")
+        } else {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+            print("invalid")
+        }
+        return
+    }
+    
+    
     
     @IBAction func save(_ sender: Any) {
         
@@ -113,7 +127,7 @@ class EditProfile: UIViewController {
                             let success = UIAlertController(title: "Successfully Uploaded", message: "", preferredStyle: .alert)
                             //let checkmark = UIImage.checkmark
                             let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                                self.navigationController?.topViewController!.dismiss(animated: true, completion: nil)
+                                self.dismiss(animated: true, completion: nil)
                                 
                             })
                             //let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 30, height: 30))
@@ -163,6 +177,8 @@ class EditProfile: UIViewController {
                return verifyUrl(urlString: input)
            } else if media == "Phone Number" {
                return isPhoneNumber(phoneNumber: input)
+           } else if media == "Name" {
+            return true
            } else {
             return !input.contains(" ")
            }
@@ -178,10 +194,11 @@ class EditProfile: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
 extension String {
     var isValidEmail: Bool {
         NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}").evaluate(with: self)
     }
 }
+

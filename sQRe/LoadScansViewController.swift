@@ -119,7 +119,8 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
             cell.accessoryType = .none
         }
-       
+        cell.selectionStyle = .default
+        
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero

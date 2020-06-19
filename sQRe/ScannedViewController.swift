@@ -36,14 +36,7 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
         
-        let storage = Storage.storage()
-        if let profile_uid = scanned_info["UID"] {
-            let pathReference = storage.reference(withPath: "profile_pictures/" + profile_uid)
-            let placeHolder = UIImage(named: "profile-placeholder")
-            profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
-        } else {
-            //Error check
-        }
+        
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.bounds.width / 2
         profileImage.layer.borderWidth = 5
@@ -80,11 +73,30 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
              cell.mediaTag.text = "@" + mediaInfo[allMedias[indexPath.row]]!
         }
         cell.mediaLogo.image = UIImage(named: allMedias[indexPath.row])
-        cell.selectionStyle = .none
+        cell.selectionStyle = .default
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let action = UIContextualAction(style: .normal, title: "Copy",
+          handler: { (action, view, completionHandler) in
+          // Update data source when user taps action
+          let allMedias = Array(self.mediaInfo.keys)
+          let media = allMedias[indexPath.row]
+          UIPasteboard.general.string = self.mediaInfo[media]
+          completionHandler(true)
+            let alert = UIAlertController(title: "Copied To Clipboard", message: "", preferredStyle: .alert)
+            self.present(alert, animated: true)
+            Timer.scheduledTimer(withTimeInterval: 0.7, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil)} )
+        })
+        action.backgroundColor = UIColor(hexaString: "#25ED9F")
+        action.image = UIImage(systemName: "doc.on.clipboard")
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        return configuration
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -101,8 +113,6 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
                 } else {
                     UIApplication.shared.open(fbIdUrl, options: [:], completionHandler: nil)
                 }
-                tableView.deselectRow(at: indexPath, animated: true)
-                return
             case "Phone Number":
                 //Direct to filled out contact or just add contact?
                 let contact = CNMutableContact()
@@ -114,8 +124,6 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
                 let nav = UINavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)
-                tableView.deselectRow(at: indexPath, animated: true)
-                return
             case "Instagram":
                 let url: URL = URL(string: "instagram://user?username=" + mediaTag!.subString(from: 1, to: mediaTag!.count))!
                   let fbIdUrl: URL = URL(string: "http://instagram.com/" + mediaTag!.subString(from: 1, to: mediaTag!.count))!
@@ -123,25 +131,19 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
                       UIApplication.shared.open(fbIdUrl, options: [:], completionHandler: nil)
                   } else {
                       UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                  }
-                  tableView.deselectRow(at: indexPath, animated: true)
-            return
+                }
             case "Facebook":
                 print("Pressed facebook")
                 let url: URL = URL(string: mediaTag ?? "")!
                 if (UIApplication.shared.canOpenURL(url)) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
-                
-                tableView.deselectRow(at: indexPath, animated: true)
-                return
             case "Linkedin":
                 let url: URL = URL(string: mediaTag ?? "")!
                 if (UIApplication.shared.canOpenURL(url)) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
                
-                tableView.deselectRow(at: indexPath, animated: true)
                 return
             case "Twitter":
                 let url: URL = URL(string: "twitter://user?screen_name=" + mediaTag!.subString(from: 1, to: mediaTag!.count))!
@@ -151,8 +153,7 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
                 } else {
                     UIApplication.shared.open(fbIdUrl, options: [:], completionHandler: nil)
                 }
-                tableView.deselectRow(at: indexPath, animated: true)
-                return
+
             case "Venmo":
                 let url: URL = URL(string: "venmo://users/" + mediaTag!.subString(from: 1, to: mediaTag!.count))!
                 let fbIdUrl: URL = URL(string: "https://venmo.com/" + mediaTag!.subString(from: 1, to: mediaTag!.count))!
@@ -161,12 +162,11 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
                 } else {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
-                tableView.deselectRow(at: indexPath, animated: true)
-                return
             default:
-                return
+                print("unrecognized media")
             }
         }
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
     

@@ -45,18 +45,17 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
          
         
         
-        let logo = UIImage(named: "logo")
-        let imageView = UIImageView()
+        //let logo = UIImage(named: "logo")
+        //let imageView = UIImageView()
         //let bannerWidth = navigationController?.navigationBar.frame.size.width ?? 0
-        let bannerHeight = navigationController?.navigationBar.frame.size.height ?? 0
-        imageView.image = logo
-        imageView.contentMode = .scaleAspectFit
+        //let bannerHeight = navigationController?.navigationBar.frame.size.height ?? 0
+        //imageView.image = logo
+       // imageView.contentMode = .scaleAspectFit
         //imageView.widthAnchor.constraint(equalToConstant: ).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: bannerHeight * 0.62).isActive = true
+        //imageView.heightAnchor.constraint(equalToConstant: bannerHeight * 0.5).isActive = true
+        //imageView.centerXAnchor.constraint(equalTo: (navigationController?.navigationBar.centerXAnchor)!).isActive = true
+        //imageView.centerYAnchor.constraint(equalTo: (navigationController?.navigationBar.centerYAnchor)!).isActive = true
         
-        self.navigationItem.titleView = imageView
-        imageView.centerXAnchor.constraint(equalTo: (navigationController?.navigationBar.centerXAnchor)!).isActive = true
-        imageView.centerYAnchor.constraint(equalTo: (navigationController?.navigationBar.centerYAnchor)!).isActive = true
         
         //self.navigationController?.navigationBar.backIndicatorImage = UIImage(
         //creating session

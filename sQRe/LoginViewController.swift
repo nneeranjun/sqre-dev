@@ -10,8 +10,11 @@ import UIKit
 import FirebaseUI
 import Firebase
 class LoginViewController: UIViewController, FUIAuthDelegate {
-    var alert: UIAlertController!
+    var loading: UIAlertController!
     
+    @IBAction func forgotPassword(_ sender: Any) {
+        self.performSegue(withIdentifier: "forgotPassword", sender: self)
+    }
     @IBAction func loginButton(_ sender: Any) {
         
         let authUI = FUIAuth.defaultAuthUI()
@@ -24,6 +27,9 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
         ]
         authUI?.providers = providers
         let authViewController = authUI?.authViewController()
+        loading = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+
+        
         self.present(authViewController!, animated: true, completion: nil)
     }
     
@@ -50,18 +56,23 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, url: URL?, error: Error?) {
         if error != nil {
             print("Could not log in user:")
-            self.alert.dismiss(animated: true, completion: nil)
+            
         } else {
            print("Login successful for:")
+            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.startAnimating();
+            loading.view.addSubview(loadingIndicator)
+            self.present(loading, animated: true, completion: nil)
            //Check if user has just registered
             //self.performSegue(withIdentifier: "scannerSegue", sender: nil)
-            self.alert.dismiss(animated: true, completion: nil)
         }
     }
            
     
     override func viewWillDisappear(_ animated: Bool) {
         //Auth.auth().removeStateDidChangeListener(handle!)
+        self.loading.dismiss(animated: true, completion: nil)
     }
     
 

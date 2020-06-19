@@ -8,10 +8,13 @@
 
 import UIKit
 import Firebase
+import FirebaseUI
 
 class Settings: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
-    let settingsData = ["Sign Out", "Delete Account", "Reset / Change Password", "Change Email", "Privacy Policy", "About"]
+    let settingsData = ["Sign Out", "Privacy Policy", "About"]
+    var credential : AuthCredential! = nil
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingsData.count
@@ -32,42 +35,14 @@ class Settings: UIViewController, UITableViewDataSource, UITableViewDelegate {
         switch settingsData[indexPath.row] {
         case "Sign Out":
             signOut()
-        case "Delete Account":
-            deleteAccount()
+        case "Reset / Change Password":
+            resetPassword()
         default:
             return
     
         }
     }
     
-    func deleteAccount() {
-        let confirm = UIAlertController(title: "Delete Account", message: "Are you sure you would like to delete your account?", preferredStyle: .actionSheet)
-        let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
-               /*  let user = Auth.auth().currentUser
-                var credential: AuthCredential
-
-                // Prompt the user to re-provide their sign-in credentials
-             
-                
-                
-                
-                user?.reauthenticate(with: credential) { error in
-                  if let error = error {
-                    // An error happened.
-                  } else {
-                    // User re-authenticated.
-                  }
-                }
-             */
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            //let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 30, height: 30))
-            //imageView.image = checkmark
-            confirm.addAction(yes)
-            confirm.addAction(cancel)
-            //success.view.addSubview(imageView)
-            self.present(confirm, animated: true, completion: nil)
-    }
     
     
     func signOut() {
@@ -91,10 +66,41 @@ class Settings: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self.present(confirm, animated: true, completion: nil)
     }
     
+    func resetPassword() {
+        let confirm = UIAlertController(title: "Reset / Change Password", message: "Are you sure you would like to reset / change your password?", preferredStyle: .actionSheet)
+               let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
+                       Auth.auth().sendPasswordReset(withEmail: (Auth.auth().currentUser?.email)!, completion: {error in
+                           if let err = error {
+                               //Display error message
+                               print("Error: ", err.localizedDescription)
+                            
+                           } else {
+                               //Reset email successfully sent, display this to user
+                                let alert = UIAlertController(title: "Password Reset Email Set", message: "Please check your email: " + (Auth.auth().currentUser?.email)!, preferredStyle: .alert)
+                                let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                                alert.addAction(ok)
+                                self.present(alert, animated: true, completion: nil)
+                           }
+                       })
+                   })
+               let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                       confirm.dismiss(animated: true, completion: nil)
+               })
+                   //let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 30, height: 30))
+                   //imageView.image = checkmark
+                   confirm.addAction(yes)
+                   confirm.addAction(cancel)
+                   //success.view.addSubview(imageView)
+                   self.present(confirm, animated: true, completion: nil)
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         // Do any additional setup after loading the view.
+        
     }
     
 

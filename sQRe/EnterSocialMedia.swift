@@ -21,7 +21,7 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
     /*let allColors = [UIColor.init(hexaString: "#FFFC00"), UIColor.init(hexaString: "#DD2A7B"), UIColor.init(hexaString: "#F07249"), UIColor.init(hexaString: "#55ACEE"), UIColor.init(hexaString: "#006192"), UIColor.init(hexaString: "#1778F2"), UIColor.init(hexaString: "#3D95CE")]*/
     //@IBOutlet weak var fbButton: UIButton!
     var mediaData : Dictionary<String, String> = [:]
-    var imagePicker : ImagePicker! = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -31,7 +31,6 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
         profileImage.layer.borderWidth = 5
         profileImage.layer.borderColor = UIColor.systemFill.cgColor
         
-        print(Auth.auth().currentUser?.displayName)
         
         let db = Firestore.firestore()
         
@@ -50,39 +49,36 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
                     self.mediaData[val] = data[val] as? String
                 }
             }
-            let storage = Storage.storage()
-            if let profile_uid = Auth.auth().currentUser?.uid {
-                let pathReference = storage.reference(withPath: "profile_pictures/" + profile_uid)
-                let placeHolder = UIImage(named: "profile-placeholder")
-                self.profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
-            } else {
-                //Error check
-            }
             self.tableView.reloadData()
         }
-        
-        profileImage.isUserInteractionEnabled = true
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changeImage(tapGestureRecognizer:)))
-        profileImage.addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+           let url = Auth.auth().currentUser?.photoURL
+           let placeHolder = UIImage(named: "profile-placeholder")
+           
+           self.profileImage.sd_setImage(with: url, placeholderImage: placeHolder, options: .refreshCached) { (image, error, cacheType, url) in
+               if let err = error {
+                   print(err.localizedDescription)
+                   self.profileImage.image = placeHolder
+               } else {
+                   self.profileImage.image = image
+               }
+
+           }
         self.mediaData["Name"] = Auth.auth().currentUser?.displayName
         self.tableView.reloadData()
+       
     }
-    
-    
-    @objc func changeImage(tapGestureRecognizer: UITapGestureRecognizer)
-    {
-        self.imagePicker.present(from: profileImage)
-        // Your action
-    }
+
     
     @IBAction func goToSettings(_ sender: Any) {
         performSegue(withIdentifier: "settingsSegue", sender: self)
     }
     
+    @IBAction func editImage(_ sender: Any) {
+        self.performSegue(withIdentifier: "EditPicture", sender: self)
+    }
     
     
     
@@ -115,13 +111,13 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
         cell.accessoryType = .disclosureIndicator
-        cell.selectionStyle = .none
+        cell.selectionStyle = .default
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "EditProfile", sender: self)
-        self.tableView.deselectRow(at: indexPath, animated: false)
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
 
@@ -158,100 +154,4 @@ extension UIColor {
                   blue:  .init(strtoul(String(chars[4...5]),nil,16))/255,
                   alpha: alpha)}
 }
-
-public protocol ImagePickerDelegate: class {
-    func didSelect(image: UIImage?)
-}
-
-public class ImagePicker: NSObject {
-
-    private let pickerController: UIImagePickerController
-    private weak var presentationController: UIViewController?
-    private weak var delegate: ImagePickerDelegate?
-
-    public init(presentationController: UIViewController, delegate: ImagePickerDelegate) {
-        self.pickerController = UIImagePickerController()
-
-        super.init()
-
-        self.presentationController = presentationController
-        self.delegate = delegate
-
-        self.pickerController.delegate = self
-        self.pickerController.allowsEditing = true
-        self.pickerController.mediaTypes = ["public.image"]
-    }
-
-    private func action(for type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
-        guard UIImagePickerController.isSourceTypeAvailable(type) else {
-            return nil
-        }
-
-        return UIAlertAction(title: title, style: .default) { [unowned self] _ in
-            self.pickerController.sourceType = type
-            self.presentationController?.present(self.pickerController, animated: true)
-        }
-    }
-
-    public func present(from sourceView: UIView) {
-
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
-        if let action = self.action(for: .camera, title: "Take photo") {
-            alertController.addAction(action)
-        }
-        if let action = self.action(for: .savedPhotosAlbum, title: "Camera roll") {
-            alertController.addAction(action)
-        }
-        if let action = self.action(for: .photoLibrary, title: "Photo library") {
-            alertController.addAction(action)
-        }
-
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            alertController.popoverPresentationController?.sourceView = sourceView
-            alertController.popoverPresentationController?.sourceRect = sourceView.bounds
-            alertController.popoverPresentationController?.permittedArrowDirections = [.down, .up]
-        }
-
-        self.presentationController?.present(alertController, animated: true)
-    }
-
-    private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
-        controller.dismiss(animated: true, completion: nil)
-
-        self.delegate?.didSelect(image: image)
-    }
-}
-
-extension ImagePicker: UIImagePickerControllerDelegate {
-
-    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.pickerController(picker, didSelect: nil)
-    }
-
-    public func imagePickerController(_ picker: UIImagePickerController,
-                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        guard let image = info[.editedImage] as? UIImage else {
-            return self.pickerController(picker, didSelect: nil)
-        }
-        self.pickerController(picker, didSelect: image)
-    }
-}
-
-extension ImagePicker: UINavigationControllerDelegate {
-
-}
-
-extension EnterSocialMedia: ImagePickerDelegate {
-
-    func didSelect(image: UIImage?) {
-        self.profileImage.image = image
-    }
-}
-
-
-
-
 
