@@ -100,27 +100,49 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LoadScannedCell", for: indexPath) as! ViewScannedCell
+        let storage = Storage.storage()
+        let placeHolder = UIImage(named: "profile-placeholder")
         if segControl.selectedSegmentIndex == 0 {
+            cell.accessoryType = .disclosureIndicator
             cell.name.text = (data_scanner[indexPath.row]["scanned_info"] as! Dictionary<String, String>)["Name"]
             cell.date.text = convertTime(timeStamp: data_scanner[indexPath.row]["time_stamp"] as! Timestamp)
-            let storage = Storage.storage()
             let scanned_uid = data_scanner[indexPath.row]["scanned_id"] as! String
-            let pathReference = storage.reference(withPath: "profile_pictures/" + scanned_uid)
-            let placeHolder = UIImage(named: "profile-placeholder")
-            cell.profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
-            cell.accessoryType = .disclosureIndicator
+            let storageReference = storage.reference().child("profile_pictures/" + scanned_uid)
+            storageReference.listAll { (result, error) in
+              if let err = error {
+                // ...
+                print(err.localizedDescription)
+              }
+                
+              for item in result.items {
+                // The items under storageReference.
+                cell.profileImage.sd_setImage(with: item, placeholderImage: placeHolder)
+                print("Image successfully processed")
+                break
+              }
+            }
         } else {
+            cell.accessoryType = .none
             cell.name.text = (data_scanned[indexPath.row]["scanner_name"] as! String)
             cell.date.text = convertTime(timeStamp: data_scanned[indexPath.row]["time_stamp"] as! Timestamp)
-            let storage = Storage.storage()
-            let scanned_uid = data_scanned[indexPath.row]["scanner_id"] as! String
-            let pathReference = storage.reference(withPath: "profile_pictures/" + scanned_uid)
-            let placeHolder = UIImage(named: "profile-placeholder")
-            cell.profileImage.sd_setImage(with: pathReference, placeholderImage: placeHolder)
-            cell.accessoryType = .none
+            let scanner_uid = data_scanned[indexPath.row]["scanner_id"] as! String
+            let storageReference = storage.reference().child("profile_pictures/" + scanner_uid)
+            storageReference.listAll { (result, error) in
+              if let err = error {
+                // ...
+                print(err.localizedDescription)
+              }
+              
+              for item in result.items {
+                // The items under storageReference.
+                cell.profileImage.sd_setImage(with: item, placeholderImage: placeHolder)
+                print("Image successfully processed")
+                break
+              }
+            }
+
         }
         cell.selectionStyle = .default
-        
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero

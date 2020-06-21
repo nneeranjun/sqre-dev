@@ -60,26 +60,27 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         //self.navigationController?.navigationBar.backIndicatorImage = UIImage(
         //creating session
         let session = AVCaptureSession()
-        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
-        do {
-            let input = try AVCaptureDeviceInput(device: captureDevice!)
-            session.addInput(input)
-        } catch {
-            print("error")
-        }
-        let output = AVCaptureMetadataOutput()
-        session.addOutput(output)
-        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
-        video = AVCaptureVideoPreviewLayer(session: session)
-        video.frame = UIScreen.main.bounds
-        video.videoGravity = .resizeAspectFill
-        view.layer.addSublayer(video)
-        self.view.bringSubviewToFront(swipeIndicator)
+        if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
+            do {
+                let input = try AVCaptureDeviceInput(device: captureDevice)
+                session.addInput(input)
+            } catch {
+                print("error")
+            }
+            let output = AVCaptureMetadataOutput()
+            session.addOutput(output)
+            output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
+            video = AVCaptureVideoPreviewLayer(session: session)
+            video.frame = UIScreen.main.bounds
+            video.videoGravity = .resizeAspectFill
+            view.layer.addSublayer(video)
+            self.view.bringSubviewToFront(swipeIndicator)
 
-    
         
-        session.startRunning()
+            
+            session.startRunning()
+        }
         /*
         let swipeUp = UIImage.init(systemName: "arrow.up")
         let view = UIImageView(image: swipeUp)

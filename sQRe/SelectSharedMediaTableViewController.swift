@@ -15,8 +15,10 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
     var selected : [String] = []
     var mediaDict : [String: String] = [:]
     
+    @IBOutlet weak var select_all_button: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBAction func generateQR(_ sender: Any) {
+        
         if tableView.indexPathsForSelectedRows == nil {
             let alert = UIAlertController(title: "Cannot Generate QR", message: "Select one or more medias", preferredStyle: .alert)
             let ok = UIAlertAction(title: "Ok", style: .default) { (action) in
@@ -27,8 +29,10 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
         } else {
            
             for index in tableView.indexPathsForSelectedRows! {
-                selected.append(allMedias[index.row])
+                selected.append(availableMedias[index.row])
             }
+            
+
             let db = Firestore.firestore()
                    let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
                    docRef.getDocument { (document, error) in
@@ -67,8 +71,23 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
     }
     }
     
+    @IBAction func select_all(_ sender: Any) {
+        if self.select_all_button.titleLabel?.text == "Select All" {
+            for i in 0...tableView.numberOfRows(inSection: 0) - 1 {
+                let ip = IndexPath(row: i, section: 0)
+                self.tableView.selectRow(at: ip, animated: true, scrollPosition: .none)
+                self.tableView.delegate?.tableView?(self.tableView, didSelectRowAt: ip)
+            }
+        } else {
+            for i in 0...tableView.numberOfRows(inSection: 0) - 1 {
+                let ip = IndexPath(row: i, section: 0)
+                self.tableView.deselectRow(at: ip, animated: true)
+                self.tableView.delegate?.tableView?(self.tableView, didDeselectRowAt: ip)
+            }
+        }
+    }
     
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return availableMedias.count
     }
@@ -97,14 +116,29 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        if tableView.indexPathsForSelectedRows?.count == tableView.numberOfRows(inSection: 0) {
+            self.select_all_button.setTitle("Deselect All", for: .normal)
+        } else {
+            self.select_all_button.setTitle("Select All", for: .normal)
+        }
     }
+    
+    
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        if tableView.indexPathsForSelectedRows?.count == tableView.numberOfRows(inSection: 0) {
+            select_all_button.titleLabel?.text = "Deselect All"
+            self.select_all_button.setTitle("Deselect All", for: .normal)
+        } else {
+            select_all_button.titleLabel?.text = "Select All"
+            self.select_all_button.setTitle("Select All", for: .normal)
+        }
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.tableFooterView = UIView()
         let db = Firestore.firestore()
                let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
@@ -114,6 +148,7 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
                         let data = document.data()
                         let val = data![media]
                         if val != nil && val as! String != "" {
+                            print(media)
                             self.availableMedias.append(media)
                         }
                        }

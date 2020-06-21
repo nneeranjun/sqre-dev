@@ -13,6 +13,7 @@ class EditProfilePicture: UIViewController {
     var imagePicker : ImagePicker! = nil
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(Auth.auth().currentUser?.photoURL)
         // Do any additional setup after loading the view.
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.bounds.width / 2
@@ -54,7 +55,7 @@ class EditProfilePicture: UIViewController {
         alert.view.addSubview(loadingIndicator)
         self.present(alert, animated: true, completion: nil)
         if let profile_uid = Auth.auth().currentUser?.uid {
-            let pathReference = storage.reference(withPath: "profile_pictures/" + profile_uid + "_" + String(Int.random(in: 1...(2^20))))
+            let pathReference = storage.reference(withPath: "profile_pictures/" + profile_uid + "/" + String(Int.random(in: 1...100000000)))
             let uploadTask = pathReference.putData((self.profileImage.image?.sd_imageData())!, metadata: nil) { (metadata, error) in
               /*guard let metadata = metadata else {
                 // Uh-oh, an error occurred!
@@ -64,6 +65,8 @@ class EditProfilePicture: UIViewController {
                 pathReference.downloadURL { (url, error) in
                   guard let downloadURL = url else {
                     // Uh-oh, an error occurred!
+                    alert.dismiss(animated: true, completion: nil)
+                    print("Error: ", error?.localizedDescription)
                     return
                   }
                     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -77,38 +80,47 @@ class EditProfilePicture: UIViewController {
                         } else {
                             print("Photo URL successfully updated")
                             //Delete old image
-                            let desertRef = storageRef.child("desert.jpg")
-
-                            // Delete the file
-                            desertRef.delete { error in
-                              if let error = error {
-                                // Uh-oh, an error occurred!
-                              } else {
-                                // File deleted successfully
-                              }
+                            if oldURL != nil {
+                                let oldRef = storage.reference(forURL: oldURL?.absoluteString ?? "")
+                                // Delete the file
+                                oldRef.delete { error in
+                                  if let error = error {
+                                    // Uh-oh, an error occurred!
+                                    print(error.localizedDescription)
+                                    alert.dismiss(animated: true, completion: nil)
+                                  } else {
+                                    // File deleted successfully
+                                    // You can also access to download URL after upload.
+                                    print("Old image deleted successfully")
+                                    
+                                }
+                                
                             }
-                            
-                        }
+                            } else {
+                                alert.dismiss(animated: true, completion: nil)
+                            }
+                            alert.dismiss(animated: false) {
+                                  let success = UIAlertController(title: "Successfully Uploaded", message: "", preferredStyle: .alert)
+                                  //let checkmark = UIImage.checkmark
+                                  let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                                      self.dismiss(animated: true, completion: nil)
+                                  })
+                                  //let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 30, height: 30))
+                                  //imageView.image = checkmark
+                                  success.addAction(ok)
+                                  //success.view.addSubview(imageView)
+                                  self.present(success, animated: true, completion: nil)
+                            }
                     }
                     
                 }
                 
-              // You can also access to download URL after upload.
-                alert.dismiss(animated: false) {
-                    let success = UIAlertController(title: "Successfully Uploaded", message: "", preferredStyle: .alert)
-                    //let checkmark = UIImage.checkmark
-                    let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                        self.dismiss(animated: true, completion: nil)
-                    })
-                    //let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 30, height: 30))
-                    //imageView.image = checkmark
-                    success.addAction(ok)
-                    //success.view.addSubview(imageView)
-                    self.present(success, animated: true, completion: nil)
+              
                 }
             }
         } else {
             //Error check
+            alert.dismiss(animated: true, completion: nil)
         }
     }
     

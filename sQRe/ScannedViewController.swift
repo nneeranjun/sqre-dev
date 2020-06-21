@@ -26,7 +26,7 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         // Do any additional setup after loading the view. 
         tableView.allowsSelection = true
-        
+        print(scanned_info)
         scannedUID = scanned_info["UID"]
         scannedName = scanned_info["Name"]
         self.title = scannedName
@@ -35,16 +35,32 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
                 mediaInfo[key] = val
             }
         }
-        
-        
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.bounds.width / 2
         profileImage.layer.borderWidth = 5
         profileImage.layer.borderColor = UIColor.systemFill.cgColor
         tableView.tableFooterView = UIView()
-        
-        
-        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let storage = Storage.storage()
+        print(scannedUID)
+        let storageReference = storage.reference().child("profile_pictures/" + scannedUID)
+        let placeHolder = UIImage(named: "profile-placeholder")
+        storageReference.listAll { (result, error) in
+          if let err = error {
+            // ...
+            print(err.localizedDescription)
+          }
+            
+          for item in result.items {
+            // The items under storageReference.
+            self.profileImage.sd_setImage(with: item, placeholderImage: placeHolder)
+            print("Image successfully processed")
+            break
+          }
+        }
     }
     
     /*@IBAction func addFacebook(_ sender: Any) {
@@ -143,8 +159,7 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
                 if (UIApplication.shared.canOpenURL(url)) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
-               
-                return
+
             case "Twitter":
                 let url: URL = URL(string: "twitter://user?screen_name=" + mediaTag!.subString(from: 1, to: mediaTag!.count))!
                 let fbIdUrl: URL = URL(string: "https://twitter.com/" + mediaTag!.subString(from: 1, to: mediaTag!.count))!

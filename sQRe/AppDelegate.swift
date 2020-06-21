@@ -41,6 +41,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 //error checking
                                 print("ERROR: ", err.localizedDescription)
                             }
+                            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                            changeRequest?.photoURL = nil
+                            changeRequest?.commitChanges { (error) in
+                                if let err = error {
+                                    //error occured
+                                    print(err.localizedDescription)
+                                    return
+                                } else {
+                                    print("Deleted OG photo URL")
+                                }
+                            }
                             
                         }
                     }

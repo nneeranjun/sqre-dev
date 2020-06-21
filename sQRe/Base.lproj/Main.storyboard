@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Select Shared Media Table View Controller-->
+        <!--Select Social Media-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="GenerateQR" id="BYZ-38-t0r" customClass="SelectSharedMediaTableViewController" customModule="sQRe" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,25 +16,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jgQ-8i-EkW">
-                                <rect key="frame" x="0.0" y="96" width="375" height="537"/>
+                                <rect key="frame" x="0.0" y="76" width="375" height="557"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectMediaCell" id="oZu-dI-6A4" customClass="SelectSharedMediaCell" customModule="sQRe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="43.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oZu-dI-6A4" id="vQK-gd-era">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc.on.clipboard" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wKf-AH-ppb">
-                                                    <rect key="frame" x="20" y="10.333333333333334" width="25" height="23.333333333333332"/>
+                                                    <rect key="frame" x="20" y="10.000000000000002" width="25" height="23.333333333333332"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gv-XH-29a">
-                                                    <rect key="frame" x="59" y="10.999999999999998" width="55" height="21.333333333333329"/>
+                                                    <rect key="frame" x="59" y="11" width="55" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -75,22 +75,35 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Social Media" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Pi-JU-v8G">
-                                <rect key="frame" x="101.00000000000001" y="54" width="173.33333333333337" height="23"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <rect key="frame" x="16" y="30" width="187.66666666666666" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSH-nb-qZg">
+                                <rect key="frame" x="251" y="27" width="108" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Select All"/>
+                                <connections>
+                                    <action selector="select_all:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tZd-7f-nxh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="FSH-nb-qZg" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="394-hV-RYn"/>
+                            <constraint firstItem="1Pi-JU-v8G" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="5yP-1w-68g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="jgQ-8i-EkW" secondAttribute="bottom" constant="91" id="7yr-cA-4d5"/>
-                            <constraint firstItem="1Pi-JU-v8G" firstAttribute="centerX" secondItem="jgQ-8i-EkW" secondAttribute="centerX" id="AMb-lt-LwS"/>
+                            <constraint firstItem="FSH-nb-qZg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="27" id="BDO-pk-Hlv"/>
                             <constraint firstAttribute="trailing" secondItem="jgQ-8i-EkW" secondAttribute="trailing" id="EoL-ne-Oxk"/>
                             <constraint firstAttribute="bottom" secondItem="yDB-iJ-BQI" secondAttribute="bottom" id="FFu-7d-QmG"/>
                             <constraint firstItem="jgQ-8i-EkW" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="R1n-8p-5gK"/>
                             <constraint firstItem="jgQ-8i-EkW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RCx-6z-j9G"/>
-                            <constraint firstItem="1Pi-JU-v8G" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="54" id="bGu-v4-qvz"/>
+                            <constraint firstItem="1Pi-JU-v8G" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="XRL-X5-xiV"/>
+                            <constraint firstItem="FSH-nb-qZg" firstAttribute="leading" secondItem="1Pi-JU-v8G" secondAttribute="trailing" constant="47.333333333333343" id="XlY-0l-49h"/>
+                            <constraint firstItem="jgQ-8i-EkW" firstAttribute="top" secondItem="FSH-nb-qZg" secondAttribute="bottom" constant="19" id="ccm-cm-fsB"/>
                             <constraint firstItem="yDB-iJ-BQI" firstAttribute="leading" secondItem="jgQ-8i-EkW" secondAttribute="leading" id="e0l-Oc-bML"/>
-                            <constraint firstItem="jgQ-8i-EkW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="96" id="ezQ-nw-gho"/>
+                            <constraint firstItem="jgQ-8i-EkW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="76" id="ezQ-nw-gho"/>
+                            <constraint firstItem="FSH-nb-qZg" firstAttribute="centerY" secondItem="1Pi-JU-v8G" secondAttribute="centerY" id="grc-4T-mhr"/>
                             <constraint firstAttribute="bottomMargin" secondItem="yDB-iJ-BQI" secondAttribute="bottom" constant="-34" id="hC5-kZ-ZTw"/>
                             <constraint firstItem="yDB-iJ-BQI" firstAttribute="top" secondItem="jgQ-8i-EkW" secondAttribute="bottom" id="kAT-NF-xWD"/>
                             <constraint firstItem="jgQ-8i-EkW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="l4d-ZJ-Z4D"/>
@@ -98,7 +111,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Select Social Media" id="NI4-0i-Fnl"/>
                     <connections>
+                        <outlet property="select_all_button" destination="FSH-nb-qZg" id="0yA-sY-yUG"/>
                         <outlet property="tableView" destination="jgQ-8i-EkW" id="mps-lq-LAA"/>
                         <segue destination="STz-dX-YJS" kind="presentation" identifier="qrSegue" modalPresentationStyle="fullScreen" id="U1D-Mu-RJI"/>
                     </connections>
@@ -106,7 +121,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="cUq-GR-KVb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="135.19999999999999" y="132.26600985221674"/>
+            <point key="canvasLocation" x="236" y="37.684729064039409"/>
         </scene>
         <!--Qr Scanner-->
         <scene sceneID="MFZ-92-oA9">
@@ -409,7 +424,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="349" height="77.333335876464844"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qty-20-BTl">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Qty-20-BTl">
                                                     <rect key="frame" x="31" y="16.000000000000004" width="45" height="45.333333333333343"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="45" id="Rvl-tI-NVf"/>
@@ -818,7 +833,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Xai-C7-FaE"/>
+        <segue reference="GOK-Qt-GNM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AppLogo2" width="1796" height="501"/>
