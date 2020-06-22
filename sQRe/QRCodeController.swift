@@ -30,10 +30,6 @@ class QRCodeController: UIViewController {
     }
     
 
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
     func generateQr(medias : Dictionary<String, String>) -> CIImage? {
         let dict = medias
         do {

@@ -31,7 +31,7 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
         scannedName = scanned_info["Name"]
         self.title = scannedName
         for (key, val) in scanned_info {
-            if key != "UID" && key != "Name" && key != "Score" {
+            if key != "UID" && key != "Name" {
                 mediaInfo[key] = val
             }
         }
@@ -169,14 +169,6 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
                     UIApplication.shared.open(fbIdUrl, options: [:], completionHandler: nil)
                 }
 
-            case "Venmo":
-                let url: URL = URL(string: "venmo://users/" + mediaTag!.subString(from: 1, to: mediaTag!.count))!
-                let fbIdUrl: URL = URL(string: "https://venmo.com/" + mediaTag!.subString(from: 1, to: mediaTag!.count))!
-                if (UIApplication.shared.canOpenURL(fbIdUrl)) {
-                    UIApplication.shared.open(fbIdUrl, options: [:], completionHandler: nil)
-                } else {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
             default:
                 print("unrecognized media")
             }
@@ -184,6 +176,7 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
+    
     
     func contactViewController(_ viewController: CNContactViewController, didCompleteWith contact: CNContact?) {
         viewController.dismiss(animated: true, completion: nil)

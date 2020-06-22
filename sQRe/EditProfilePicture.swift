@@ -13,23 +13,30 @@ class EditProfilePicture: UIViewController {
     var imagePicker : ImagePicker! = nil
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Auth.auth().currentUser?.photoURL)
         // Do any additional setup after loading the view.
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.bounds.width / 2
         profileImage.layer.borderWidth = 5
         profileImage.layer.borderColor = UIColor.systemFill.cgColor
         
-        let url = Auth.auth().currentUser?.photoURL
+        let uid = (Auth.auth().currentUser?.uid)!
         let placeHolder = UIImage(named: "profile-placeholder")
-        self.profileImage.sd_setImage(with: url, placeholderImage: placeHolder, options: .refreshCached) { (image, error, cacheType, url) in
-            if error != nil {
-                self.profileImage.image = placeHolder
-            } else {
-                self.profileImage.image = image
-            }
-
-        }
+        
+         let storage = Storage.storage()
+         let storageReference = storage.reference().child("profile_pictures/" + uid)
+         storageReference.listAll { (result, error) in
+           if let err = error {
+             // ...
+             print(err.localizedDescription)
+           }
+             
+           for item in result.items {
+             // The items under storageReference.
+             self.profileImage.sd_setImage(with: item, placeholderImage: placeHolder)
+             print("Image successfully processed")
+             break
+           }
+         }
         
         
         profileImage.isUserInteractionEnabled = true

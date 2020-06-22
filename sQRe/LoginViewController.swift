@@ -10,7 +10,6 @@ import UIKit
 import FirebaseUI
 import Firebase
 class LoginViewController: UIViewController, FUIAuthDelegate {
-    var loading: UIAlertController!
     
     @IBAction func forgotPassword(_ sender: Any) {
         self.performSegue(withIdentifier: "forgotPassword", sender: self)
@@ -27,7 +26,6 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
         ]
         authUI?.providers = providers
         let authViewController = authUI?.authViewController()
-        loading = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
 
         
         self.present(authViewController!, animated: true, completion: nil)
@@ -59,22 +57,12 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
             
         } else {
            print("Login successful for:")
-            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-            loadingIndicator.hidesWhenStopped = true
-            loadingIndicator.startAnimating();
-            loading.view.addSubview(loadingIndicator)
-            self.present(loading, animated: true, completion: nil)
+            
            //Check if user has just registered
             //self.performSegue(withIdentifier: "scannerSegue", sender: nil)
         }
     }
            
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        //Auth.auth().removeStateDidChangeListener(handle!)
-        self.loading.dismiss(animated: true, completion: nil)
-    }
-    
 
     /*
     // MARK: - Navigation

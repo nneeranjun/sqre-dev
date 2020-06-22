@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
         FirebaseApp.configure()
          handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

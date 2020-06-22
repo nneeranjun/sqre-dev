@@ -18,7 +18,7 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
     var selectedMedia: String!
     
     let allMedias = ["Name", "Snapchat", "Instagram", "Phone Number", "Twitter", "Linkedin", "Facebook", "Venmo"]
-    /*let allColors = [UIColor.init(hexaString: "#FFFC00"), UIColor.init(hexaString: "#DD2A7B"), UIColor.init(hexaString: "#F07249"), UIColor.init(hexaString: "#55ACEE"), UIColor.init(hexaString: "#006192"), UIColor.init(hexaString: "#1778F2"), UIColor.init(hexaString: "#3D95CE")]*/
+
     //@IBOutlet weak var fbButton: UIButton!
     var mediaData : Dictionary<String, String> = [:]
     
@@ -54,18 +54,24 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     override func viewWillAppear(_ animated: Bool) {
-           let url = Auth.auth().currentUser?.photoURL
+        let uid = (Auth.auth().currentUser?.uid)!
            let placeHolder = UIImage(named: "profile-placeholder")
            
-           self.profileImage.sd_setImage(with: url, placeholderImage: placeHolder, options: .refreshCached) { (image, error, cacheType, url) in
-               if let err = error {
-                   print(err.localizedDescription)
-                   self.profileImage.image = placeHolder
-               } else {
-                   self.profileImage.image = image
-               }
-
-           }
+            let storage = Storage.storage()
+            let storageReference = storage.reference().child("profile_pictures/" + uid)
+            storageReference.listAll { (result, error) in
+              if let err = error {
+                // ...
+                print(err.localizedDescription)
+              }
+                
+              for item in result.items {
+                // The items under storageReference.
+                self.profileImage.sd_setImage(with: item, placeholderImage: placeHolder)
+                print("Image successfully processed")
+                break
+              }
+            }
         self.mediaData["Name"] = Auth.auth().currentUser?.displayName
         self.tableView.reloadData()
        
@@ -90,9 +96,6 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
         return allMedias.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(70)
-    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EnterInfoCell", for: indexPath) as! EnterInfoCell

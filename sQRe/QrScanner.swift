@@ -20,7 +20,8 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
     }
     
-
+    @IBOutlet weak var indicatorLabel: UILabel!
+    
     
     @IBOutlet weak var swipeIndicator: UIButton!
     
@@ -76,6 +77,7 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             video.videoGravity = .resizeAspectFill
             view.layer.addSublayer(video)
             self.view.bringSubviewToFront(swipeIndicator)
+            self.view.bringSubviewToFront(indicatorLabel)
 
         
             

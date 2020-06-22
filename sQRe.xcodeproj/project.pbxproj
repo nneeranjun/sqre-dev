@@ -33,7 +33,6 @@
 		11FC4505222E0A9A0048D683 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FC4503222E0A9A0048D683 /* LaunchScreen.storyboard */; };
 		11FC4510222E0A9B0048D683 /* sQReTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC450F222E0A9B0048D683 /* sQReTests.swift */; };
 		11FC451B222E0A9B0048D683 /* sQReUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC451A222E0A9B0048D683 /* sQReUITests.swift */; };
-		11FC4529222E0BA20048D683 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC4528222E0BA20048D683 /* user.swift */; };
 		11FC452B222E1E8D0048D683 /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC452A222E1E8D0048D683 /* QRCodeController.swift */; };
 		2D1C49124ADCA1D2F0DBDC43 /* Pods_sQRe_sQReUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D3B7FC34BCAAC33C69912C /* Pods_sQRe_sQReUITests.framework */; };
 		5674C698B4CAC962DC92681A /* Pods_sQReTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E9FD849DA09BB3BAD06502 /* Pods_sQReTests.framework */; };
@@ -100,7 +99,6 @@
 		11FC4516222E0A9B0048D683 /* sQReUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sQReUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FC451A222E0A9B0048D683 /* sQReUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sQReUITests.swift; sourceTree = "<group>"; };
 		11FC451C222E0A9B0048D683 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		11FC4528222E0BA20048D683 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		11FC452A222E1E8D0048D683 /* QRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
 		253D2CE84AACDD012D28B0F2 /* Pods-sQReTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQReTests.release.xcconfig"; path = "Target Support Files/Pods-sQReTests/Pods-sQReTests.release.xcconfig"; sourceTree = "<group>"; };
 		3ED261814F85C2A60E98E550 /* Pods-sQReTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQReTests.debug.xcconfig"; path = "Target Support Files/Pods-sQReTests/Pods-sQReTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 				11FC4501222E0A9A0048D683 /* Assets.xcassets */,
 				11FC4503222E0A9A0048D683 /* LaunchScreen.storyboard */,
 				11FC4506222E0A9A0048D683 /* Info.plist */,
-				11FC4528222E0BA20048D683 /* user.swift */,
 				11FC452A222E1E8D0048D683 /* QRCodeController.swift */,
 				115015032249FC850018646D /* QrScanner.swift */,
 				113E1001226EA51C009AE498 /* ScannedViewController.swift */,
@@ -527,7 +524,6 @@
 				11FC44FB222E0A990048D683 /* AppDelegate.swift in Sources */,
 				1120EDEB248C2B54005E6A57 /* EditProfile.swift in Sources */,
 				1180DB0C2490A78300E2D463 /* Settings.swift in Sources */,
-				11FC4529222E0BA20048D683 /* user.swift in Sources */,
 				1120EFB824416F9B00EB81ED /* SelectSharedMediaCell.swift in Sources */,
 				114526FE244B77B000CACF0B /* ViewScannedCell.swift in Sources */,
 				1120EFAF244106CA00EB81ED /* EnterSocialMedia.swift in Sources */,
