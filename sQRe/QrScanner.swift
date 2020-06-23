@@ -15,6 +15,9 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var scanned_info = Dictionary<String, String>()
     var times_scanned = 0
     var isHolding = false
+    
+    @IBOutlet weak var cameraButton: UIButton!
+    
     @IBAction func goToSettings(_ sender: Any) {
         performSegue(withIdentifier: "GoToScans", sender: self)
         
@@ -36,30 +39,9 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if FirebaseApp.app() == nil {
-            FirebaseApp.configure()
-        }
-         
-        
-        
-        //let logo = UIImage(named: "logo")
-        //let imageView = UIImageView()
-        //let bannerWidth = navigationController?.navigationBar.frame.size.width ?? 0
-        //let bannerHeight = navigationController?.navigationBar.frame.size.height ?? 0
-        //imageView.image = logo
-       // imageView.contentMode = .scaleAspectFit
-        //imageView.widthAnchor.constraint(equalToConstant: ).isActive = true
-        //imageView.heightAnchor.constraint(equalToConstant: bannerHeight * 0.5).isActive = true
-        //imageView.centerXAnchor.constraint(equalTo: (navigationController?.navigationBar.centerXAnchor)!).isActive = true
-        //imageView.centerYAnchor.constraint(equalTo: (navigationController?.navigationBar.centerYAnchor)!).isActive = true
-        
-        
-        //self.navigationController?.navigationBar.backIndicatorImage = UIImage(
-        //creating session
+    func startCamera() {
+        self.cameraButton.isHidden = true
+        self.view.sendSubviewToBack(self.cameraButton)
         let session = AVCaptureSession()
         if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
             do {
@@ -78,21 +60,56 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             view.layer.addSublayer(video)
             self.view.bringSubviewToFront(swipeIndicator)
             self.view.bringSubviewToFront(indicatorLabel)
-
-        
-            
             session.startRunning()
         }
-        /*
-        let swipeUp = UIImage.init(systemName: "arrow.up")
-        let view = UIImageView(image: swipeUp)
-        
-        self.view.addSubview(view)
- */
-        
-        // Do any additional setup after loading the view.
     }
+    func isCameraEnabled() -> Bool {
+        return AVCaptureDevice.authorizationStatus(for: .video) == .authorized
+    }
+    
+    func requestCameraAccess() {
+        let settingsURL = URL(string: UIApplication.openSettingsURLString)!
+            if UIApplication.shared.canOpenURL(settingsURL)
+            {
+                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+            }
+    }
+    @IBAction func requestCameraAccess(_ sender: Any) {
+        requestCameraAccess()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
+        }
+        self.cameraButton.isHidden = true
+        if isCameraEnabled() {
+            //already authorized
+            print("Authorized")
+            startCamera()
+        } else {
+            AVCaptureDevice.requestAccess(for: .video) { granted in
+            if granted {
+                print("Granted access")
+                DispatchQueue.main.async {
+                    self.startCamera()
+                }
+            } else {
+                print("Denied access")
+                DispatchQueue.main.async {
+                    self.cameraButton.isHidden = false
+                    self.view.bringSubviewToFront(self.cameraButton)
+                }
+            }
+            }
+            
+            
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true

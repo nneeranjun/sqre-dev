@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sOO-EI-Fg4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yC3-4I-gFR">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -23,10 +23,10 @@
                                 <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectMediaCell" id="oZu-dI-6A4" customClass="SelectSharedMediaCell" customModule="sQRe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="42.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oZu-dI-6A4" id="vQK-gd-era">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="42.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc.on.clipboard" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wKf-AH-ppb">
@@ -34,7 +34,7 @@
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gv-XH-29a">
-                                                    <rect key="frame" x="59" y="11.000000000000002" width="55" height="20.666666666666671"/>
+                                                    <rect key="frame" x="59" y="11" width="55" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -155,12 +155,21 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9C-77-ESy">
+                                <rect key="frame" x="109" y="391" width="157" height="30"/>
+                                <state key="normal" title="Enable Camera Access"/>
+                                <connections>
+                                    <action selector="requestCameraAccess:" destination="Cbu-Se-Twr" eventType="touchUpInside" id="B7r-Hf-1b3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="jUY-Op-Zzw" firstAttribute="centerX" secondItem="umJ-sr-mFU" secondAttribute="centerX" id="3mU-ES-bFR"/>
                             <constraint firstItem="jUY-Op-Zzw" firstAttribute="top" secondItem="Dnb-6E-oQ4" secondAttribute="bottom" constant="3.6699999999999999" id="aRF-VK-bAV"/>
+                            <constraint firstItem="n9C-77-ESy" firstAttribute="centerX" secondItem="umJ-sr-mFU" secondAttribute="centerX" id="aa9-J6-mff"/>
+                            <constraint firstItem="n9C-77-ESy" firstAttribute="centerY" secondItem="umJ-sr-mFU" secondAttribute="centerY" id="eAT-dq-pYE"/>
                             <constraint firstItem="Dnb-6E-oQ4" firstAttribute="centerX" secondItem="umJ-sr-mFU" secondAttribute="centerX" id="h4q-WM-EX3"/>
                             <constraint firstItem="Ys1-0a-g3i" firstAttribute="bottom" secondItem="jUY-Op-Zzw" secondAttribute="bottom" constant="7" id="myI-RL-vrg"/>
                         </constraints>
@@ -182,6 +191,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cameraButton" destination="n9C-77-ESy" id="M3c-jv-Dc7"/>
                         <outlet property="indicatorLabel" destination="jUY-Op-Zzw" id="SEw-QJ-TBd"/>
                         <outlet property="swipeIndicator" destination="Dnb-6E-oQ4" id="zQf-6n-fub"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="generateQR" id="Zdd-jp-sc3"/>
