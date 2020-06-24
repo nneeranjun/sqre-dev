@@ -16,15 +16,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="pFV-WL-rup">
-                                <rect key="frame" x="109" y="359" width="196" height="178"/>
+                                <rect key="frame" x="132" y="373" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="NVv-ao-bPn"/>
+                                    <constraint firstAttribute="width" constant="150" id="SOn-rS-gOi"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="pFV-WL-rup" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="1dM-Cc-SnC"/>
-                            <constraint firstItem="pFV-WL-rup" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Azi-bD-pe8"/>
-                            <constraint firstItem="pFV-WL-rup" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="315" id="IVQ-k0-UXA"/>
-                            <constraint firstItem="pFV-WL-rup" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="109" id="LMl-on-ojH"/>
+                            <constraint firstItem="pFV-WL-rup" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="L6C-W0-nVn"/>
+                            <constraint firstItem="pFV-WL-rup" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Xc1-Hk-8Mw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

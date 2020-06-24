@@ -24,6 +24,7 @@
 		1180DB0C2490A78300E2D463 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180DB0B2490A78300E2D463 /* Settings.swift */; };
 		1180DB102495484200E2D463 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180DB0F2495484200E2D463 /* ForgotPassword.swift */; };
 		118630BB245B94C000D98B32 /* EnterInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118630BA245B94C000D98B32 /* EnterInfoCell.swift */; };
+		119AF1D724A2F56C00EFD6E7 /* HomeNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AF1D624A2F56C00EFD6E7 /* HomeNavController.swift */; };
 		11B17AA32498629B003BAEAF /* EditProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B17AA22498629B003BAEAF /* EditProfilePicture.swift */; };
 		11C1493C23D2E1B800A9F154 /* MediaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */; };
 		11C1494623D42D5500A9F154 /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */; };
@@ -84,6 +85,7 @@
 		1180DB0B2490A78300E2D463 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		1180DB0F2495484200E2D463 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		118630BA245B94C000D98B32 /* EnterInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInfoCell.swift; sourceTree = "<group>"; };
+		119AF1D624A2F56C00EFD6E7 /* HomeNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavController.swift; sourceTree = "<group>"; };
 		11B17AA22498629B003BAEAF /* EditProfilePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePicture.swift; sourceTree = "<group>"; };
 		11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewController.swift; sourceTree = "<group>"; };
 		11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				1180DB0B2490A78300E2D463 /* Settings.swift */,
 				1180DB0F2495484200E2D463 /* ForgotPassword.swift */,
 				11B17AA22498629B003BAEAF /* EditProfilePicture.swift */,
+				119AF1D624A2F56C00EFD6E7 /* HomeNavController.swift */,
 			);
 			path = sQRe;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				1180DB0C2490A78300E2D463 /* Settings.swift in Sources */,
 				1120EFB824416F9B00EB81ED /* SelectSharedMediaCell.swift in Sources */,
 				114526FE244B77B000CACF0B /* ViewScannedCell.swift in Sources */,
+				119AF1D724A2F56C00EFD6E7 /* HomeNavController.swift in Sources */,
 				1120EFAF244106CA00EB81ED /* EnterSocialMedia.swift in Sources */,
 				113E1002226EA51C009AE498 /* ScannedViewController.swift in Sources */,
 				118630BB245B94C000D98B32 /* EnterInfoCell.swift in Sources */,

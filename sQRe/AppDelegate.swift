@@ -54,11 +54,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             
                         }
                     }
-                    if self.window?.rootViewController is LoginViewController {
-                        let controller = storyboard.instantiateViewController(withIdentifier: "NavViewController")
-                        self.window?.rootViewController = controller
-                        self.window?.makeKeyAndVisible()
-                    }
+                    let controller = storyboard.instantiateViewController(withIdentifier: "NavViewController")
+                    self.window?.rootViewController = controller
+                    self.window?.makeKeyAndVisible()
                     
                 }
                         

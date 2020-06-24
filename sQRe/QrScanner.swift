@@ -63,6 +63,7 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             session.startRunning()
         }
     }
+    
     func isCameraEnabled() -> Bool {
         return AVCaptureDevice.authorizationStatus(for: .video) == .authorized
     }
@@ -74,6 +75,7 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
             }
     }
+    
     @IBAction func requestCameraAccess(_ sender: Any) {
         requestCameraAccess()
     }

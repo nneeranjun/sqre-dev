@@ -70,10 +70,18 @@ class EditProfile: UIViewController {
         return
     }
     
+    func disableSaveButton() {
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+    
+    func enableSaveButton() {
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+    
     
     
     @IBAction func save(_ sender: Any) {
-        
+        self.disableSaveButton()
         let val = input.text ?? ""
         
         self.input.resignFirstResponder()
@@ -92,15 +100,16 @@ class EditProfile: UIViewController {
             changeRequest?.commitChanges { (error) in
                 if error != nil {
                     print("Error updating name")
+                    self.enableSaveButton()
                 } else {
-                    
+                    self.value = val
                     alert.dismiss(animated: true) {
                         
                         let success = UIAlertController(title: "Successfully Uploaded", message: "", preferredStyle: .alert)
                         //let checkmark = UIImage.checkmark
                         let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                            self.navigationController?.topViewController!.dismiss(animated: true, completion: nil)
-                            
+                             //self.disableSaveButton()
+                            self.dismiss(animated: true, completion: nil)
                         })
                         //let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 30, height: 30))
                         //imageView.image = checkmark
@@ -121,14 +130,16 @@ class EditProfile: UIViewController {
                 docref.updateData([media: val]) { err in
                     if let err = err {
                         //Error here
+                        self.enableSaveButton()
                         print(err.localizedDescription)
                     } else {
+                        self.value = val
                         alert.dismiss(animated: true) {
                             let success = UIAlertController(title: "Successfully Uploaded", message: "", preferredStyle: .alert)
                             //let checkmark = UIImage.checkmark
                             let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                                //self.disableSaveButton()
                                 self.dismiss(animated: true, completion: nil)
-                                
                             })
                             //let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 30, height: 30))
                             //imageView.image = checkmark
