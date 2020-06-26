@@ -75,7 +75,7 @@ class ForgotPassword: UIViewController, UITextFieldDelegate {
                     //Display error message
                     loading.dismiss(animated: true) {
                     print("Error: ", err.localizedDescription)
-                        self.presentAlert(withTitle: "Error: Email Does not Exist", message: "Please enter a valid email")
+                        self.presentAlert(withTitle: "Email Does not Exist", message: "Please enter a valid email")
                     }
                  
                 } else {
