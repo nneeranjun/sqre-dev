@@ -63,31 +63,23 @@ class ForgotPassword: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func sendEmail(_ sender: Any) {
+        input.resignFirstResponder()
         let email = input.text!
         if !email.isValidEmail {
             //Error
             print("Invalid email")
         } else {
-            let loading = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-
-            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-            loadingIndicator.hidesWhenStopped = true
-            loadingIndicator.startAnimating();
-            loading.view.addSubview(loadingIndicator)
-            self.present(loading, animated: true, completion: nil)
+            let loading = self.presentLoadingIndicator()
             Auth.auth().sendPasswordReset(withEmail: email, completion: {error in
                 if let err = error {
                     //Display error message
                     loading.dismiss(animated: true) {
                     print("Error: ", err.localizedDescription)
-                        let alert = UIAlertController(title: "Error: Email Does not Exist", message: "Please enter a valid email", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                         alert.addAction(ok)
-                         self.present(alert, animated: true, completion: nil)
+                        self.presentAlert(withTitle: "Error: Email Does not Exist", message: "Please enter a valid email")
                     }
                  
                 } else {
-                    loading.dismiss(animated: false) {
+                    loading.dismiss(animated: true) {
                     //Reset email successfully sent, display this to user
                         let alert = UIAlertController(title: "Password Reset Email Sent", message: "Please check your email: " + email, preferredStyle: .alert)
                         let ok = UIAlertAction(title: "Ok", style: .default, handler: {_ in
@@ -95,6 +87,10 @@ class ForgotPassword: UIViewController, UITextFieldDelegate {
                         })
                          alert.addAction(ok)
                          self.present(alert, animated: true, completion: nil)
+                        
+                        self.presentAlertWithHandler(withTitle: "Password Reset Email Sent", message: "Please check your email: " + email) {_ in
+                            self.navigationController?.popViewController(animated: true)
+                        }
                     }
                 }
             })

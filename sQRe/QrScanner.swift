@@ -154,6 +154,7 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                                     "scanner_name": Auth.auth().currentUser?.displayName as Any
                                 ]) { err in
                                     if let err = err {
+                                        self.presentAlert(withTitle: "Error", message: "An error occurred with your scan")
                                         print("Error adding document: \(err)")
                                     } else {
                                         print(Auth.auth().currentUser!.uid + " scanned" + self.scanned_info["UID"]!)

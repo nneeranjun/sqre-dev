@@ -29,7 +29,7 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
            // Do any additional setup after loading the view.
         tableView.tableFooterView = UIView()
         let db = Firestore.firestore()
-        let first =  db.collection("scans").whereField("scanner_id", isEqualTo: Auth.auth().currentUser?.uid).order(by: "time_stamp", descending: true).limit(to: 25)
+        let first =  db.collection("scans").whereField("scanner_id", isEqualTo: Auth.auth().currentUser!.uid).order(by: "time_stamp", descending: true).limit(to: 25)
         
 
         first.addSnapshotListener { (snapshot, error) in
@@ -51,7 +51,7 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
             self.tableView.reloadData()
         }
             
-            let second =  db.collection("scans").whereField("scanned_id", isEqualTo: Auth.auth().currentUser?.uid).order(by: "time_stamp", descending: true).limit(to: 25)
+        let second =  db.collection("scans").whereField("scanned_id", isEqualTo: Auth.auth().currentUser!.uid).order(by: "time_stamp", descending: true).limit(to: 25)
             
 
             second.addSnapshotListener { (snapshot, error) in
@@ -167,7 +167,7 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
         let db = Firestore.firestore()
         if segControl.selectedSegmentIndex == 0 {
             if indexPath.row == self.data_scanner.count - 1 {
-                let first =  db.collection("scans").whereField("scanner_id", isEqualTo: Auth.auth().currentUser?.uid).order(by: "time_stamp", descending: true).limit(to: 25).start(afterDocument: last_viewed_scanner)
+                let first =  db.collection("scans").whereField("scanner_id", isEqualTo: Auth.auth().currentUser!.uid).order(by: "time_stamp", descending: true).limit(to: 25).start(afterDocument: last_viewed_scanner)
                 
                 first.addSnapshotListener { (snapshot, error) in
                     guard let snapshot = snapshot else {
@@ -195,7 +195,7 @@ class LoadScansViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         } else {
             if indexPath.row == self.data_scanned.count - 1 {
-                let first =  db.collection("scans").whereField("scanned_id", isEqualTo: Auth.auth().currentUser?.uid).order(by: "time_stamp", descending: true).limit(to: 25).start(afterDocument: last_viewed_scanned)
+                let first =  db.collection("scans").whereField("scanned_id", isEqualTo: Auth.auth().currentUser!.uid as Any).order(by: "time_stamp", descending: true).limit(to: 25).start(afterDocument: last_viewed_scanned)
                 
                 first.addSnapshotListener { (snapshot, error) in
                     guard let snapshot = snapshot else {

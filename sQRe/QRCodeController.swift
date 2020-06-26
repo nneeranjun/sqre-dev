@@ -26,7 +26,10 @@ class QRCodeController: UIViewController {
         if let ciQR = self.generateQr(medias: mediaDict) {
             qrView.image = UIImage(ciImage: ciQR)
             qrView.layer.magnificationFilter = CALayerContentsFilter(rawValue: kCISamplerFilterNearest)
+        } else {
+            self.presentAlert(withTitle: "Error", message: "An error occurred generating your QR. Please try again later.")
         }
+        
     }
     
 
@@ -56,6 +59,7 @@ class QRCodeController: UIViewController {
                }
            } catch {
                print(error.localizedDescription)
+            self.presentAlert(withTitle: "Error", message: "An error occurred generating your QR. Please try again later.")
            }
            return nil
        }

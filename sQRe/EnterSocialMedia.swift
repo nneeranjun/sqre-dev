@@ -38,6 +38,7 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
         .addSnapshotListener { documentSnapshot, error in
           guard let document = documentSnapshot else {
             print("Error fetching document: \(error!)")
+            self.presentAlert(withTitle: "Error", message: "An error occurred loading your profile. Please try again.")
             return
           }
           guard let data = document.data() else {
@@ -63,6 +64,7 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
               if let err = error {
                 // ...
                 print(err.localizedDescription)
+                return
               }
                 
               for item in result.items {

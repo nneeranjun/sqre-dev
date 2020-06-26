@@ -36,6 +36,10 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
             let db = Firestore.firestore()
                    let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
                    docRef.getDocument { (document, error) in
+                    if let err = error {
+                        self.presentAlert(withTitle: "Error", message: "An error occurred loading your social media. Please try again.")
+                        return
+                    }
                        if let document = document, document.exists {
                         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
 
@@ -63,6 +67,7 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
                             self.performSegue(withIdentifier: "qrSegue", sender: self)
                         }
                        } else {
+                            
                            print("Document does not exist")
                            self.dismiss(animated: true, completion: nil)
                         

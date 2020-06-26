@@ -74,78 +74,59 @@ class EditProfile: UIViewController {
         self.navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
-    func enableSaveButton() {
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-    }
-    
-    
     
     @IBAction func save(_ sender: Any) {
         self.disableSaveButton()
         let val = input.text ?? ""
         
         self.input.resignFirstResponder()
-        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.startAnimating();
-        alert.view.addSubview(loadingIndicator)
-        self.present(alert, animated: true, completion: nil)
+        let alert = self.presentLoadingIndicator()
         
         if media == "Name" {
-            var user = Auth.auth().currentUser
             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
             changeRequest?.displayName = val
             changeRequest?.commitChanges { (error) in
                 if error != nil {
                     print("Error updating name")
-                    self.enableSaveButton()
+                    alert.dismiss(animated: true) {
+                        self.presentAlertWithHandler(withTitle: "Error Updating Profile", message: "") { _ in
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
                 } else {
+                    print("Succesfully updated profile item")
                     self.value = val
                     alert.dismiss(animated: true) {
-                        
-                        let success = UIAlertController(title: "Successfully Uploaded", message: "", preferredStyle: .alert)
-                        //let checkmark = UIImage.checkmark
-                        let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                             //self.disableSaveButton()
-                            self.dismiss(animated: true, completion: nil)
-                        })
-                        //let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 30, height: 30))
-                        //imageView.image = checkmark
-                        success.addAction(ok)
-                        //success.view.addSubview(imageView)
-                        self.present(success, animated: true, completion: nil)
+                        self.presentAlertWithHandler(withTitle: "Successfully Updated Profile", message: "") { _ in
+                            self.navigationController?.popViewController(animated: true)
+                        }
                     }
                 }
             }
         } else {
             if verifyInput(input: val, media: media) {
-                //Loading indicator
-                
-                
                 //Update data in database
                 let db = Firestore.firestore()
+                
                 let docref = db.collection("users").document(Auth.auth().currentUser?.uid ?? "")
-                docref.updateData([media: val]) { err in
-                    if let err = err {
+                docref.updateData([media: val]) { (error) in
+                    if error != nil {
                         //Error here
-                        self.enableSaveButton()
-                        print(err.localizedDescription)
+                        print("ERROR HERE: " + error.debugDescription)
+                        alert.dismiss(animated: true) {
+                            self.presentAlertWithHandler(withTitle: "Error Updating Profile", message: "") { _ in
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }
                     } else {
+                        print("No error")
                         self.value = val
                         alert.dismiss(animated: true) {
-                            let success = UIAlertController(title: "Successfully Uploaded", message: "", preferredStyle: .alert)
-                            //let checkmark = UIImage.checkmark
-                            let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                                //self.disableSaveButton()
-                                self.dismiss(animated: true, completion: nil)
-                            })
-                            //let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 30, height: 30))
-                            //imageView.image = checkmark
-                            success.addAction(ok)
-                            //success.view.addSubview(imageView)
-                            self.present(success, animated: true, completion: nil)
+                            alert.dismiss(animated: true) {
+                                self.presentAlertWithHandler(withTitle: "Successfully Updated Profile", message: "") { _ in
+                                    self.navigationController?.popViewController(animated: true)
+                                }
+                            }
                         }
                     }
                 }

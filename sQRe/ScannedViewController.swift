@@ -51,7 +51,9 @@ class ScannedViewController: UIViewController, UITableViewDataSource, UITableVie
         storageReference.listAll { (result, error) in
           if let err = error {
             // ...
+            self.presentAlert(withTitle: "Error", message: "An error occurred generating your QR. Please try again later.")
             print(err.localizedDescription)
+            return
           }
             
           for item in result.items {

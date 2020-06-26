@@ -25,9 +25,8 @@ class EditProfilePicture: UIViewController {
          let storage = Storage.storage()
          let storageReference = storage.reference().child("profile_pictures/" + uid)
          storageReference.listAll { (result, error) in
-           if let err = error {
-             // ...
-             print(err.localizedDescription)
+           if error != nil {
+                print("Error loading profile picture")
            }
              
            for item in result.items {
@@ -54,26 +53,28 @@ class EditProfilePicture: UIViewController {
     
     @IBAction func save(_ sender: Any) {
         let storage = Storage.storage()
-        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.startAnimating();
-        alert.view.addSubview(loadingIndicator)
-        self.present(alert, animated: true, completion: nil)
+        let alert = self.presentLoadingIndicator()
         if let profile_uid = Auth.auth().currentUser?.uid {
             let pathReference = storage.reference(withPath: "profile_pictures/" + profile_uid + "/" + String(Int.random(in: 1...100000000)))
             let uploadTask = pathReference.putData((self.profileImage.image?.sd_imageData())!, metadata: nil) { (metadata, error) in
-              /*guard let metadata = metadata else {
-                // Uh-oh, an error occurred!
-                    return
-                }*/
+                if let err = error {
+                    print(err.localizedDescription)
+                    alert.dismiss(animated: true) {
+                        self.presentAlertWithHandler(withTitle: "Error Updating Profile Picture", message: "") { _ in
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                }
                 
                 pathReference.downloadURL { (url, error) in
                   guard let downloadURL = url else {
                     // Uh-oh, an error occurred!
-                    alert.dismiss(animated: true, completion: nil)
-                    print("Error: ", error?.localizedDescription)
+                    alert.dismiss(animated: true) {
+                        print("Error: ", error?.localizedDescription)
+                        self.presentAlertWithHandler(withTitle: "Error Updating Profile Picture", message: "") { _ in
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
                     return
                   }
                     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -83,7 +84,11 @@ class EditProfilePicture: UIViewController {
                         if let err = error {
                             //error occured
                             print(err.localizedDescription)
-                            return
+                            alert.dismiss(animated: true) {
+                                self.presentAlertWithHandler(withTitle: "Error Updating Profile Picture", message: "") { _ in
+                                    self.navigationController?.popViewController(animated: true)
+                                }
+                            }
                         } else {
                             print("Photo URL successfully updated")
                             //Delete old image
@@ -93,8 +98,11 @@ class EditProfilePicture: UIViewController {
                                 oldRef.delete { error in
                                   if let error = error {
                                     // Uh-oh, an error occurred!
-                                    print(error.localizedDescription)
-                                    alert.dismiss(animated: true, completion: nil)
+                                    alert.dismiss(animated: true) {
+                                        self.presentAlert(withTitle: "Error", message: "An error occurred. Please try again later.")
+                                        print(error.localizedDescription)
+                                        
+                                    }
                                   } else {
                                     // File deleted successfully
                                     // You can also access to download URL after upload.
@@ -103,20 +111,11 @@ class EditProfilePicture: UIViewController {
                                 }
                                 
                             }
-                            } else {
-                                alert.dismiss(animated: true, completion: nil)
                             }
                             alert.dismiss(animated: false) {
-                                  let success = UIAlertController(title: "Successfully Uploaded", message: "", preferredStyle: .alert)
-                                  //let checkmark = UIImage.checkmark
-                                  let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                                      self.dismiss(animated: true, completion: nil)
-                                  })
-                                  //let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 30, height: 30))
-                                  //imageView.image = checkmark
-                                  success.addAction(ok)
-                                  //success.view.addSubview(imageView)
-                                  self.present(success, animated: true, completion: nil)
+                                self.presentAlertWithHandler(withTitle: "Successfully Updated Profile Picture", message: "") { _ in
+                                    self.navigationController?.popViewController(animated: true)
+                                }
                             }
                     }
                     

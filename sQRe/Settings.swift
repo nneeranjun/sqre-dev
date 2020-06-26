@@ -51,6 +51,7 @@ class Settings: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 } catch let signOutError as NSError {
                 //Error handle here
                   print ("Error signing out: %@", signOutError)
+                    self.presentAlert(withTitle: "Error Signing Out. Try again.", message: "")
                 }
             })
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in

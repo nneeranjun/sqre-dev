@@ -54,6 +54,7 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, url: URL?, error: Error?) {
         if error != nil {
             print("Could not log in user:")
+            self.presentAlert(withTitle: "Error", message: "Login Unsuccessful. Try again.")
             
         } else {
            print("Login successful for:")
@@ -74,5 +75,34 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
     }
     */
 }
+
+extension UIViewController {
+    func presentAlert(withTitle title: String, message : String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentAlertWithHandler(withTitle title: String, message : String, handler: @escaping (UIAlertAction) -> Void) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: handler)
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentLoadingIndicator() -> UIAlertController {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.startAnimating();
+        alert.view.addSubview(loadingIndicator)
+        self.present(alert, animated: true, completion: nil)
+        return alert
+    }
+    
+    
+}
+
 
 
