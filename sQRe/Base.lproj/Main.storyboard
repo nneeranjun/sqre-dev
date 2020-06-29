@@ -166,7 +166,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ys1-0a-g3i"/>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="jUY-Op-Zzw" firstAttribute="centerX" secondItem="umJ-sr-mFU" secondAttribute="centerX" id="3mU-ES-bFR"/>
