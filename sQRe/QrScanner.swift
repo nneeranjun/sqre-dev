@@ -15,13 +15,15 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var scanned_info = Dictionary<String, String>()
     var times_scanned = 0
     var isHolding = false
+    var flashOn = false
     
     @IBOutlet weak var cameraButton: UIButton!
     
     @IBAction func goToSettings(_ sender: Any) {
         performSegue(withIdentifier: "GoToScans", sender: self)
-        
     }
+    
+    @IBOutlet weak var flashlight: UIBarButtonItem!
     
     @IBOutlet weak var indicatorLabel: UILabel!
     
@@ -37,6 +39,47 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     @IBAction func viewProfile(_ sender: Any) {
         performSegue(withIdentifier: "GoProfile", sender: self)
     }
+    
+    func toggleTorch(on: Bool) -> Bool {
+        guard
+            let device = AVCaptureDevice.default(for: AVMediaType.video),
+            device.hasTorch
+        else { return false}
+
+        do {
+            try device.lockForConfiguration()
+            device.torchMode = on ? .on : .off
+            device.unlockForConfiguration()
+            return true
+        } catch {
+            print("Torch could not be used")
+            return false
+        }
+    }
+    
+    @IBAction func toggleFlashlight(_ sender: Any) {
+        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .heavy)
+        impactFeedbackgenerator.prepare()
+        impactFeedbackgenerator.impactOccurred()
+        //TODO: toggle flashlight
+       
+        let result = self.toggleTorch(on: !flashOn)
+        if flashOn {
+            if result {
+                self.flashlight.image = UIImage(systemName: "flashlight.off.fill")
+                self.flashlight.tintColor = .white
+            }
+            self.flashOn = !result
+        } else {
+            if result {
+                self.flashlight.image = UIImage(systemName: "flashlight.on.fill")
+                self.flashlight.tintColor = UIColor(hexaString: "#25ED9F")
+            }
+            self.flashOn = result
+        }
+        
+    }
+    
     
     
     func startCamera() {
@@ -80,11 +123,23 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         requestCameraAccess()
     }
     
+
+    @objc func willResignActive(_ notification: Notification) {
+        // code to execute
+        self.flashlight.image = UIImage(systemName: "flashlight.off.fill")
+        self.flashlight.tintColor = .white
+        self.flashOn = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+
         self.cameraButton.isHidden = true
         if isCameraEnabled() {
             //already authorized
@@ -110,21 +165,26 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
-        
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
+        super.viewWillAppear(animated)
+        self.flashlight.image = UIImage(systemName: "flashlight.off.fill")
+        self.flashlight.tintColor = .white
+        self.flashOn = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
         self.navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.systemBackground)
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.left")?.withTintColor(UIColor.systemBackground)
         self.navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
     }
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default) //UIImage.init(named: "transparent.png")
         self.navigationController?.navigationBar.shadowImage = nil
+
     }
     
     
@@ -177,22 +237,24 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(downSwipe(sender:)))
         downSwipe.direction = .up
         view.addGestureRecognizer(downSwipe)
         let holdGesture = UILongPressGestureRecognizer(target: self, action: #selector(holdDown(sender:)))
         view.addGestureRecognizer(holdGesture)
-        
-        
     }
+
+    
     
     @objc func downSwipe(sender: UISwipeGestureRecognizer) {
         if sender.state == .ended {
-            print("Swiped down")
+            print("Swiped up")
             performSegue(withIdentifier: "generateQR", sender: self)
-            
         }
     }
+    
+    
     @objc func holdDown(sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             isHolding = true
@@ -208,16 +270,20 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "generateSegue" {
-            print("going to qr generator")
-        }
         if segue.destination is ScannedViewController {
             //Pass user object
             let scanned_controller = segue.destination as? ScannedViewController
             scanned_controller?.scanned_info = scanned_info
-        } 
+        }
+        if self.flashOn {
+            let _ = self.toggleTorch(on: false)
+            self.flashlight.image = UIImage(systemName: "flashlight.off.fill")
+            self.flashlight.tintColor = .white
+            self.flashOn = false
+        }
         
     }
+    
     
     
     

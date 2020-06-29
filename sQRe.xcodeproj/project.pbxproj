@@ -24,6 +24,7 @@
 		1180DB0C2490A78300E2D463 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180DB0B2490A78300E2D463 /* Settings.swift */; };
 		1180DB102495484200E2D463 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180DB0F2495484200E2D463 /* ForgotPassword.swift */; };
 		118630BB245B94C000D98B32 /* EnterInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118630BA245B94C000D98B32 /* EnterInfoCell.swift */; };
+		11963E3D24A5CF68008C6423 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11963E3C24A5CF68008C6423 /* CloudKit.framework */; };
 		11B17AA32498629B003BAEAF /* EditProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B17AA22498629B003BAEAF /* EditProfilePicture.swift */; };
 		11C1493C23D2E1B800A9F154 /* MediaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */; };
 		11C1494623D42D5500A9F154 /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */; };
@@ -84,6 +85,7 @@
 		1180DB0B2490A78300E2D463 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		1180DB0F2495484200E2D463 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		118630BA245B94C000D98B32 /* EnterInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInfoCell.swift; sourceTree = "<group>"; };
+		11963E3C24A5CF68008C6423 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		11B17AA22498629B003BAEAF /* EditProfilePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePicture.swift; sourceTree = "<group>"; };
 		11C1493B23D2E1B800A9F154 /* MediaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewController.swift; sourceTree = "<group>"; };
 		11C1494523D42D5400A9F154 /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1145271C24513D3D00CACF0B /* FacebookLogin in Frameworks */,
+				11963E3D24A5CF68008C6423 /* CloudKit.framework in Frameworks */,
 				1145271E24513D3D00CACF0B /* FacebookCore in Frameworks */,
 				D2575699ACA23E9EE72D06C8 /* Pods_sQRe.framework in Frameworks */,
 			);
@@ -227,6 +230,7 @@
 		D26F4760F9BD77C5A2D1BBB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11963E3C24A5CF68008C6423 /* CloudKit.framework */,
 				93C569981F5AFB3A11C6CE8F /* Pods_sQRe.framework */,
 				B4D3B7FC34BCAAC33C69912C /* Pods_sQRe_sQReUITests.framework */,
 				49E9FD849DA09BB3BAD06502 /* Pods_sQReTests.framework */,
@@ -713,7 +717,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = sQRe/sQRe.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = PR8DT89255;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -723,8 +729,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nneeranjun.sQRe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -736,7 +744,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = sQRe/sQRe.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = PR8DT89255;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -746,8 +756,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nneeranjun.sQRe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

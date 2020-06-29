@@ -170,7 +170,7 @@ class EditProfile: UIViewController {
            } else if media == "Phone Number" {
                return isPhoneNumber(phoneNumber: input)
            } else if media == "Name" {
-            return true
+                return input != ""
            } else {
             return !input.contains(" ")
            }

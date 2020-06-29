@@ -18,6 +18,8 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
     var selectedMedia: String!
     
     let allMedias = ["Name", "Snapchat", "Instagram", "Phone Number", "Twitter", "Linkedin", "Facebook", "Venmo"]
+    
+    let atSymbol = ["Snapchat", "Instagram", "Twitter", "Venmo"]
 
     //@IBOutlet weak var fbButton: UIButton!
     var mediaData : Dictionary<String, String> = [:]
@@ -101,17 +103,18 @@ class EnterSocialMedia: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EnterInfoCell", for: indexPath) as! EnterInfoCell
-        cell.mediaLogo.image = UIImage(named: allMedias[indexPath.row])
-        if mediaData[allMedias[indexPath.row]] == "" {
-            if allMedias[indexPath.row] == "Linkedin" || allMedias[indexPath.row] == "Facebook" {
-                cell.mediaTag.text = "Enter Your " + allMedias[indexPath.row] + " URL"
+        let media = allMedias[indexPath.row]
+        cell.mediaLogo.image = UIImage(named: media)
+        if mediaData[media] == "" {
+            if allMedias[indexPath.row] == "Linkedin" || media == "Facebook" {
+                cell.mediaTag.text = "Enter Your " + media + " URL"
             } else {
-                cell.mediaTag.text = "Enter Your " + allMedias[indexPath.row]
+                cell.mediaTag.text = "Enter Your " + media
             }
         } else {
-            cell.mediaTag.text = mediaData[allMedias[indexPath.row]]
+                cell.mediaTag.text = mediaData[media]
         }
-    
+
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
