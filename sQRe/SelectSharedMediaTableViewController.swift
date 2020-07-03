@@ -27,7 +27,9 @@ class SelectSharedMediaTableViewController: UIViewController, UITableViewDelegat
             alert.addAction(ok)
             self.present(alert, animated: true, completion: nil)
         } else {
-           
+            let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .heavy)
+            impactFeedbackgenerator.prepare()
+            impactFeedbackgenerator.impactOccurred()
             for index in tableView.indexPathsForSelectedRows! {
                 selected.append(availableMedias[index.row])
             }

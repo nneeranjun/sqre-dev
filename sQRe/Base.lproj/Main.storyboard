@@ -204,6 +204,7 @@
                         <outlet property="cameraButton" destination="n9C-77-ESy" id="M3c-jv-Dc7"/>
                         <outlet property="flashlight" destination="Gun-hu-G7u" id="lZO-FB-tmA"/>
                         <outlet property="indicatorLabel" destination="jUY-Op-Zzw" id="SEw-QJ-TBd"/>
+                        <outlet property="profileIcon" destination="MSc-mh-0Zn" id="TBX-et-ZFE"/>
                         <outlet property="swipeIndicator" destination="Dnb-6E-oQ4" id="zQf-6n-fub"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="generateQR" id="Zdd-jp-sc3"/>
                         <segue destination="q4g-si-Nnq" kind="show" identifier="scannedSegue" id="GOK-Qt-GNM"/>

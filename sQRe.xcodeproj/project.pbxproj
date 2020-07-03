@@ -18,8 +18,8 @@
 		113E1002226EA51C009AE498 /* ScannedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E1001226EA51C009AE498 /* ScannedViewController.swift */; };
 		114526FE244B77B000CACF0B /* ViewScannedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114526FD244B77B000CACF0B /* ViewScannedCell.swift */; };
 		11452708244C21AA00CACF0B /* LoadScansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11452707244C21AA00CACF0B /* LoadScansViewController.swift */; };
-		1145271C24513D3D00CACF0B /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271B24513D3D00CACF0B /* FacebookLogin */; };
-		1145271E24513D3D00CACF0B /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271D24513D3D00CACF0B /* FacebookCore */; };
+		1145271C24513D3D00CACF0B /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271B24513D3D00CACF0B /* SwiftPackageProductDependency */; };
+		1145271E24513D3D00CACF0B /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1145271D24513D3D00CACF0B /* SwiftPackageProductDependency */; };
 		115015042249FC850018646D /* QrScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115015032249FC850018646D /* QrScanner.swift */; };
 		1180DB0C2490A78300E2D463 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180DB0B2490A78300E2D463 /* Settings.swift */; };
 		1180DB102495484200E2D463 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180DB0F2495484200E2D463 /* ForgotPassword.swift */; };
@@ -35,9 +35,9 @@
 		11FC4510222E0A9B0048D683 /* sQReTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC450F222E0A9B0048D683 /* sQReTests.swift */; };
 		11FC451B222E0A9B0048D683 /* sQReUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC451A222E0A9B0048D683 /* sQReUITests.swift */; };
 		11FC452B222E1E8D0048D683 /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC452A222E1E8D0048D683 /* QRCodeController.swift */; };
-		2D1C49124ADCA1D2F0DBDC43 /* Pods_sQRe_sQReUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D3B7FC34BCAAC33C69912C /* Pods_sQRe_sQReUITests.framework */; };
-		5674C698B4CAC962DC92681A /* Pods_sQReTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E9FD849DA09BB3BAD06502 /* Pods_sQReTests.framework */; };
-		D2575699ACA23E9EE72D06C8 /* Pods_sQRe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C569981F5AFB3A11C6CE8F /* Pods_sQRe.framework */; };
+		DD1EF3F9F5B28600A938EEA9 /* Pods_sQRe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D7A40CF672297FB2823E6D /* Pods_sQRe.framework */; };
+		E6A646C27AB073B57862CC42 /* Pods_sQRe_sQReUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01621837628F4D4678B62B9 /* Pods_sQRe_sQReUITests.framework */; };
+		E79FAA091D2B63ED7F30D980 /* Pods_sQReTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DFF3129E5B881F67B96C9D /* Pods_sQReTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01047D850402A990E5E619EE /* Pods-sQReTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQReTests.release.xcconfig"; path = "Target Support Files/Pods-sQReTests/Pods-sQReTests.release.xcconfig"; sourceTree = "<group>"; };
 		1120EDEA248C2B54005E6A57 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		1120EF88243D294900EB81ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1120EF95243D5ABA00EB81ED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -102,15 +103,14 @@
 		11FC451A222E0A9B0048D683 /* sQReUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sQReUITests.swift; sourceTree = "<group>"; };
 		11FC451C222E0A9B0048D683 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11FC452A222E1E8D0048D683 /* QRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
-		253D2CE84AACDD012D28B0F2 /* Pods-sQReTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQReTests.release.xcconfig"; path = "Target Support Files/Pods-sQReTests/Pods-sQReTests.release.xcconfig"; sourceTree = "<group>"; };
-		3ED261814F85C2A60E98E550 /* Pods-sQReTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQReTests.debug.xcconfig"; path = "Target Support Files/Pods-sQReTests/Pods-sQReTests.debug.xcconfig"; sourceTree = "<group>"; };
-		49E9FD849DA09BB3BAD06502 /* Pods_sQReTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sQReTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7D9B9B11A58A02C4B35C4B4F /* Pods-sQRe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQRe.debug.xcconfig"; path = "Target Support Files/Pods-sQRe/Pods-sQRe.debug.xcconfig"; sourceTree = "<group>"; };
-		923052820BB5349DEB3CB7C5 /* Pods-sQRe-sQReUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQRe-sQReUITests.release.xcconfig"; path = "Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests.release.xcconfig"; sourceTree = "<group>"; };
-		93C569981F5AFB3A11C6CE8F /* Pods_sQRe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sQRe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4D3B7FC34BCAAC33C69912C /* Pods_sQRe_sQReUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sQRe_sQReUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5B09D3CF5C14F3975A3FD9B /* Pods-sQRe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQRe.release.xcconfig"; path = "Target Support Files/Pods-sQRe/Pods-sQRe.release.xcconfig"; sourceTree = "<group>"; };
-		DBD1ECDAC20BD7B4D7082F66 /* Pods-sQRe-sQReUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQRe-sQReUITests.debug.xcconfig"; path = "Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		286C0B70A39E7E3BDB2A6D19 /* Pods-sQRe-sQReUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQRe-sQReUITests.debug.xcconfig"; path = "Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		50DFF3129E5B881F67B96C9D /* Pods_sQReTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sQReTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EA1750B7FBBBC852768E07E /* Pods-sQRe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQRe.debug.xcconfig"; path = "Target Support Files/Pods-sQRe/Pods-sQRe.debug.xcconfig"; sourceTree = "<group>"; };
+		A01621837628F4D4678B62B9 /* Pods_sQRe_sQReUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sQRe_sQReUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D754A08C1FA29C5E22F1074A /* Pods-sQReTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQReTests.debug.xcconfig"; path = "Target Support Files/Pods-sQReTests/Pods-sQReTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DD973FDA4DA33E1EB62AD9E9 /* Pods-sQRe-sQReUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQRe-sQReUITests.release.xcconfig"; path = "Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E8DA37ED96ADA9BF2E68CDE0 /* Pods-sQRe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sQRe.release.xcconfig"; path = "Target Support Files/Pods-sQRe/Pods-sQRe.release.xcconfig"; sourceTree = "<group>"; };
+		F1D7A40CF672297FB2823E6D /* Pods_sQRe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sQRe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,10 +118,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1145271C24513D3D00CACF0B /* FacebookLogin in Frameworks */,
+				1145271C24513D3D00CACF0B /* BuildFile in Frameworks */,
 				11963E3D24A5CF68008C6423 /* CloudKit.framework in Frameworks */,
-				1145271E24513D3D00CACF0B /* FacebookCore in Frameworks */,
-				D2575699ACA23E9EE72D06C8 /* Pods_sQRe.framework in Frameworks */,
+				1145271E24513D3D00CACF0B /* BuildFile in Frameworks */,
+				DD1EF3F9F5B28600A938EEA9 /* Pods_sQRe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5674C698B4CAC962DC92681A /* Pods_sQReTests.framework in Frameworks */,
+				E79FAA091D2B63ED7F30D980 /* Pods_sQReTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D1C49124ADCA1D2F0DBDC43 /* Pods_sQRe_sQReUITests.framework in Frameworks */,
+				E6A646C27AB073B57862CC42 /* Pods_sQRe_sQReUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,12 +217,12 @@
 		3FBB67BA32BB2160F1EE2C93 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7D9B9B11A58A02C4B35C4B4F /* Pods-sQRe.debug.xcconfig */,
-				C5B09D3CF5C14F3975A3FD9B /* Pods-sQRe.release.xcconfig */,
-				DBD1ECDAC20BD7B4D7082F66 /* Pods-sQRe-sQReUITests.debug.xcconfig */,
-				923052820BB5349DEB3CB7C5 /* Pods-sQRe-sQReUITests.release.xcconfig */,
-				3ED261814F85C2A60E98E550 /* Pods-sQReTests.debug.xcconfig */,
-				253D2CE84AACDD012D28B0F2 /* Pods-sQReTests.release.xcconfig */,
+				8EA1750B7FBBBC852768E07E /* Pods-sQRe.debug.xcconfig */,
+				E8DA37ED96ADA9BF2E68CDE0 /* Pods-sQRe.release.xcconfig */,
+				286C0B70A39E7E3BDB2A6D19 /* Pods-sQRe-sQReUITests.debug.xcconfig */,
+				DD973FDA4DA33E1EB62AD9E9 /* Pods-sQRe-sQReUITests.release.xcconfig */,
+				D754A08C1FA29C5E22F1074A /* Pods-sQReTests.debug.xcconfig */,
+				01047D850402A990E5E619EE /* Pods-sQReTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -231,9 +231,9 @@
 			isa = PBXGroup;
 			children = (
 				11963E3C24A5CF68008C6423 /* CloudKit.framework */,
-				93C569981F5AFB3A11C6CE8F /* Pods_sQRe.framework */,
-				B4D3B7FC34BCAAC33C69912C /* Pods_sQRe_sQReUITests.framework */,
-				49E9FD849DA09BB3BAD06502 /* Pods_sQReTests.framework */,
+				F1D7A40CF672297FB2823E6D /* Pods_sQRe.framework */,
+				A01621837628F4D4678B62B9 /* Pods_sQRe_sQReUITests.framework */,
+				50DFF3129E5B881F67B96C9D /* Pods_sQReTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -245,13 +245,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11FC451F222E0A9B0048D683 /* Build configuration list for PBXNativeTarget "sQRe" */;
 			buildPhases = (
-				9F4CBD3536085D14A36C0815 /* [CP] Check Pods Manifest.lock */,
+				7B14E5D2AD8050ABB07AD548 /* [CP] Check Pods Manifest.lock */,
 				11FC44F3222E0A990048D683 /* Sources */,
 				11FC44F4222E0A990048D683 /* Frameworks */,
 				11FC44F5222E0A990048D683 /* Resources */,
 				118807D72231DCAD00293143 /* Embed Frameworks */,
-				507E3BEC164E1E4CF82B0A74 /* [CP] Embed Pods Frameworks */,
-				40699359931FA7844724066D /* [CP] Copy Pods Resources */,
+				9BBB35DC71DA8CB183FDF7AB /* [CP] Embed Pods Frameworks */,
+				178A7B661B1BEE0574EED454 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -259,8 +259,8 @@
 			);
 			name = sQRe;
 			packageProductDependencies = (
-				1145271B24513D3D00CACF0B /* FacebookLogin */,
-				1145271D24513D3D00CACF0B /* FacebookCore */,
+				1145271B24513D3D00CACF0B /* SwiftPackageProductDependency */,
+				1145271D24513D3D00CACF0B /* SwiftPackageProductDependency */,
 			);
 			productName = sQRe;
 			productReference = 11FC44F7222E0A990048D683 /* sQRe.app */;
@@ -270,7 +270,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11FC4522222E0A9B0048D683 /* Build configuration list for PBXNativeTarget "sQReTests" */;
 			buildPhases = (
-				38A33D4158251378790CE717 /* [CP] Check Pods Manifest.lock */,
+				3C892E573A132787CA4E67B6 /* [CP] Check Pods Manifest.lock */,
 				11FC4507222E0A9B0048D683 /* Sources */,
 				11FC4508222E0A9B0048D683 /* Frameworks */,
 				11FC4509222E0A9B0048D683 /* Resources */,
@@ -289,12 +289,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11FC4525222E0A9B0048D683 /* Build configuration list for PBXNativeTarget "sQReUITests" */;
 			buildPhases = (
-				6618995B3D5F8F9F477563B8 /* [CP] Check Pods Manifest.lock */,
+				F88D01E025BFB47C5C6E40BA /* [CP] Check Pods Manifest.lock */,
 				11FC4512222E0A9B0048D683 /* Sources */,
 				11FC4513222E0A9B0048D683 /* Frameworks */,
 				11FC4514222E0A9B0048D683 /* Resources */,
-				5271FBDFA1853064B1723CA7 /* [CP] Embed Pods Frameworks */,
-				A357C45F12DADF3D93DB414D /* [CP] Copy Pods Resources */,
+				C9A2499C7ED3D1327529BDD6 /* [CP] Embed Pods Frameworks */,
+				ED90723DB5660E8737BA4177 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -339,7 +339,7 @@
 			);
 			mainGroup = 11FC44EE222E0A990048D683;
 			packageReferences = (
-				1145271A24513D3D00CACF0B /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				1145271A24513D3D00CACF0B /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 11FC44F8222E0A990048D683 /* Products */;
 			projectDirPath = "";
@@ -383,7 +383,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		38A33D4158251378790CE717 /* [CP] Check Pods Manifest.lock */ = {
+		178A7B661B1BEE0574EED454 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3C892E573A132787CA4E67B6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -405,80 +422,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		40699359931FA7844724066D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		507E3BEC164E1E4CF82B0A74 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5271FBDFA1853064B1723CA7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6618995B3D5F8F9F477563B8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-sQRe-sQReUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9F4CBD3536085D14A36C0815 /* [CP] Check Pods Manifest.lock */ = {
+		7B14E5D2AD8050ABB07AD548 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -500,7 +444,41 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A357C45F12DADF3D93DB414D /* [CP] Copy Pods Resources */ = {
+		9BBB35DC71DA8CB183FDF7AB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sQRe/Pods-sQRe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9A2499C7ED3D1327529BDD6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED90723DB5660E8737BA4177 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -515,6 +493,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sQRe-sQReUITests/Pods-sQRe-sQReUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F88D01E025BFB47C5C6E40BA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sQRe-sQReUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -713,7 +713,7 @@
 		};
 		11FC4520222E0A9B0048D683 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D9B9B11A58A02C4B35C4B4F /* Pods-sQRe.debug.xcconfig */;
+			baseConfigurationReference = 8EA1750B7FBBBC852768E07E /* Pods-sQRe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = sQRe/sQRe.entitlements;
@@ -740,7 +740,7 @@
 		};
 		11FC4521222E0A9B0048D683 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5B09D3CF5C14F3975A3FD9B /* Pods-sQRe.release.xcconfig */;
+			baseConfigurationReference = E8DA37ED96ADA9BF2E68CDE0 /* Pods-sQRe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = sQRe/sQRe.entitlements;
@@ -767,7 +767,7 @@
 		};
 		11FC4523222E0A9B0048D683 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3ED261814F85C2A60E98E550 /* Pods-sQReTests.debug.xcconfig */;
+			baseConfigurationReference = D754A08C1FA29C5E22F1074A /* Pods-sQReTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -788,7 +788,7 @@
 		};
 		11FC4524222E0A9B0048D683 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 253D2CE84AACDD012D28B0F2 /* Pods-sQReTests.release.xcconfig */;
+			baseConfigurationReference = 01047D850402A990E5E619EE /* Pods-sQReTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -809,7 +809,7 @@
 		};
 		11FC4526222E0A9B0048D683 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DBD1ECDAC20BD7B4D7082F66 /* Pods-sQRe-sQReUITests.debug.xcconfig */;
+			baseConfigurationReference = 286C0B70A39E7E3BDB2A6D19 /* Pods-sQRe-sQReUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -829,7 +829,7 @@
 		};
 		11FC4527222E0A9B0048D683 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 923052820BB5349DEB3CB7C5 /* Pods-sQRe-sQReUITests.release.xcconfig */;
+			baseConfigurationReference = DD973FDA4DA33E1EB62AD9E9 /* Pods-sQRe-sQReUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -889,7 +889,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1145271A24513D3D00CACF0B /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+		1145271A24513D3D00CACF0B /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
 			requirement = {
@@ -900,14 +900,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1145271B24513D3D00CACF0B /* FacebookLogin */ = {
+		1145271B24513D3D00CACF0B /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1145271A24513D3D00CACF0B /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			package = 1145271A24513D3D00CACF0B /* RemoteSwiftPackageReference */;
 			productName = FacebookLogin;
 		};
-		1145271D24513D3D00CACF0B /* FacebookCore */ = {
+		1145271D24513D3D00CACF0B /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1145271A24513D3D00CACF0B /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			package = 1145271A24513D3D00CACF0B /* RemoteSwiftPackageReference */;
 			productName = FacebookCore;
 		};
 /* End XCSwiftPackageProductDependency section */

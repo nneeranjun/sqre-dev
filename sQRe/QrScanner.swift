@@ -11,11 +11,17 @@ import AVFoundation
 import Firebase
 
 class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+    
+    
+    
+    @IBOutlet var superView: UIView!
     var video = AVCaptureVideoPreviewLayer()
     var scanned_info = Dictionary<String, String>()
     var times_scanned = 0
     var isHolding = false
     var flashOn = false
+    
+    @IBOutlet weak var profileIcon: UIBarButtonItem!
     
     @IBOutlet weak var cameraButton: UIButton!
     
@@ -107,6 +113,9 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
+    
+    
+    
     func isCameraEnabled() -> Bool {
         return AVCaptureDevice.authorizationStatus(for: .video) == .authorized
     }
@@ -163,6 +172,12 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             
             
         }
+        showTutorial()
+    }
+    
+    func showTutorial() {
+        
+        
     }
     
     
@@ -283,11 +298,15 @@ class QrScanner: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         }
         
     }
-    
-    
-    
-    
+}
 
-    
+extension UIBarButtonItem {
+
+    var frame: CGRect? {
+        guard let view = self.value(forKey: "view") as? UIView else {
+            return nil
+        }
+        return view.frame
+    }
 
 }

@@ -9,8 +9,8 @@
 import UIKit
 import FirebaseUI
 import Firebase
+
 class LoginViewController: UIViewController, FUIAuthDelegate {
-    
     @IBAction func forgotPassword(_ sender: Any) {
         self.performSegue(withIdentifier: "forgotPassword", sender: self)
     }
@@ -35,9 +35,9 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        
     }
-
+    
+    
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
